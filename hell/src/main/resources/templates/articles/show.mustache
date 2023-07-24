@@ -1,0 +1,26 @@
+{{>layouts/header}}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Content</th>
+        </tr>
+        </thead>
+    </table>
+
+    <tbody>
+    {{#article}}
+        <tr>
+            <th>{{id}}</th>
+            <td>{{title}}</td>
+            <td>{{content}}</td>
+        </tr>
+    {{/article}}
+    </tbody>
+<!--  수정/삭제 버튼 추가  -->
+<a href="/articles/{{article.id}}/edit" class="btn btn-primary">Edit</a>
+<a href="/articles/{{article.id}}/delete" class="btn btn-danger">delete</a>
+<!-- 상세페이지에서 목록으로 -->
+<a href="/articles">Go To Article List</a>
+{{>layouts/footer}}
