@@ -17,13 +17,13 @@ import javax.persistence.Id;
 public class Article {
     @Id
     @GeneratedValue
-    private  Long id;
+    private Long id;
 
     @Column
-    private  String title;
+    private String title;
 
     @Column
-    private  String content;
+    private String content;
 
     public Article(Long id, String title, String content) {
         this.id = id;
