@@ -1,4 +1,4 @@
-package jpabook.ipashop.domain;
+package jpabook.jpashop.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
