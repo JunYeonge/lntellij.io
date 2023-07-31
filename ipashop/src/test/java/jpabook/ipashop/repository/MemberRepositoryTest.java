@@ -1,6 +1,6 @@
 package jpabook.ipashop.repository;
 
-import jpabook.ipashop.entity.Member;
+import jpabook.ipashop.domain.Member;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
