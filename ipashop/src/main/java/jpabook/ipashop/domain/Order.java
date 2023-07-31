@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -19,7 +20,7 @@ public class Order {
     @Id
     @GeneratedValue
     @Column(name = "order_id")
-    private  Long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
@@ -41,7 +42,7 @@ public class Order {
     private OrderStatus status;
 
     //== 연관관계 메서드 ==//
-    public void setMember(Member member){
+    public void setMember(Member member) {
         this.member = member;
         // 현재 엔티티에서 member 엔티티를설정
         // order 엔티티가 member 엔티티를 참조
@@ -54,7 +55,9 @@ public class Order {
         orderItems.add(orderItem);
         orderItem.setOrder(this);
     }
+
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
         delivery.setOrder(this);
+    }
 }
