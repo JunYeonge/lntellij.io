@@ -60,4 +60,36 @@ public class Order {
         this.delivery = delivery;
         delivery.setOrder(this);
     }
+
+    //생성 메서드
+    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems){  //... 가변길이 메서드
+        Order order = new Order();
+        order.setMember(member);
+        order.setDelivery(delivery);
+        for (OrderItem orderItem : orderItems) {
+            order.addOrderItem(orderItem);
+        }
+        order.setStatus(OrderStatus.ORDER);
+        order.setOrderDate(LocalDateTime.now());
+        return  order;
+    }
+    //1. 새로운 order 객체 생성
+    // 주문을 만든 Member 엔티티를 order.setMember(member)로 설정
+    // 주문의 배송 정보를 order.setDelivery(delivery);
+    // 여러개의 주문 항목을 for-each를 통해서 order.addOrderItem(orderItem); 을 ㅏ용
+    // 주문 상태를 order.setStatus(OrderStatus.ORDER);
+    // 주문 날짜 order.setOrderDate(LocalDateTime.now()); - 현재 시각
+    // 생성된 주문 객체를 반환
+
+    //비즈니스 로직
+    //주문 취소
+    public void cancel() {
+        if (delivery.getStatus() == DeliveryStatus.COMP) {
+            throw new IllegalStateException("이미 배송된 상품은 취소 할 수 없습니다.");
+        }
+        this.setStatus(OrderStatus.CANCEL);
+        for (OrderItem orderItem : orderItems) {
+            orderItem.cancel();
+        }
+    }
 }
