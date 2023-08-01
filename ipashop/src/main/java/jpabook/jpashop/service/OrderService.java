@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -52,4 +54,9 @@ public class OrderService {
     //주문 취소
     //주문 식별자를 받아서 주문엔티티를 조회한 후 주문 엔티티에 주문 취소를 요청
 
+    public List<Order> findOrders(OrderSearch orderSearch) {
+        return orderRepository.findAllByString(orderSearch);
+    }
+    //OrderSearch 객체를 기반으로 주문(Order)을 검색하는 메서드
+    // orderSearch - 주문에 필요한 조건
 }
