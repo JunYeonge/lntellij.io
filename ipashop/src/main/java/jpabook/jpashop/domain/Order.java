@@ -39,7 +39,7 @@ public class Order {
     private LocalDateTime orderDate; //주문시간
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+    private OrderStatus status; //주문상태 [ORDER,CANCEL]
 
     //== 연관관계 메서드 ==//
     public void setMember(Member member) {
@@ -91,5 +91,16 @@ public class Order {
         for (OrderItem orderItem : orderItems) {
             orderItem.cancel();
         }
+    }
+
+    //조회 로직
+
+    /* 전체 주문 가격 조회*/
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (OrderItem orderItem : orderItems) {
+            totalPrice += orderItem.getTotalPrice();
+        }
+        return totalPrice;
     }
 }

@@ -20,6 +20,14 @@ public class Member {
     private Long id;
 
     private  String name;
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+
+    }
 
     @Embedded
     private Address address;
