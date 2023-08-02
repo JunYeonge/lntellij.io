@@ -1,0 +1,164 @@
+Mysql 접속
+my sql -u root -p 	: 로그인
+
+
+mysql> quit
+mysql> exit		:로그아웃
+
+
+Database
+show databases;		:데이터 목록표시
+
+CREATE DATABASE [DB명]; 데이터베이스 생성
+
+DROP DATABASE [삭제할 DB명]; 데이터베이스 삭제
+
+USE [선택할 DB명]; 데이터 베이스에 접근(선택)
+
+
+테이블 생성
+CREATE TABLE [tqble명] (
+  [column1] [datatype] [option],
+  [column2] [datatype] [option],
+  [column3] [datatype] [option],
+  ...
+  PRIMARY KEY ([PK로 지정할 column명]),
+  FOREIGN KET ([FK로 지정할 column명]) REFERENCES [참조할 table명] ([참조할 PK명])
+);
+CREATE TABLE drinks (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NOT NULL.
+  inage_url VARCHAR(2000) NOT NULL,
+  description VARCHAR(500) NOT NULL,
+  is_new TINYINT,
+  category_id INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (category_id) REFERENCES categories (id)
+);
+
+2. 데이터 베이스 테이블의 구조
+  데이터 베이스 테이블의 구조 보기
+  desc 테이블명
+  desc mem;
+
+3.1 필드 삭제하기
+alter table mem drop posr_num(이름)
+
+3.2 필드 수정
+alter table mem change age phone char(20);
+
+3.3 필드 데이터형 수정하기
+alter table mem modify phone int;
+
+4. 데이터베이스 테이블 이름 관리
+이미 존재하는 DB 테이블 이름을 변경하는 명형
+
+alter table 수정할_테이블명 rename 새로운_테이블명;
+
+mem 테이블의 이름을 mem2로 변경.
+alter table mem rename mem2;
+
+데이터베이스 테이블 삭제
+drop table 테이블명;
+
+mem2테이블을 삭제하는 명령
+drop table mem2;
+
+전체 필드와 데이터 검색
+
+다음은 DB 테이블의 전체 필드와 데이터를 보여주는 명령 형식.
+select * from 테이블명;
+
+select * from member;
+
+- 특정 필드의 전체 레코드 검색
+
+select 필드명1, 필드명2, 필드명3 ... from 테이블명
+select name, tel, address from member;
+
+select 필드명1, 필드명2... from 테이블명 where 조건
+member 테이블에서 
+
+테이블 정보 입력
+insert into 테이블명 (id, name, gender, post_num, address, tel, age) values 
+('id입력', '이름', '성별', '우편번호', '주소', '번호', 나이); // 나이는 '' 를 사용하지 않는다.(년마다 바뀜)
+
+
+여성회원의 아이디, 이름, 주소, 성별 검색
+select id, name, address, gender from member where gender = "w";
+
+문제1) 50세 이상인 남성 회원의 이름, 전화번호, 성별, 나이 검색
+
+문제2) 20대 회원의 이름, 성별, 주소, 나이 검색
+
+문제3) 30대 또는 50대 남자회원의 이름, 전화번호, 나이, 성별 검색
+
+10-5 이름이 '안철엉 ' 인 회원의 일련번호, 이름, 전화번호, 주소, 우편번호, 나이, 성별 검색
+
+특정문자열이 포함된 레코드 검색
+테이블명' 이라는 DB 테이블애서 '검색필드'에 포함된 '문자열_수식' 조건을 만족하는 레코드의 필드명1, 필드명2, _를 검색하는 명령 형식.
+
+select 필드명1, 필드명2, ...from 테이블명 where 검색필드 like 문자열_수식
+- 성이 박씨인 회원의 이름, 전화번호 검색
+- select name, tel from member where name like '박%';
+
+- 서울에 거주하는 회원의 일련번호, 이름, 주소, 성별 검색
+select num, name, address, gender, from member where address like '서울%';
+
+- 은평구에 거주하는 회원의 모든 정보 검색
+select * from member where address like '%은평구%';
+
+데이터의 검색과 관리
+- 서울에 사는 회원을 나이순으로 오름차순 정렬한 뒤 이름, 나이, 주소, 전화번호, 성벽 출력
+select name, age, address, tel, gender from member where address like '서울%' order by age;
+
+-부산에 사는 회원을 나이순으로 내림차순 정렬한뒤 이름, 나이, 주소, 전화번호 출력
+select name, age, address, tel from member where address like '부산%' order by age desc;
+
+
+레코드 수정
+-'테이블명' 이라는 DB 테이블에서 조건식을 반복하는 레코드의 '필드형' 값을 '필드값' 으로 변경하는 명령 형식
+update 테이블명 set 필드명 = 필드값 where 조건식;
+
+-이름이 '고재진'인 레코드의 전화번호를 123-4567로 변경한 뒤 데이터 확인
+update member set tel = "123-4567" where name = '고재진';
+
+-select name, tel from member where name = '고재진';
+
+-이름이 '정한나'인 회원의 나이를 확인하고 값을 37로 변경
+
+select name, age from member where name = '정한나';
+update member set age = 37 where name = '정한나';
+select name, age from member where name = '정한나';
+
+select name, age from member where name = '정한나';
+
+레코드 삭제
+- '테이블명' 이라는 DB테이블에서 조건식을 만족하는 레코드를 삭제하는 명령형식,
+delete from 테이블명 where 조건식;
+
+- 이름이 '김수련'인 레코드를 삭제한 뒤 확인
+delete from member where name = '김수련';
+select * from member where name like '김%';
+
+40대 회원의 레코드를 삭제한 뒤 35~53세 회원의 이름, 나이, 성별을 나이순으로 출력하여 확인
+delete from member where age >=40 and age<=49
+
+select name, age, gender from member where age>=35 and age <=53 order by age;
+
+member 테이블의 전체 레코드를 삭제하는 명령 형식.
+delete from member;
+
+조인
+select gg._id, gg.name, s.title
+    -> from girl_group AS gg
+    -> left join song as s
+    -> on s._id = gg.hit_song_id;
+
+
+select s._id, s.title, gg.name
+    -> from girl_group as gg
+    -> right join song as s
+    -> on s._id = gg.hit_song_id;
+
+

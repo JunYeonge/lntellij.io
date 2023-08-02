@@ -1,0 +1,52 @@
+rest api 실습
+1. JSONPlaceholder 검색
+2. Talend API 검색 - 설치
+
+
+- GET 요청과 응답성공 - Staus code 200, ok
+
+- 1번 게시글 목록 요청
+https://jsonplaceholder.typicode.com/posts/1
+
+
+- 게시글 목록 요청 (전체)
+https://jsonplaceholder.typicode.com/posts
+
+
+- GET 요청과 응답 실패 - Status Code 404, Not Found
+존재하지 않는 게시글 요청
+https://jsonplaceholder.typicode.com/posts/101
+
+
+-POST 요청과 응답 성공 - Status Code 201, Created
+
+새 게시글 생성 요청
+https://jsonplaceholder.typicode.com/posts
+
+{
+  "title": "오늘은 왠지" ,
+  "body" : "집에 가고 싶어요!!"
+  
+}
+
+
+(update - form 에서는 post로 하는걸 json - patch)
+PATCH 요청과 응답
+게시글 수정 요청
+PATCH https://jsonplaceholder.typicode.com/posts/1
+{
+	"title": "abcdef" ,
+  	"body" : "123456789"
+}
+
+
+DELETE 요청과 응답
+게시글 삭제 요청
+DELETE  https://jsonplaceholder.typicode.com/posts/10
+
+
+target     article
+1              1
+가가가가
+1111       12345
+
