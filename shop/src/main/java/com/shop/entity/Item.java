@@ -1,6 +1,7 @@
 package com.shop.entity;
 
 import com.shop.constant.ItemSellStatus;
+import com.shop.exception.OutOfStockException;;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -39,4 +40,14 @@ public class Item {
 
     private LocalDateTime updateTime;
 
+    public void removeStock(int stockNumber) {
+        int restStock = this.stockNumber - stockNumber;
+        if (restStock < 0){
+            throw new OutOfStockException("상품의 재고가 부족합니다" + "(현재 재고 수량 : " + this.stockNumber + ")");
+        }
+        this.stockNumber = restStock;
+    }
+    public void addStock(int stockNumber) {
+        this.stockNumber += stockNumber;
+    }
 }

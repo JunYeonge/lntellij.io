@@ -17,8 +17,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
     @Autowired
     MemberService memberService;
+
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.formLogin()
                 .loginPage("/members/login")
                 .defaultSuccessUrl("/")
@@ -27,14 +28,27 @@ public class SecurityConfig {
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/")
+        ;
+        http.authorizeRequests()
+                .mvcMatchers("/css/**", "/js/**", "/img/**").permitAll()
+                .mvcMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
+                .mvcMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+        ;
 
+        http.exceptionHandling()
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+        ;
 
         return http.build();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    //패스워드 암호화
+
 }
+    //패스워드 암호화
+
