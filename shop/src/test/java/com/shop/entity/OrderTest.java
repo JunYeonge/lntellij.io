@@ -80,4 +80,46 @@ class OrderTest {
     // 저장한 OrderItem 엔티티의 개수를 확인한다.
 
     //order 가 저장되면서 order 와 연관된 OrderItem 엔티티도 자동 저장된다.
+
+    public Order createOrder() {
+        Order order = new Order(); //주문생성 - order
+        for (int i = 0; i < 3; i++) {
+            Item item = createItem();
+            itemRepository.save(item); // 주문 항목 저장
+            OrderItem orderItem = new OrderItem();
+            orderItem.setItem(item);
+            orderItem.setCount(10);
+            orderItem.setOrderPrice(1000);
+            orderItem.setOrder(order);
+            order.getOrderItems().add(orderItem);
+        }
+        Member member = new Member();
+        memberRepository.save(member);
+        order.setMember(member);
+        orderRepository.save(order);
+        return order;
+    }
+
+    @Test
+    @DisplayName("고아객체 제거 테스트")
+    public void orphanRemovalTest(){
+        Order order = this.createOrder();
+        order.getOrderItems().remove(0);
+        em.flush();
+    }
+
+    @Test
+    @DisplayName("지연 로딩 테스트")
+    public void lazyLoadingTest(){
+        Order order = this.createOrder();
+        Long orderItemId = order.getOrderItems().get(0).getId();
+        em.flush();
+        em.clear();
+        OrderItem orderItem = orderItemRepository.findById(orderItemId)
+                .orElseThrow(EntityNotFoundException::new);
+        System.out.println("Order class : " + orderItem.getOrder().getClass());
+        System.out.println("===============================");
+        orderItem.getOrder().getOrderDate();
+        System.out.println("===============================");
+    }
 }
