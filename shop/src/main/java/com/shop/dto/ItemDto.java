@@ -12,7 +12,7 @@ public class ItemDto {
     private String itemNm;
     private Integer price;
     private String itemDetail;
-    private String sellStatCd;
+    private String sellStatus;
     private LocalDateTime regTime;
     private LocalDateTime updateTime;
 }

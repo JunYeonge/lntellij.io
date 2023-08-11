@@ -7,19 +7,18 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cart")
+@Table(name="cart")
 @Getter
 @Setter
 @ToString
 public class Cart extends BaseEntity{
 
     @Id
-    @Column(name = "cart_id")
+    @Column(name="cart_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY) // 내가 필요한 정보만 조회 할 수 있다
-    // 쓰지 않으면 모든 정보가 나온다
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
@@ -28,4 +27,6 @@ public class Cart extends BaseEntity{
         cart.setMember(member);
         return cart;
     }
+
+
 }

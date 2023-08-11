@@ -4,7 +4,6 @@ import com.shop.constant.ItemSellStatus;
 import com.shop.entity.Item;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.modelmapper.ModelMapper;
 
 import javax.validation.constraints.NotBlank;
@@ -17,16 +16,16 @@ import java.util.List;
 public class ItemFormDto {
     private Long id;
 
-    @NotBlank(message = "상품명은 필수 입력 값 입니다.")
+    @NotBlank(message = "상품명은 필수 입력 값입니다.")
     private String itemNm;
 
-    @NotNull(message = "가격은 필수 입력 값 입니다.")
+    @NotNull(message = "가격은 필수 입력 값입니다.")
     private Integer price;
 
     @NotBlank(message = "상품 상세는 필수 입력 값입니다.")
     private String itemDetail;
 
-    @NotNull(message = "재고는 필수 입력 값 입니다.")
+    @NotNull(message = "재고는 필수 입력 값입니다.")
     private Integer stockNumber;
 
     private ItemSellStatus itemSellStatus;
@@ -38,14 +37,15 @@ public class ItemFormDto {
     private static ModelMapper modelMapper = new ModelMapper();
 
     public Item createItem(){
-        return modelMapper.map(this,Item.class);
+        return modelMapper.map(this, Item.class);
     }
-    // ItemFormDto 객체를 기반으로 새로운 Item 객체를 생성
-    // this 는 ItemFormDto 객체 자체를 나타낸다.
-    // ItemFormDto 객체의 필드값을 가지고 item 객체를 생성
+// ItemFormDto 객체를 기반으로 새로운 Item 객체를 생성
+// this 는 ItemFormDto 객체 자체를 나타냅니다.
+// ItemFormDto 객체의 필드값을 가지고  item 객체를  생성
+
 
     public static ItemFormDto of(Item item){
-        return modelMapper.map(item, ItemFormDto.class);
+        return modelMapper.map(item,ItemFormDto.class);
     }
-    // Item 객체에서 itemFormDto 객체로 매핑
+    //Item  객체에서 temFormDto 객체로 매핑
 }
