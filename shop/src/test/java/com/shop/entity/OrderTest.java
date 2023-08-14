@@ -10,34 +10,36 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 @SpringBootTest
 @Transactional
-@TestPropertySource(locations="classpath:application-test.properties")
+@TestPropertySource(locations = "classpath:application-test.properties")
 class OrderTest {
+
     @Autowired
     OrderRepository orderRepository;
+
     @Autowired
     ItemRepository itemRepository;
     @PersistenceContext
     EntityManager em;
+
     @Autowired
     MemberRepository memberRepository;
 
     @Autowired
     OrderItemRepository orderItemRepository;
 
-    public Item createItem(){
+    public Item createItem() {
         Item item = new Item();
         item.setItemNm("테스트 상품");
         item.setPrice(10000);
@@ -50,39 +52,40 @@ class OrderTest {
         return item;
     }
 
-@Test
-@DisplayName("영속성 전이 테스트")
-public void cascadeTest() {
-    Order order = new Order(); //order 엔티티 생성
+    @Test
+    @DisplayName("영속성 전이 테스트")
+    public void cascadeTest() {
+        Order order = new Order();
 
-    for(int i=0;i<3;i++){ //반복문을 통해서 3개의 Item 엔티티를 생성
-        Item item = this.createItem();
-        itemRepository.save(item);
-        OrderItem orderItem = new OrderItem();
-        orderItem.setItem(item);
-        orderItem.setCount(10);
-        orderItem.setOrderPrice(1000);
-        orderItem.setOrder(order); //orderItem 의 order 필드에 생성한 Order 엔티티를 설정
-        order.getOrderItems().add(orderItem);
-        // order 엔티티의 orderItem 컬랙션에 생성한 OrderItem 엔티티를 추가
-    }  //부모인 order 엔티티를 orderRepository 에  저장
-    orderRepository.saveAndFlush(order);
-    em.clear();
+        for (int i = 0; i < 3; i++) { // 반복문을 통해서 3개의 Item 엔티티를 생성
+            Item item = this.createItem();
+            itemRepository.save(item);
+            OrderItem orderItem = new OrderItem();
+            orderItem.setItem(item);
+            orderItem.setCount(10);
+            orderItem.setOrderPrice(1000);
+            orderItem.setOrder(order); //orderItem 의 order 필드에 생성한 Order 엔티티를 설정
+            order.getOrderItems().add(orderItem);
+            // order 엔티티의 orderItem 컬랙션에 생성한 OrderItem 엔티티를 추가
+        }   // 부모인 order 엔티티를 orderRepository 에 저장
+        orderRepository.saveAndFlush(order);
+        em.clear();
 
-    Order savedOrder = orderRepository.findById(order.getId())
-            .orElseThrow(EntityNotFoundException::new);
-    assertEquals(3, savedOrder.getOrderItems().size());
-}
-//orderRepository 를 통해 저장한 Order 엔티티를 다시 조회하고,
-// 저장한 OrderItem 엔티티의 개수를 확인합니다.
+        Order savedOrder = orderRepository.findById(order.getId())
+                .orElseThrow(EntityNotFoundException::new);
+        assertEquals(3, savedOrder.getOrderItems().size());
+    }
+    // orderRepository 를 통해 저장한 Order 엔티티를 다시 조회하고,
+    // 저장한 OrderItem 엔티티의 개수를 확인합니다.
 
-//order 가 저장되면서 order 와 연관된 OrderItem 엔티티도 자동 저장된다.
+    // order 가 저장되면서 order 와 연관된 OrderItem 엔티티도 자동 저장된다.
 
-public Order createOrder(){
-        Order order =new Order(); //주문생성 - order
-        for(int i=0; i < 3; i++ ){
+    public Order createOrder() {
+        Order order = new Order();  // 주문생성 - order
+
+        for (int i = 0; i < 3; i++) {
             Item item = createItem();
-            itemRepository.save(item); //주문항목 저장
+            itemRepository.save(item);  // 주문항목 저장
             OrderItem orderItem = new OrderItem();
             orderItem.setItem(item);
             orderItem.setCount(10);
@@ -90,20 +93,22 @@ public Order createOrder(){
             orderItem.setOrder(order);
             order.getOrderItems().add(orderItem);
         }
-    Member member = new Member();
-    memberRepository.save(member);
-    order.setMember(member);
-    orderRepository.save(order);
-    return order;
-}
+        Member member = new Member();
+        memberRepository.save(member);
+
+        order.setMember(member);
+        orderRepository.save(order);
+        return order;
+    }
 
     @Test
     @DisplayName("고아객체 제거 테스트")
-    public void orphanRemovalTest(){
+    public void orphanRemovalTest() {
         Order order = this.createOrder();
         order.getOrderItems().remove(0);
         em.flush();
     }
+
     @Test
     @DisplayName("지연 로딩 테스트")
     public void lazyLoadingTest(){
@@ -113,14 +118,10 @@ public Order createOrder(){
         em.clear();
         OrderItem orderItem = orderItemRepository.findById(orderItemId)
                 .orElseThrow(EntityNotFoundException::new);
-        System.out.println("Order class : " + orderItem.getOrder().getClass());
-        System.out.println("===========================");
+        System.out.println("Order class : "+orderItem.getOrder().getClass());
+        System.out.println("=========================================");
         orderItem.getOrder().getOrderDate();
-        System.out.println("===========================");
+        System.out.println("=========================================");
     }
-
-
-
-
 
 }

@@ -17,6 +17,6 @@ public class AuditorAwareImpl implements AuditorAware<String> {
         return Optional.of(userId);
     }
 
+    // 현재 인증 정보에서 사용자 이름(일반적으로 이메일 또는 유저네임)을
+    // 가져와 userId에 할당합니다.
 }
-//현재 인증 정보에서 사용자 이름(일반적으로 이메일 또는 유저네임)을
-// 가져와 userId에 할당합니다.

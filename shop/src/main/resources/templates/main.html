@@ -1,10 +1,125 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout1}"  >
+      layout:decorate="~{layouts/layout1}">
+
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+    <style>
+        .carousel-inner > .item {
+            height: 350px;
+        }
+        .margin{
+            margin-bottom:30px;
+        }
+        .banner{
+            height: 300px;
+            position: absolute; top:0; left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .card-text{
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        a:hover{
+            text-decoration:none;
+        }
+        .center{
+            text-align:center;
+        }
+    </style>
+</th:block>
 
 <div layout:fragment="content">
-    <h1> 메인페이지입니다. </h1>
+
+    <div id="carouselControls" class="carousel slide margin" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active item">
+                <img class="d-block w-100 banner" src="/imgitem/dog1.jpg" alt="First slide">
+            </div>
+            <div class="carousel-item item">
+                <img class="d-block w-100 banner"
+                     src="/imgitem/shopimg.png"
+                     alt="Second slide">
+            </div>
+            <div class="carousel-item item">
+                <img class="d-block w-100 banner"
+                     src="/imgitem/dog.jpg"
+                     alt="Second slide">
+            </div>
+
+        </div>
+    </div>
+
+    <input type="hidden" name="searchQuery" th:value="${itemSearchDto.searchQuery}">
+    <div th:if="${not #strings.isEmpty(itemSearchDto.searchQuery)}" class="center">
+        <p class="h3 font-weight-bold" th:text="${itemSearchDto.searchQuery} + '검색 결과'"></p>
+    </div>
+
+    <div class="row">
+        <th:block th:each="item, status: ${items.getContent()}">
+            <div class="col-md-4 margin">
+                <div class="card">
+                    <a th:href="'/item/' +${item.id}" class="text-dark">
+                        <img th:src="${item.imgUrl}" class="card-img-top" th:alt="${item.itemNm}"
+                             height="400">
+                        <div class="card-body">
+                            <h4 class="card-title">[[${item.itemNm}]]</h4>
+                            <p class="card-text">[[${item.itemDetail}]]</p>
+                            <h3 class="card-title text-danger">[[${item.price}]]원</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </th:block>
+<!--        Spring DATA JPA 에서 Page 객체를 사용할때
+getContent() 메서드는 현재 페이지 포함된 데이터(아이템들)을 가져오는 역할 -->
+    </div>
+
+    <div th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
+        <ul class="pagination justify-content-center">
+
+            <li class="page-item" th:classappend="${items.number eq 0}?'disabled':''">
+                <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery}
+            + '&page=' + ${items.number-1}}" aria-label='Previous' class="page-link">
+                    <span aria-hidden='true'>Previous</span>
+                </a>
+            </li>
+
+            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page-1}?'active':''">
+                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+            </li>
+
+            <li class="page-item" th:classappend="${items.number+1 ge items.totalPages}?'disabled':''">
+                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number+1}}" aria-label='Next' class="page-link">
+                    <span aria-hidden='true'>Next</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
 </div>
 
+<!-- 1. 페이지번호의 범위 (start 부터 end 계산)
+item 는 Page<MainItemDto> 객체로서 -->
+<!-- number 는 현재 페이지번호 -->
+<!-- totalPage 는 전체 페이지 수 -->
+<!-- maxPage 는 한 번에 보여줄 최대 페이지 수  -->
+
+<!-- li 촛번째 요소는 이전 버튼 생성 현재페이지가 첫번째 페이지면 disabled 클래스 추가 -->
+<!-- http://localhost/?searchQuery=&page=0 -->
+<!-- http://localhost/?searchQuery=&page=1 이면 items.number -1 를 사용해서 페이지 번호 -->
+<!---->
+
+
+<!-- 두번째 li -->
+<!-- "page: ${#numbers.sequence(start, end}} 1-5가지 순차적인 숫자 시퀀스를 생성 -->
+<!-- 이 시퀀스를 page 변수에 할당해서 각 페이지 번호에 대한 반복 처리 -->
+<!-- th:classappend="${items.number eq page-1}?'active':''" -->
+<!-- 현재페이지와 클락할(할당) 페이지번호가 같은면 active 클래스를 추가 -->
+<!-- 파란색상에 흰색 글씨 -->
+<!-- th:inline="text"를 사용하여 타임리프 인라인 텍스트 표현식[[{page}]] 를 사용하여 페이지 번호를 반영 -->
 </html>
