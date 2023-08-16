@@ -36,17 +36,14 @@
 
     <div id="carouselControls" class="carousel slide margin" data-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active item">
-                <img class="d-block w-100 banner" src="/imgitem/dog1.jpg" alt="First slide">
-            </div>
-            <div class="carousel-item item">
+            <div class="carousel-item item active">
                 <img class="d-block w-100 banner"
-                     src="/imgitem/shopimg.png"
+                     src="/img/dog.jpg"
                      alt="Second slide">
             </div>
             <div class="carousel-item item">
                 <img class="d-block w-100 banner"
-                     src="/imgitem/dog.jpg"
+                     src="/img/dog1.jpg"
                      alt="Second slide">
             </div>
 
@@ -74,8 +71,8 @@
                 </div>
             </div>
         </th:block>
-<!--        Spring DATA JPA 에서 Page 객체를 사용할때
-getContent() 메서드는 현재 페이지 포함된 데이터(아이템들)을 가져오는 역할 -->
+        <!--        Spring DATA JPA 에서 Page 객체를 사용할때
+        getContent() 메서드는 현재 페이지 포함된 데이터(아이템들)을 가져오는 역할 -->
     </div>
 
     <div th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
