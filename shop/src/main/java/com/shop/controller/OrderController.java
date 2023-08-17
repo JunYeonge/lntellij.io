@@ -29,21 +29,21 @@ public class OrderController {
     public @ResponseBody ResponseEntity order(
             @RequestBody @Valid OrderDto orderDto
             , BindingResult bindingResult, Principal principal
-            ){ // Principal principal - 현재 사용자의 정보 가지고 있는 Principal 객체
-            // 요청 바디의 Json 데이터를 OrderDto 객체로 변환 @Valid 객체의 유효성 검사
-            if(bindingResult.hasErrors()) {
-                StringBuilder sb = new StringBuilder(); //문자열을 효율적으로 조작처리
-                List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+    ){ // Principal principal - 현재 사용자의 정보 가지고 있는 Principal 객체
+        // 요청 바디의 Json 데이터를 OrderDto 객체로 변환 @Valid 객체의 유효성 검사
+        if(bindingResult.hasErrors()) {
+            StringBuilder sb = new StringBuilder(); //문자열을 효율적으로 조작처리
+            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
 
-                for (FieldError fieldError : fieldErrors) {
-                    sb.append(fieldError.getDefaultMessage());
-                }
-                return new ResponseEntity<String>(sb.toString(), HttpStatus.BAD_REQUEST);
+            for (FieldError fieldError : fieldErrors) {
+                sb.append(fieldError.getDefaultMessage());
             }
-            String email = principal.getName();
-            // 현재 로그인된 사용자의 이메일 정보를 가져옴
-            Long orderId;
-            //주문 Id를 저장할 변수를 선언합니다.
+            return new ResponseEntity<String>(sb.toString(), HttpStatus.BAD_REQUEST);
+        }
+        String email = principal.getName();
+        // 현재 로그인된 사용자의 이메일 정보를 가져옴
+        Long orderId;
+        //주문 Id를 저장할 변수를 선언합니다.
 
         try{
             orderId = orderService.order(orderDto,email);
@@ -65,4 +65,14 @@ public class OrderController {
 
         return "order/orderHist";
     }
+
+    @PostMapping("/order/{orderId}/cancel")
+    public @ResponseBody ResponseEntity cancelOrder(@PathVariable("orderId") Long orderId,Principal principal) {
+        if (!orderService.validateOrder(orderId, principal.getName())) {
+            return new ResponseEntity<String>("주문 취소 권한이 없습니다.",HttpStatus.FORBIDDEN);
+        }
+        orderService.cancelOrder(orderId);
+        return new ResponseEntity<Long>(orderId, HttpStatus.OK);
+    }
+
 }
