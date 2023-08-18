@@ -27,12 +27,12 @@ public class OrderController {
 
     @PostMapping(value = "/order")
     public @ResponseBody ResponseEntity order(
-            @RequestBody @Valid OrderDto orderDto
-            , BindingResult bindingResult, Principal principal
-    ){ // Principal principal - 현재 사용자의 정보 가지고 있는 Principal 객체
-        // 요청 바디의 Json 데이터를 OrderDto 객체로 변환 @Valid 객체의 유효성 검사
-        if(bindingResult.hasErrors()) {
-            StringBuilder sb = new StringBuilder(); //문자열을 효율적으로 조작처리
+            @RequestBody @Valid OrderDto orderDto,
+            BindingResult bindingResult, Principal principal
+    ) { // Principal principal - 현재 사용자의 정보 가지고있는 Principal 객체
+        // 요청바디의 Json 데이터를 OrderDto 객체로 변환 @Valid 객체의 유효성 검사
+        if (bindingResult.hasErrors()) {
+            StringBuilder sb = new StringBuilder(); // 문자열을 효율적으로 조작처리
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
 
             for (FieldError fieldError : fieldErrors) {
@@ -43,36 +43,34 @@ public class OrderController {
         String email = principal.getName();
         // 현재 로그인된 사용자의 이메일 정보를 가져옴
         Long orderId;
-        //주문 Id를 저장할 변수를 선언합니다.
-
-        try{
-            orderId = orderService.order(orderDto,email);
-        }catch (Exception e) {
-            return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
-        }
-
-        return new ResponseEntity<Long>(orderId,HttpStatus.OK);
+        // 주문 Id를 저장한 변수를 선언합니다.
+            try{
+                orderId = orderService.order(orderDto, email);
+            }catch (Exception e){
+                return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+            }
+            return new ResponseEntity<Long>(orderId, HttpStatus.OK);
     }
-
     @GetMapping(value = {"/orders", "/orders/{page}"})
-    public String orderHist(@PathVariable("page")Optional<Integer> page, Principal principal, Model model) {
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,4);
-        Page<OrderHistDto> ordersHisDtoList = orderService.getOrderList(principal.getName(), pageable);
+    public String orderHist(@PathVariable("page")Optional<Integer> page,
+                            Principal principal, Model model){
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 4);
+        Page<OrderHistDto> orderHistDtoList =
+                orderService.getOrderList(principal.getName(), pageable);
 
-        model.addAttribute("orders", ordersHisDtoList);
-        model.addAttribute("page",pageable.getPageNumber());
-        model.addAttribute("maxPage",5);
+        model.addAttribute("orders", orderHistDtoList);
+        model.addAttribute("page", pageable.getPageNumber());
+        model.addAttribute("maxPage", 5);
 
         return "order/orderHist";
     }
-
     @PostMapping("/order/{orderId}/cancel")
-    public @ResponseBody ResponseEntity cancelOrder(@PathVariable("orderId") Long orderId,Principal principal) {
-        if (!orderService.validateOrder(orderId, principal.getName())) {
-            return new ResponseEntity<String>("주문 취소 권한이 없습니다.",HttpStatus.FORBIDDEN);
+    public @ResponseBody ResponseEntity cancelOrder(@PathVariable("orderId") Long orderId,
+                                                    Principal principal){
+        if (!orderService.validateOrder(orderId, principal.getName())){
+            return new ResponseEntity<String>("주문 취소 권한이 없습니다.", HttpStatus.FORBIDDEN);
         }
         orderService.cancelOrder(orderId);
         return new ResponseEntity<Long>(orderId, HttpStatus.OK);
     }
-
 }

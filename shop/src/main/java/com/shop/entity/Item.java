@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 public class Item extends BaseEntity {
+
     @Id
     @Column(name = "item_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,9 +31,10 @@ public class Item extends BaseEntity {
     @Column(nullable = false)
     private int stockNumber;
 
-    @Lob    //Large Object-큰데이터 저장
+    @Lob  //Large Object-큰데이터 저장
     @Column(nullable = false)
     private String itemDetail;
+
     @Enumerated(EnumType.STRING)
     private ItemSellStatus itemSellStatus;
 
@@ -43,11 +45,12 @@ public class Item extends BaseEntity {
         this.itemDetail = itemFormDto.getItemDetail();
         this.itemSellStatus = itemFormDto.getItemSellStatus();
     }
+    // ItemFormDto 로부터 가져온 정보를 사용하여 Item 엔티티의 필드를 업데이트
 
     public void removeStock(int stockNumber) {
         int restStock = this.stockNumber - stockNumber;
         if (restStock < 0) {
-            throw new OutOfStockException("상품의 재고가 부족합니다." +
+            throw new OutOfStockException("상품의 재고가 부족합니다. " +
                     "(현재 재고 수량: " + this.stockNumber + ")");
         }
         this.stockNumber = restStock;
@@ -56,6 +59,4 @@ public class Item extends BaseEntity {
     public void addStock(int stockNumber) {
         this.stockNumber += stockNumber;
     }
-
-
 }

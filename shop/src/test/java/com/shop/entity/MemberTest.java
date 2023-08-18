@@ -17,25 +17,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
-@TestPropertySource(locations = "classpath:application-test.properties")
+@TestPropertySource(locations="classpath:application-test.properties")
 class MemberTest {
-
     @Autowired
     MemberRepository memberRepository;
+
     @PersistenceContext
     EntityManager em;
 
-
     @Test
     @DisplayName("Auditing 테스트")
-    @WithMockUser(username = "gildong", roles = "USER")
+    @WithMockUser(value = "gildong", roles = "USER")
     void auditingTest() {
         Member newMember = new Member();
         memberRepository.save(newMember);
 
         em.flush();
         em.clear();
-
         Member member = memberRepository.findById(newMember.getId())
                 .orElseThrow(EntityNotFoundException::new);
 

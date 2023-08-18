@@ -25,20 +25,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
-@TestPropertySource(locations="classpath:application-test.properties")
+@TestPropertySource(locations = "classpath:application-test.properties")
 class OrderServiceTest {
-
     @Autowired
     private OrderService orderService;
-
     @Autowired
     private OrderRepository orderRepository;
-
     @Autowired
-    ItemRepository itemRepository;
-
+    private ItemRepository itemRepository;
     @Autowired
-    MemberRepository memberRepository;
+    private MemberRepository memberRepository;
 
     public Item saveItem() {
         Item item = new Item();
@@ -47,17 +43,18 @@ class OrderServiceTest {
         item.setItemDetail("테스트 상품 상세 설명");
         item.setItemSellStatus(ItemSellStatus.SELL);
         item.setStockNumber(100);
-        return  itemRepository.save(item);
+        return itemRepository.save(item);
     }
 
-    public Member saveMember(){
+    public Member saveMember() {
         Member member = new Member();
         member.setEmail("test@test.com");
         return memberRepository.save(member);
     }
+
     @Test
     @DisplayName("주문 테스트")
-    void order() {
+    public void order() {
         Item item = saveItem();
         Member member = saveMember();
 
@@ -74,10 +71,9 @@ class OrderServiceTest {
 //        System.out.println(order.getTotalPrice());
         assertEquals(totalPrice, order.getTotalPrice());
     }
-
     @Test
     @DisplayName("주문 취소 테스트")
-    public void cancelOrder() {
+    public void cancelOrder(){
         Item item = saveItem();
         Member member = saveMember();
 
@@ -90,7 +86,7 @@ class OrderServiceTest {
                 .orElseThrow(EntityNotFoundException::new);
         orderService.cancelOrder(orderId);
 
-        assertEquals(OrderStatus.CANCEL,order.getOrderStatus());
-        assertEquals(100,item.getStockNumber());
+        assertEquals(OrderStatus.CANCEL, order.getOrderStatus());
+        assertEquals(100, item.getStockNumber());
     }
 }

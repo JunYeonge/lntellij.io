@@ -39,13 +39,12 @@ public class ItemFormDto {
     public Item createItem(){
         return modelMapper.map(this, Item.class);
     }
-// ItemFormDto 객체를 기반으로 새로운 Item 객체를 생성
-// this 는 ItemFormDto 객체 자체를 나타냅니다.
-// ItemFormDto 객체의 필드값을 가지고  item 객체를  생성
-
+    // ItemFormDto 객체를 기반으로 새로운 Item 객체를 생성
+    // this 는 ItemFormDto 객체 자체를 나타냅니다.
+    // ItemFormDto 객체의 필드값을 가지고 item 객체를 생성
 
     public static ItemFormDto of(Item item){
         return modelMapper.map(item,ItemFormDto.class);
     }
-    //Item  객체에서 temFormDto 객체로 매핑
+    // Item 객체에서 ItemFormDto 객체로 매핑
 }

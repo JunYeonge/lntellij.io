@@ -26,7 +26,6 @@
             + "&searchQuery=" + searchQuery;
         }
 
-
     </script>
 </th:block>
 
@@ -36,7 +35,6 @@
         select{
             margin-right:10px;
         }
-
     </style>
 </th:block>
 
@@ -55,12 +53,12 @@
             </thead>
             <tbody>
             <tr th:each="item, status: ${items.getContent()}">
-<!--                아이템목록을 순환하면서 각 아이템에 대한 행을 생성합니다.-->
+                <!--아이템목록을 순환하면서 각 아이템에 대한 행을 생성합니다-->
                 <td th:text="${item.id}"></td>
                 <td>
                     <a th:href="'/admin/item/'+${item.id}" th:text="${item.itemNm}"></a>
-<!--                    상품명을 클릭하면 상품 수정페이지로 이동-->
                 </td>
+                <!--상품명을 클릭하면 상품 수정페이지로 이동-->
                 <td th:text="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL} ? '판매중' : '품절'"></td>
                 <td th:text="${item.createdBy}"></td>
                 <td th:text="${item.regTime}"></td>
@@ -82,19 +80,18 @@
                 <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}"
                     th:classappend="${items.number eq page-1}?'active':''">
                     <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+                    <!--각 페이지 번호 리스트를 순환하면서 각 페이지 번호를 표시합니다-->
+                    <!--현재 페이지인 경우 active 클래스 추가해서 페이지강조(css 적용)-->
+                    <!--각 페이지 번호에 대한 링크생성 페이지를 클릭하면 해당 페이지로 이동-->
                 </li>
-<!--                각 페이지 번호 리스트를 순환하면서 각 페이지번호를 표시합니다.-->
-<!--                현재 페이지인 경우 active 클래스 추가해서 페이지강조(css 적용)-->
-<!--                각페이지 번호에 대한 링크생성 페이지를 클릭하면 해당 페이지로 이동-->
 
                 <li class="page-item" th:classappend="${items.last}?'disabled'">
-<!--                    마지막 페이지 일경우 비활성화-->
+                    <!--마지막 페이지 일경우 비활성화-->
                     <a th:onclick="'javascript:page(' + ${items.number + 1} + ')'" aria-label='Next' class="page-link">
                         <span aria-hidden='true'>Next</span>
                     </a>
-<!--                    Next 버튼을 클릭하면 다음 페이지로 이동-->
+                    <!--Next 버튼을 클릭하면 다음 페이지로 이동-->
                 </li>
-
             </ul>
         </div>
 

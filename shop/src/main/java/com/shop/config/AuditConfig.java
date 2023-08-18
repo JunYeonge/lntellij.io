@@ -15,3 +15,4 @@ public class AuditConfig {
     }
 
 }
+//엔티티의 생성 및 수정 시간 등을 추적
