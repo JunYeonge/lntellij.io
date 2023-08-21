@@ -48,5 +48,5 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
+// 비밀번호 암호화 한다. 사용자 비밀번호를 안전한 방식으로 해시화(암호화) 하기위한 BCryptPasswordEncoder 빈을 생성하고 반환
 }
