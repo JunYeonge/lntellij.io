@@ -1,11 +1,9 @@
 package webtoon.dto;
 
-import jdk.jshell.Snippet;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+
+import lombok.*;
 import webtoon.entity.board.Board;
+
 
 import java.time.LocalDateTime;
 
@@ -20,7 +18,6 @@ public class BoardDto {
     private String content; // 내용
     private String title; // 제목
     private int view_count; //조회수
-    private LocalDateTime updateTime;
     private LocalDateTime regTime;//등록일
 
 }

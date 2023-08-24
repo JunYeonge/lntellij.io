@@ -1,9 +1,11 @@
 package webtoon.entity.board;
 
+
 import lombok.*;
 
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -22,7 +24,7 @@ public class Board {   // 게시판
     private String nickname;    //닉네임
 
     @Column
-    private String registrationDate; // 등록일
+    private LocalDateTime regTime; // 등록일
 
     @Column
     private String content;  // 내용
@@ -33,4 +35,11 @@ public class Board {   // 게시판
     @Column
     private int view_count;   // 조회수
 
+    @Builder
+    public Board(Long id, String nickname, String content, String title) {
+        this.id = id;
+        this.nickname = nickname;
+        this.content = content;
+        this.title = title;
+    }
 }
