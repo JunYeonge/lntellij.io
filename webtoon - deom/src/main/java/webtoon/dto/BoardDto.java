@@ -28,7 +28,7 @@ public class BoardDto {
         boardDto.setContent(board.getContent());
         boardDto.setNickname(board.getNickname());
         boardDto.setView_count(board.getView_count());
-        boardDto.setRegTime(LocalDateTime.now());
+        boardDto.setRegTime(board.getRegTime());
         return boardDto;
     }
 

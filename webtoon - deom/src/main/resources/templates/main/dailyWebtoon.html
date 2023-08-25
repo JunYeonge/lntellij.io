@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dailyWebtoonLayout}">
+<th:block layout:fragment="css">
+  <style>
+#nav_bar a:nth-of-type(3) {
+    background-color: #00dc64;
+    color: #fff;
+}
+    </style>
+</th:block>
+<section layout:fragment="content">
+  <h1>요일 웹툰 페이지</h1>
+</section>
+</html>

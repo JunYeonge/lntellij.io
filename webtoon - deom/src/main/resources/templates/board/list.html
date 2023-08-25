@@ -6,11 +6,17 @@
     <h3>공지사항</h3>
     <table>
         <tr>
-            <td></td>
-            <td>제목</td>
-            <td>작성일</td>
+            <th></th>
+            <th>제목</th>
+            <th>작성일</th>
+            <th>조회수</th>
         </tr>
-
+        <tr th:each="board:${boardList}">
+            <td></td>
+            <td><a href=" '/board/list/' + ${board.id} "  th:text="${board.title}"></a></td>
+            <td th:text="${board.reg_time}"></td>
+            <td th:text="${board.view_count}"></td>
+        </tr>
     </table>
     <a th:href="@{/board/post}" role="button">글쓰기</a>
 </div>

@@ -1,38 +1,33 @@
 package webtoon.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import webtoon.dto.BoardDto;
-import webtoon.dto.BoardFormDto;
+import org.springframework.web.bind.annotation.RequestMapping;
+import webtoon.entity.board.Board;
 import webtoon.service.BoardService;
 
-import java.util.Optional;
 
 
 @Controller
+@RequiredArgsConstructor
+@RequestMapping
 public class BoardController {
-
     @Autowired
     private BoardService boardService;
 
-    @GetMapping(value = "/board/list")
-    public String boardPost(){
-        return "board/list";
+
+    @GetMapping("/board/boardwrite")
+    public String boardWriteForm() {
+        return "board/boardwrite";
     }
 
-    @GetMapping("/board/post")
-    public String boardPost(Model model) {
-        model.addAttribute("BoardFormDto",new BoardFormDto());
-        return "board/post";
-    }
-
-
-    @GetMapping("/board/view")
-    public String boardview(){
-        return "board/view";
+    @PostMapping("/board/boardwrite")
+    public String boardWritepro(Board board) {
+        boardService.write(board);
+        return "/board/boardwrite";
     }
 
 

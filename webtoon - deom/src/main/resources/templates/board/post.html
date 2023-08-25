@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/mainLayout}">
+<div layout:fragment="content" class="container">
+  <h3>글쓰기</h3>
+  <form th:action="@{/board/view}" method="post">
+    제목 : <input type="text" name="Title">
+    작성자 : <input type="text" name="NickName">
+    내용 : <input type="text" name="Content">
+    <table>
+      <td th:text="${title}"></td>
+      <td th:text="${nickname}"></td>
+      <td th:text="${content}"></td>
+    </table>
+    <input type="submit" value="글작성">
+  </form>
+</div>
+</html>
