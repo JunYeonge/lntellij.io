@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+    </script>
+</th:block>
+
+<th:block layout:fragment="css">
+    <link th:href="@{/css/itemBuy.css}" rel="stylesheet">
+    <style>
+        .carousel-inner > .item {
+            height: 350px;
+        }
+        .margin{
+            margin-bottom:30px;
+        }
+
+        .card-text{
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        a:hover{
+            text-decoration:none;
+        }
+        .center{
+            text-align:center;
+        }
+        .fa,
+        .radio {
+            display: inline-block;
+            margin-bottom: 15px;
+            &:hover {
+                cursor: pointer;
+            }
+            .fa {
+                width: 1em;
+            }
+        }
+        // checkbox indent & radio indent
+        .indent {
+            padding-left: 30px;
+            .fa {
+                margin-left: -30px;
+            }
+        }
+
+        .checkbox input[type="checkbox"],
+        .radio input[type="radio"] {
+            display: none;
+            & + i:before {
+                content: "\f096";
+                position: relative;
+                bottom: -4px;
+                margin-right: 5px;
+                color: #999;
+            }
+        }
+
+        .fa:hover input[type="checkbox"],
+        .radio:hover input[type="radio"] {
+            & + i:before {
+                color: green;
+            }
+        }
+
+        .checkbox input[type="checkbox"],
+        .radio input[type="radio"] {
+            &:checked + i:before {
+                content: "\f046";
+                color: green;
+            }
+            &:disabled + i:before,
+            &:disabled:checked + i:before {
+                color: #ddd;
+            }
+        }
+
+        /*RADIO*/
+        .radio input[type="radio"] {
+            & + i:before {
+                content: "\f1db";
+            }
+            &:checked + i:before {
+                content: "\f058";
+            }
+        }
+
+        /* CHECKBOX&RADIO XS*/
+        .checkbox-xs input[type="checkbox"],
+        .radio-xs input[type="radio"] {
+            & + i:before {
+                bottom: 0;
+            }
+        }
+        // checkbox indent & radio indent
+        .checkbox-xs,
+        .radio-xs {
+            &.indent {
+                padding-left: 20px;
+                .fa {
+                    margin-left: -20px;
+                }
+            }
+        }
+    </style>
+</th:block>
+
+<div layout:fragment="content">
+
+    <script th:inline="javascript">
+    function applyFilters() {
+        var selectedTypes = [];
+        document.querySelectorAll('input[name="type"]:checked').forEach(function(checkbox) {
+            selectedTypes.push(checkbox.value);
+        });
+
+        var selectedSizes = [];
+        document.querySelectorAll('input[name="size"]:checked').forEach(function(checkbox) {
+            selectedSizes.push(checkbox.value);
+        });
+
+        var selectedColors = [];
+        document.querySelectorAll('input[name="color"]:checked').forEach(function(checkbox) {
+            selectedColors.push(checkbox.value);
+        });
+
+        function getItemById(itemId) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/item/buy/' + itemId, false);
+            xhr.send();
+
+            if (xhr.status === 200) {
+                return JSON.parse(xhr.responseText);
+            }
+        }
+
+        document.querySelectorAll('.card').forEach(function(card) {
+            var type = card.getAttribute('data-type');
+            var size = card.getAttribute('data-size');
+            var color = card.getAttribute('data-color');
+            var itemId = card.id.split('-')[1];
+
+            var item = getItemById(itemId);
+
+            // 데이터 속성 값 설정
+            card.setAttribute('data-type', item.type);
+            card.setAttribute('data-size', item.size);
+            card.setAttribute('data-color', item.color);
+
+            // 현재 카드가 선택된 필터 조건에 맞는지 확인
+            var isMatched =
+                (selectedTypes.length === 0 || selectedTypes.includes(type)) &&
+                (selectedSizes.length === 0 || selectedSizes.includes(size)) &&
+                (selectedColors.length === 0 || selectedColors.includes(color));
+
+            var parentDiv = card.parentElement;
+
+            // 선택된 필터 조건에 맞으면 카드를 표시, 아니면 숨김
+            parentDiv.style.display = isMatched ? 'block' : 'none';
+        });
+    }
+</script>
+
+
+
+
+    <div class="filter">
+        <div class="checkbox">
+            <label th:for="color" class="selColor">
+                색상 :
+            </label>
+                <label>
+                    <input type="checkbox" name="color" value="WGB" onchange="applyFilters()">
+    <!--                <i class="fa fa-2x icon-checkbox"></i>-->
+                    흰,검,회색
+                </label>
+                <label>
+                    <input type="checkbox" name="color" value="BROWN" onchange="applyFilters()">
+    <!--                <i class="fa fa-2x icon-checkbox"></i>-->
+                    BROWN
+                </label>
+                <label>
+                    <input type="checkbox" name="color" value="BLUE" onchange="applyFilters()">
+    <!--                <i class="fa fa-2x icon-checkbox"></i>-->
+                    BLUE
+                </label>
+
+        </div>
+        <div class="checkbox">
+            <label th:for="size" class="selSize">
+                Size :
+            </label>
+                <label>
+                    <input type="checkbox" name="size" value="SS" onchange="applyFilters()">
+    <!--                <i class="fa fa-2x icon-checkbox"></i>-->
+                    SS
+                </label>
+                <label>
+                    <input type="checkbox" name="size" value="QUEEN" onchange="applyFilters()">
+    <!--                <i class="fa fa-2x icon-checkbox"></i>-->
+                    QUEEN
+                </label>
+                <label>
+                    <input type="checkbox" name="size" value="KING" onchange="applyFilters()">
+    <!--                <i class="fa fa-2x icon-checkbox"></i>-->
+                    KING
+                </label>
+
+        </div>
+        <div class="checkbox">
+            <label th:for="type" class="selType">
+                타입 :
+            </label>
+                <label>
+                    <input type="checkbox" name="type" value="AC" onchange="applyFilters()">
+    <!--                <i class="fa fa-2x icon-checkbox"></i>-->
+                    AC
+                </label>
+                <label>
+                    <input type="checkbox" name="type" value="EN" onchange="applyFilters()">
+    <!--                <i class="fa fa-2x icon-checkbox"></i>-->
+                    EN
+                </label>
+                <label>
+                    <input type="checkbox" name="type" value="T_LC" onchange="applyFilters()">
+    <!--                <i class="fa fa-2x icon-checkbox"></i>-->
+                    T_LC
+                </label>
+
+        </div>
+    </div>
+    <form th:action="@{/items/search}" method="get" id="searchBox">
+        <div class="d-flex justify-content-center" th:object="${itemSearchDto}">
+            <input id="searchQuery" th:field="*{searchQuery}" type="text" class="form-control col-sm-8" placeholder="제품명을 입력해주세요" onkeydown="handleKeyDown(event)">
+            <button id="searchBtn" type="button" class="btn btn-outline-primary">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
+    <script>
+    function handleKeyDown(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault(); // 기본 동작 중지
+            $('#searchBtn').trigger('click'); // 검색 버튼 클릭 이벤트 트리거
+        }
+    }
+    $(document).ready(function() {
+        $("#searchBtn").on("click", function(e) {
+            e.preventDefault();
+            var searchQuery = $("#searchQuery").val();
+            page(0, searchQuery);
+        });
+    });
+
+    function page(page, searchQuery) {
+        var url = "/items/search?page=" + page + "&searchQuery=" + searchQuery;
+        location.href = url;
+    }
+</script>
+
+    <!--    <input type="hidden" name="searchQuery" th:value="${itemSearchDto.searchQuery}">
+        <div th:if="${not #strings.isEmpty(itemSearchDto.searchQuery)}" class="center">
+            <p class="h3 font-weight-bold" th:text="${itemSearchDto.searchQuery} + '검색 결과'"></p>
+        </div>-->
+
+    <div class="row" id="itemBox">
+        <th:block th:each="item, status: ${items.getContent()}">
+            <div class="col-sm-4 margin">
+                <div class="card" th:id="'card-' + ${item.id}">
+                    <a th:href="'/item/' + ${item.id}" class="text-dark">
+                        <img th:src="${item.imgUrl}" class="card-img-top" th:alt="${item.itemNm}" height="400">
+                        <div class="card-body text-center">
+                            <h4 class="card-title" th:text="${item.itemNm}"></h4>
+                            <!--                        <p class="card-text" th:text="${item.itemDetail}"></p>-->
+                            <h5 class="card-title" th:text="${#numbers.formatInteger(item.price,4 , 'COMMA')} + '원'"></h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </th:block>
+    </div>
+
+    <div th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
+        <ul class="pagination justify-content-center">
+
+            <li class="page-item" th:classappend="${items.number eq 0}?'disabled':''">
+                <a th:href="@{'/item/buy' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number-1}}" aria-label='Previous' class="page-link">
+                    <span aria-hidden='true'>Previous</span>
+                </a>
+            </li>
+
+            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page-1}?'active':''">
+                <a th:href="@{'/item/buy' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+            </li>
+
+            <li class="page-item" th:classappend="${items.number+1 ge items.totalPages}?'disabled':''">
+                <a th:href="@{'/item/buy' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number+1}}" aria-label='Next' class="page-link">
+                    <span aria-hidden='true'>Next</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+</div>

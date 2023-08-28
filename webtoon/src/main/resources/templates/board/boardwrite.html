@@ -28,8 +28,8 @@
 <body>
     <div class="size">
         <form action="/board/writepro" method="post">
-            <input type="text" name="title">
-            <textarea name="content"></textarea>
+            제목 : <input type="text" name="title">
+            내용 : <textarea name="content"></textarea>
             <button type="submit" th:formaction="@{'/board/boardwrite'}">글쓰기</button>
         </form>
     </div>

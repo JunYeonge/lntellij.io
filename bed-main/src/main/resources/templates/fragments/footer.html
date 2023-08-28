@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="footer">
+  <footer class="container-fluid" th:style="'background-color:#000;'">
+    <div class="footer_container pt-5">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 border-top" >
+        <div class="col mb-3">
+          <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+            <img src="/images/Blogo.png" th:style="'width:200px;margin:10px 95px;'" alt="로고">
+          </a>
+        </div>
+        <div class="col mb-3"></div>
+        <div class="col mb-3">
+          <p class="mt-5" style="font-size:25px;color : #aaa;">Info</p>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-3">
+              <a href="/" class="nav-link p-0 text-muted">Home</a>
+            </li>
+            <li class="nav-item mb-3">
+              <a href="/story/gallery" class="nav-link p-0 text-muted">기업정보</a>
+            </li>
+            <li class="nav-item mb-3">
+              <a href="/CsCenter/faq" class="nav-link p-0 text-muted">FAQs</a>
+            </li>
+          </ul>
+        </div>
+<!--        <div class="col mb-3"></div>-->
+        <div class="col mb-3">
+          <p class="mt-5" style="font-size:25px;color : #aaa;">Service</p>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2">
+              <p class="nav-link p-0 text-muted">전화번호 : 02-1234-5678</p>
+            </li>
+            <li class="nav-item mb-2">
+              <p class="nav-link p-0 text-muted">본사 : 경기도 성남시 분당구 미금</p>
+            </li>
+            <li class="nav-item mb-2">
+              <p class="nav-link p-0 text-muted">FAX : 02-123-4567</p>
+            </li>
+            <li class="nav-item mb-2">
+              <a href="/CsCenter/asSubmit"  class="nav-link p-0 text-muted">AS 신청</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+</html>

@@ -39,13 +39,6 @@ public class BoardController {
         Long id = boardService.save(boardDto);
         return "redirect:/";
     }
-    @GetMapping("/board/view")
-    public String view(){
-        return "board/view";
-    }
-
-
-
 
 
 }

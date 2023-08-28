@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500&display=swap');
+@font-face{
+    font-family: 'Noto Serif KR';
+    src: url('./font/MaruBuriTTF/MaruBuri-Regular.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-Bold.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-Light.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-SemiBold.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-ExtraLight.ttf') format('ttf');
+}
+
+    .error {
+      color: #bd2130;
+    }
+    .content{
+        position : relative;
+        margin-bottom:100px;
+        margin-top:100px;
+        margin-left:200px;
+        margin-right:200px;
+    }
+    .placeholder-sm::placeholder{
+        font-size:14px
+    }
+    a{
+        color : #333;
+        text-decoration:none;
+       }
+.or-bar-box{
+    font-family: NotoSans,sans-serif;
+     word-break: break-all;
+     word-wrap: break-word;
+     box-sizing: border-box;
+     position: relative;
+     padding:20px;
+}
+
+.bar-left{
+    font-family: NotoSans,sans-serif;
+    word-break: break-all;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    font-style: normal;
+    position: absolute;
+    top: 27px;
+    display: block;
+    width: 29%;
+    border-bottom: 3px solid #D8D8D8;
+    left: 0;
+
+}
+.bar-right{
+    font-family: NotoSans,sans-serif;
+    word-break: break-all;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    font-style: normal;
+    position: absolute;
+    top: 27px;
+    display: block;
+    width: 29%;
+    border-bottom: 3px solid #D8D8D8;
+    right: 0;
+}
+
+img{
+    max-width: 70%;
+    width :  auto !important;
+    height : auto !important;
+}
+
+   /*.sns-go{
+ line-height: 1.15;
+    font-family: 'Noto Sans KR', Arial, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", "Nanum Gothic", Dotum, '돋움', Helvetica, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    color: #333;
+    box-sizing: inherit;
+    text-align: center;
+    padding: 20px 0;
+}*/
+
+/*ul {
+    display: block;
+    width:100%;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+#oa_login_btn{
+   /* font-family: 'Noto Sans KR', Arial, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", "Nanum Gothic", Dotum, '돋움', Helvetica, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    font-size: 16px;
+    line-height: 24px;
+    word-break: break-all;
+    color: #3d62ce;
+    width: 40px;
+    box-sizing: inherit;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #8C8C8C;
+    border-radius: 50%;
+    display: inline-block;
+    max-width: 100% !important;
+    margin: 0;
+    height: auto;
+    }
+li{
+/*        font-family: 'Noto Sans KR', Arial, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", "Nanum Gothic", Dotum, '돋움', Helvetica, sans-serif;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-size-adjust: 100%;
+        width : 100%;
+        box-sizing: inherit;
+        display: inline-block;
+        margin: 0 5px;
+        font-size: 16px;
+        line-height: 24px;
+        color: rgba(0, 0, 0, 0.87);
+        word-break: break-all;
+}
+.oa_btn{
+ /*    font-family: 'Noto Sans KR', Arial, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", "Nanum Gothic", Dotum, '돋움', Helvetica, sans-serif;
+    text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    font-size: 16px;
+    line-height: 24px;
+    word-break: break-all;
+    box-sizing: inherit;
+    background-color: transparent;
+    display: inline-block;
+    color: #3d62ce;
+
+}
+.oa_btn_img{
+   /*  font-family: 'Noto Sans KR', Arial, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", "Nanum Gothic", Dotum, '돋움', Helvetica, sans-serif;
+    text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    font-size: 16px;
+    line-height: 24px;
+    word-break: break-all;
+    color: #3d62ce;
+    width: 40px;
+    box-sizing: inherit;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #8C8C8C;
+    border-radius: 50%;
+    display: inline-block;
+    max-width: 100% !important;
+    margin: 0;
+    height: auto;
+
+}
+*/

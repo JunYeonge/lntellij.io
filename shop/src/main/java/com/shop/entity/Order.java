@@ -47,7 +47,7 @@ public class Order extends BaseEntity {
             order.addOrderItem(orderItem);
         }
         order.setOrderStatus(OrderStatus.ORDER);
-        order.setOrderDate(LocalDateTime.now());
+        order.setOrderDate(LocalDateTime.now()); //현재 시각을 주문시간으로 세팅
         return order;
     }
 

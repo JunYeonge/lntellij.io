@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
+      layout:decorate="~{layouts/layout1}"
+>
+<th:block layout:fragment="css">
+    <style>
+section{
+    position : relative;
+    height : 1000px;
+}
+.container-fluid h1 {margin:50px 0;}
+.container-fluid h5 {margin:50px 0; color:#666;}
+.sleepTest{
+    margin : 100px 0;
+}
+.sleepTest span{
+    font-weight : bold;
+    font-size : 16px;
+    color : navy;
+}
+#sec2 h3{color : #555;}
+#sec3{
+ background : url("/images/gallery-bg1.jpg") 50% 0/cover;
+}
+#sec4 .card:hover{
+    box-shadow : 1px 1px 20px #888;
+}
+
+#sec2{
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+#sec3{
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+#sec4{
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+#sec1.active {opacity: 1;}
+#sec2.active {opacity: 1;}
+#sec3.active {opacity: 1;}
+#sec4.active {opacity: 1;}
+
+  </style>
+</th:block>
+<!--사용자 스크립트 추가-->
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+    $(function(){
+     setTimeout(function() {
+             window.scrollTo(0, 500);
+                  }, 500);
+                  });
+  $(window).on('scroll', function() {
+    var windowHeight = $(window).height();
+    var scrollTop = $(window).scrollTop();
+
+    $('#sec1').each(function() {
+      var sectionTop1 = $(this).offset().top;
+      if (sectionTop1 < scrollTop + windowHeight - 100) {
+        $(this).addClass('active');
+      }
+    });
+
+    $('#sec2').each(function() {
+      var sectionTop2 = $(this).offset().top;
+      if (sectionTop2 < scrollTop + windowHeight - 100) {
+        $(this).addClass('active');
+      }
+    });
+
+    $('#sec3').each(function() {
+      var sectionTop3 = $(this).offset().top;
+      if (sectionTop3 < scrollTop + windowHeight - 100) {
+        $(this).addClass('active');
+      }
+    });
+    $('#sec4').each(function() {
+      var sectionTop4 = $(this).offset().top;
+      if (sectionTop4 < scrollTop + windowHeight - 100) {
+        $(this).addClass('active');
+      }
+    });
+  });
+
+  </script>
+</th:block>
+<div layout:fragment="content">
+<section id="sec1">
+    <div class="container-fluid text-center">
+            <h1 class="display-1">BUILT for SLEEP</h1>
+            <img src="/images/gallery_01_01.jpg" class="d-block w-100" alt="공장">
+            <h5>BedBliss는 매트리스 자체 생산 시스템과 수면연구 센터를 갖추어<br>
+            최적의 수면조건을 갖춘 가장 편안한 침대를 연구하고 있습니다.</h5>
+    </div>
+</section>
+<section id="sec2">
+    <div class="container-fluid text-center">
+        <h1 class="display-4">침대시장에서 인정받는 자체 생산시스템</h1>
+    </div>
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/images/gallery_02_01.jpg" class="d-block w-100" alt="생산시스템1" style="opacity:0.7;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3 style="font-family: Noto Serif KR;">매트리스 자체 생산 시스템</h3>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/images/gallery_02_02.jpg" class="d-block w-100" alt="생산시스템2" style="opacity:0.7;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>매트리스 제작 전 원자재 선정</h3>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/images/gallery_02_03.jpg" class="d-block w-100" alt="생산시스템3" style="opacity:0.7;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>매트리스 제작 최종 검수</h3>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/images/gallery_02_04.jpg" class="d-block w-100" alt="생산시스템4" style="opacity:0.7;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>스마트 물류 센터</h3>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/images/gallery_02_05.jpg" class="d-block w-100" alt="생산시스템5" style="opacity:0.7;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>제품특성에 따라 적재 및 출고 배치</h3>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="container-fluid text-center">
+        <h5>청결함을 기본으로, 기본에 충실한 원칙을 고수하여 매트리스 원자재를 선정하고<br>
+            스프링 제작, 최종검수에 이르기까지 국가기준보다 더 엄격한 'BedBliss' 만의 품질 관리 기준을 거쳐 제품을 완성합니다.<br>
+            제품의 특성까지 세심하게 고려한 적재 및 출고 배치를 통해 신속하고 안전하게 위생적인 매트리스가 배송됩니다.</h5>
+    </div>
+</section>
+<section id="sec3">
+    <div class="container-fluid text-center">
+        <h1 class="display-4">수면 연구 센터 주요 장비 시설</h1>
+        <h5>침대전문가들이 첨단 연구설비를 통해 최적의 수면조건을 갖춘 가장 편안한 침대를 연구하고 있습니다.</h5>
+    </div>
+    <div class="container-fluid text-center sleepTest">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <img src="/images/gallery-icon1.png" alt="주요장비시설1" class="mb-5">
+                <h3 class="mb-4">내구성 시험기</h3>
+                <p class="mb-5 text-secondary">가압판(100KG)을 이용하여<br> 침대의 허용한계인
+                8만번을 가압함으로써<br> 침대의 내구성을 확인하는 장비</p>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                    더 알아보기
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel1">내구성 시험</h1>
+                            </div>
+                            <div class="modal-body">
+                                <p><span>목적</span>&nbsp;매트리스의 내구성 측정(KS G 4300)</p>
+                                <p><span>원리</span>&nbsp;엉덩이 부위를 980N으로 80,000회 가압 후 꺼짐 측정</p>
+                                <hr>
+                                <p><span>측정방법</span></p>
+                                <p><span>STEP 1</span> 980N으로 초기경도 측정</p>
+                                <p><span>STEP 2</span> 80,000회 가압</p>
+                                <p><span>STEP 3</span> 980N으로 재측정</p>
+                                <p><span>STEP 4</span> 꺼짐 확인</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <img src="/images/gallery-icon2.png" alt="주요장비시설2" class="mb-5">
+                <h3 class="mb-4">롤러 시험기</h3>
+                <p class="mb-5 text-secondary">원통형 롤러를 이용하여<br>
+                    매트리스 내장재의 쏠림 현상을<br> 측정하는 장비</p>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                    더 알아보기
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel2">쏠림현상 측정</h1>
+                            </div>
+                            <div class="modal-body">
+                                <p><span>목적</span>&nbsp;매트리스의 내구성 측정(ASTM F1566-99)</p>
+                                <p><span>원리</span>&nbsp;원통형 롤러를 이용 100,000회 반복 후 매트리스의 쏠림 및 꺼짐 측정</p>
+                                <hr>
+                                <p><span>측정방법</span></p>
+                                <p><span>STEP 1</span> 매트리스 초기경도 측정</p>
+                                <p><span>STEP 2</span> 원통형 롤러를 이용 100,000회 반복 가압</p>
+                                <p><span>STEP 3</span> 매트리스 내장재의 쏠림 및 꺼짐 측정</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <img src="/images/gallery-icon3.png" alt="주요장비시설3" class="mb-5">
+                <h3 class="mb-4">컴퓨맨 시험기</h3>
+                <p class="mb-5 text-secondary">사람의 신체데이터가 입력된 모형태를 이용하여<br>
+                종류별 매트리스에 누웠을때의<br> 각 부위 하중분포를 측정하는데 사용</p>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                    더 알아보기
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel3">각 부위별 하중분포 분석</h1>
+                            </div>
+                            <div class="modal-body">
+                                <p><span>목적</span>&nbsp;매트리스에 누웠을 때 신체 각 부위 하중분포를 측정하여 체형에 적합한 매트리스를 찾아주는 시스템</p>
+                                <p><span>원리</span>&nbsp;신체 각 부위의 하중분포측정 후 체형에 적합한 매트리스를 선정해주는 시스템</p>
+                                <hr>
+                                <p><span>측정방법</span></p>
+                                <p><span>STEP 1</span> 신체치수 측정</p>
+                                <p><span>STEP 2</span> 체형 별 체압분포 측정</p>
+                                <p><span>STEP 3</span> 체형에 적합한 매트리스 선정</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <img src="/images/gallery-icon4.png" alt="주요장비시설4" class="mb-5">
+                <h3 class="mb-4">수면다원 검사</h3>
+                <p class="mb-5 text-secondary">수면 시 뇌파,심장박동, 안구의 움직임을<br>
+                    측정하여 최적의 수면 조건을 찾아주는<br>
+                    종합 수면 분석 시스템</p>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4">
+                    더 알아보기
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel4">수면 분석</h1>
+                            </div>
+                            <div class="modal-body">
+                                <p><span>목적</span>&nbsp;최적의 수면조건을 찾아주는 종합수면분석 시스템</p>
+                                <p><span>원리</span>&nbsp;수면 시 나타나는 뇌파, 심장박동, 안구의 움직임을 측정</p>
+                                <hr>
+                                <p><span>측정방법</span></p>
+                                <p><span>STEP 1</span> 뇌파형태 측정(α,β,δ,Θ)</p>
+                                <p><span>STEP 2</span> 수면형태 측정(REM,NREM)</p>
+                                <p><span>STEP 3</span> 심장박동, 근전도 측정</p>
+                                <p><span>STEP 4</span> 수면 단계 분석</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="sec4" style="margin-top:200px;">
+    <div class="container-fluid text-center">
+        <h1 class="display-4">BedBliss만의 기술력</h1>
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card" style="width: 46rem;">
+                    <img src="/images/spring-bg1.jpg" class="card-img-top" alt="스프링이미지">
+                    <div class="card-body">
+                        <h3 class="card-title">스프링</h3>
+                        <p class="card-text">특별한 스프링 기술로<br> 섬세하게 완성되는 지지력</p>
+                        <a href="/story/spring" class="btn btn-primary">더 알아보기</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card" style="width: 46rem;">
+                    <img src="/images/sheet-bg1.jpg" class="card-img-top" alt="매트리스이미지">
+                    <div class="card-body">
+                        <h3 class="card-title">매트리스</h3>
+                        <p class="card-text">눕는 순간 느껴지는<br>  BedBliss만의 편안함</p>
+                        <a href="/story/sheet" class="btn btn-primary">더 알아보기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+</html>

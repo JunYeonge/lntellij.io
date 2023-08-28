@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500&display=swap');
+@font-face{
+    font-family: 'Noto Serif KR';
+    src: url('./font/MaruBuriTTF/MaruBuri-Regular.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-Bold.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-Light.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-SemiBold.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-ExtraLight.ttf') format('ttf');
+}
+h1, p{
+ font-family: 'Noto Serif KR';
+}

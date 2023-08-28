@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="_new">
+  <div class="card m-2" id="comments-new">
+    <div class="card-body">
+      <form>
+        <div class="mb-3">
+          <label class="form-label">관리자</label>
+          <input type="text" class="form-control form-control-sm" id="new-comment-nickname">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">댓글내용</label>
+          <textarea type="text" class="form-control form-control-sm" id="new-comment-body" rows="3"></textarea>
+        </div>
+        <th:block th:if="${asForm}">
+          <input type="hidden" id="new-comment-as-form-id" th:value="${asForm.id}">
+        </th:block>
+        <button type="button" class="btn btn-outline-primary btn-sm" id="comment-create-btn">댓글작성</button>
+      </form>
+    </div>
+  </div>
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    {
+    const commentCreateBtn = document.querySelector("#comment-create-btn");
+    commentCreateBtn.addEventListener("click",function(){
+       const comment = {
+            nickname : document.querySelector("#new-comment-nickname").value,
+            body : document.querySelector("#new-comment-body").value,
+            as_form_id : document.querySelector("#new-comment-as-form-id").value
+       };
+       console.log(comment);
+       const url = "/api/asSubmit/"+comment.as_form_id+"/comments";
+       fetch(url, {
+            method : "post",
+            body : JSON.stringify(comment),
+            headers : {"Content-Type" : "application/json"}
+       }).then(response=>{
+            const msg = (response.ok) ? "댓글이 등록되었습니다." : "댓글 등록실패";
+            alert(msg);
+            window.location.reload();
+       });
+    });
+    }
+    /*]]>*/
+</script>
+</html>

@@ -2,13 +2,13 @@ package webtoon.entity.board;
 
 
 import lombok.*;
-import webtoon.api.TimeController;
 import webtoon.dto.BoardDto;
 import webtoon.entity.BaseEntity;
+import webtoon.entity.member.Member;
 
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+
 
 @Entity
 @Getter
@@ -35,14 +35,22 @@ public class Board extends BaseEntity {   // 게시판
     @Column
     private int view_count;   // 조회수
 
+//    public static Board toSaveEntity(BoardDto boardDto) {
+//        Board board = new Board();
+//        board.setTitle(boardDto.getTitle());
+//        board.setNickname(boardDto.getNickname());
+//        board.setContent(boardDto.getContent());
+//        board.setView_count(0);
+//        return board;
+//    }
 
-    public static Board toSaveEntity(BoardDto boardDto) {
-        Board board = new Board();
-        board.setTitle(boardDto.getTitle());
-        board.setNickname(boardDto.getNickname());
-        board.setContent(boardDto.getContent());
-        board.setView_count(0);
-
-        return board;
+    @Builder
+    public Board(Long id, String user_id, String nickname, String content, String title, int view_count) {
+        this.id = id;
+        this.user_id = user_id;
+        this.nickname = nickname;
+        this.content = content;
+        this.title = title;
+        this.view_count = view_count;
     }
 }

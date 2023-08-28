@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500&display=swap');
+@font-face{
+    font-family: 'Noto Serif KR';
+    src: url('./font/MaruBuriTTF/MaruBuri-Regular.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-Bold.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-Light.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-SemiBold.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-ExtraLight.ttf') format('ttf');
+}
+form h1,form p,form a{
+    font-family: 'Noto Serif KR';
+}
+.row>h1{
+    margin : 70px 0 100px 0;
+}
+.btn{
+    font-family: 'Noto Serif KR';
+    margin : 50px 0;
+    height : 50px;
+    font-size : 20px;
+    line-height : 35px;
+    font-weight : 300;
+}
+.man{
+        display : block;
+        margin : 0 auto;
+        width : 180px;
+        height : 180px;
+        background : url("/images/mat-target-man.png") 0 0;
+        font-size : 23px;
+        color : #888;
+        text-decoration : none;
+}
+.man:hover,.man:active{
+    background : url("/images/mat-target-man-on.png") 0 0;
+}
+.man.active{
+    background : url("/images/mat-target-man-on.png") 0 0;
+}
+.woman{
+    display : block;
+    margin : 0 auto;
+    width : 180px;
+    height : 180px;
+    background : url("/images/mat-target-woman.png") 0 0;
+    font-size : 23px;
+    color : #888;
+    text-decoration : none;
+}
+.woman:hover,.woman:active{
+    background : url("/images/mat-target-woman-on.png") 0 0;
+}
+.woman.active{
+    background : url("/images/mat-target-woman-on.png") 0 0;
+}
+.ageCd10{
+    display : block;
+            margin : 0 auto;
+            width : 180px;
+            height : 180px;
+            background : url("/images/mat-target-age10.png") 0 0;
+            font-size : 23px;
+            color : #888;
+            text-decoration : none;
+}
+.ageCd10:hover,.ageCd10:active{
+    background : url("/images/mat-target-age10-on.png") 0 0;
+}
+.ageCd10.active{
+    background : url("/images/mat-target-age10-on.png") 0 0;
+}
+.ageCd30{
+    display : block;
+            margin : 0 auto;
+            width : 180px;
+            height : 180px;
+            background : url("/images/mat-target-age30.png") 0 0;
+            font-size : 23px;
+            color : #888;
+            text-decoration : none;
+}
+.ageCd30:hover,.ageCd30:active{
+    background : url("/images/mat-target-age30-on.png") 0 0;
+}
+.ageCd30.active{
+    background : url("/images/mat-target-age30-on.png") 0 0;
+}
+.ageCd50{
+    display : block;
+            margin : 0 auto;
+            width : 180px;
+            height : 180px;
+            background : url("/images/mat-target-age50.png") 0 0;
+            font-size : 23px;
+            color : #888;
+            text-decoration : none;
+}
+.ageCd50:hover,.ageCd50:active{
+    background : url("/images/mat-target-age50-on.png") 0 0;
+}
+.ageCd50.active{
+    background : url("/images/mat-target-age50-on.png") 0 0;
+}
+.ageCd60{
+    display : block;
+            margin : 0 auto;
+            width : 180px;
+            height : 180px;
+            background : url("/images/mat-target-age60.png") 0 0;
+            font-size : 23px;
+            color : #888;
+            text-decoration : none;
+}
+.ageCd60:hover,.ageCd60:active{
+    background : url("/images/mat-target-age60-on.png") 0 0;
+}
+.ageCd60.active{
+    background : url("/images/mat-target-age60-on.png") 0 0;
+}
+.w50{
+    display : block;
+                margin : 0 auto;
+                width : 180px;
+                height : 180px;
+                background : url("/images/mat-target-weight50.png") 0 0;
+                font-size : 23px;
+                color : #888;
+                text-decoration : none;
+}
+.w50:hover,.w50:active{
+background : url("/images/mat-target-weight50-on.png") 0 0;
+}
+.w50.active{
+background : url("/images/mat-target-weight50-on.png") 0 0;
+}
+.w60{
+    display : block;
+                margin : 0 auto;
+                width : 180px;
+                height : 180px;
+                background : url("/images/mat-target-weight60.png") 0 0;
+                font-size : 23px;
+                color : #888;
+                text-decoration : none;
+}
+.w60:hover,.w60:active{
+background : url("/images/mat-target-weight60-on.png") 0 0;
+}
+.w60.active{
+background : url("/images/mat-target-weight60-on.png") 0 0;
+}
+.w80{
+    display : block;
+                margin : 0 auto;
+                width : 180px;
+                height : 180px;
+                background : url("/images/mat-target-weight80.png") 0 0;
+                font-size : 23px;
+                color : #888;
+                text-decoration : none;
+}
+.w80:hover,.w80:active{
+background : url("/images/mat-target-weight80-on.png") 0 0;
+}
+.w80.active{
+background : url("/images/mat-target-weight80-on.png") 0 0;
+}
+.w90{
+    display : block;
+                margin : 0 auto;
+                width : 180px;
+                height : 180px;
+                background : url("/images/mat-target-weight90.png") 0 0;
+                font-size : 23px;
+                color : #888;
+                text-decoration : none;
+}
+.w90:hover,.w90:active{
+background : url("/images/mat-target-weight90-on.png") 0 0;
+}
+.w90.active{
+background : url("/images/mat-target-weight90-on.png") 0 0;
+}
+.h150{
+    display : block;
+                margin : 0 auto;
+                width : 180px;
+                height : 180px;
+                background : url("/images/mat-target-height150.png") 0 0;
+                font-size : 23px;
+                color : #888;
+                text-decoration : none;
+}
+.h150:hover,.h150:active{
+background : url("/images/mat-target-height150-on.png") 0 0;
+}
+.h150.active{
+background : url("/images/mat-target-height150-on.png") 0 0;
+}
+.h160{
+    display : block;
+                margin : 0 auto;
+                width : 180px;
+                height : 180px;
+                background : url("/images/mat-target-height160.png") 0 0;
+                font-size : 23px;
+                color : #888;
+                text-decoration : none;
+}
+.h160:hover,.h160:active{
+background : url("/images/mat-target-height160-on.png") 0 0;
+}
+.h160.active{
+background : url("/images/mat-target-height160-on.png") 0 0;
+}
+.h170{
+    display : block;
+                margin : 0 auto;
+                width : 180px;
+                height : 180px;
+                background : url("/images/mat-target-height170.png") 0 0;
+                font-size : 23px;
+                color : #888;
+                text-decoration : none;
+}
+.h170:hover,.h170:active{
+background : url("/images/mat-target-height170-on.png") 0 0;
+}
+.h170.active{
+background : url("/images/mat-target-height170-on.png") 0 0;
+}
+.h180{
+    display : block;
+                margin : 0 auto;
+                width : 180px;
+                height : 180px;
+                background : url("/images/mat-target-height180.png") 0 0;
+                font-size : 23px;
+                color : #888;
+                text-decoration : none;
+}
+.h180:hover,.h180:active{
+background : url("/images/mat-target-height180-on.png") 0 0;
+}
+.h180.active{
+background : url("/images/mat-target-height180-on.png") 0 0;
+}

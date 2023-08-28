@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/layout2}">
+
+  <meta charset="UTF-8">
+  <title>Edit Member</title>
+  <th:block layout:fragment="css">
+  </th:block>
+  <th:block layout:fragment="script">
+  </th:block>
+  <div layout:fragment="content">
+    <div th:replace="fragments/myPageNavi::aside" class="myPageNavi"></div>
+    <div class="container">
+      <h2>회원 탈퇴</h2>
+      <p>회원 탈퇴를 위해 비밀번호를 입력해주세요.</p>
+      <form th:action="@{/members/deactivate}" th:object="${member}" method="post">
+        <div class="form-group">
+          <label for="password">비밀번호</label>
+          <input type="password" class="form-control" id="password" name="password" th:field="*{password}" required>
+        </div>
+        <div class="form-group p-3">
+          <button type="submit" class="btn btn-primary">탈퇴</button>
+        </div>
+      </form>
+      <!-- 오류 메시지를 표시할 div -->
+      <div th:if="${param.error}">
+        <p class="error">비밀번호가 일치하지 않습니다.</p>
+      </div>
+    </div>
+  </div>
+
+</html>

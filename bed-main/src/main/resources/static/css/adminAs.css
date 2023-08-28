@@ -1,0 +1,71 @@
+form>.d-flex {
+    float: right;
+    margin-bottom : 80px;
+}
+form > .d-flex > * {
+    float: left;
+    margin-left: 10px;
+}
+div #asFormSelect1{
+    display: inline-block;
+    position: relative;
+    width: 108px;
+    height: 35px;
+    border: 1px solid #dedede;
+    line-height : 35px;
+}
+div #asFormSelect2{
+    display: inline-block;
+    position: relative;
+    width: 108px;
+    height: 35px;
+    border: 1px solid #dedede;
+    line-height : 35px;
+}
+form > div input[type=text] {
+    font-weight: 300;
+}
+#searchQuery {
+    padding: 0 15px;
+    height: 35px;
+    border: 1px solid #dedede;
+    color: #777;
+    line-height: 28px;
+    font-size: 13px;
+}
+.asFormSub .d-flex #searchBtn {
+    width: 100px;
+    height: 35px;
+    background: #000;
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+}
+.table thead tr td{
+    font-size : 15px;
+}
+.table tbody tr td{
+    font-size : 15px;
+    color : #555;
+}
+.table tbody tr td .formListTitle{
+    color : #555;
+    font-weight : bold;
+}
+.delBtn{
+    padding : 0 10px;
+    height: 35px;
+    background: #000;
+    color: #fff;
+    line-height: 35px;
+    text-align: center;
+}
+.col3{
+    width : 400px;
+}
+.table{
+    margin-bottom : 50px;
+}
+#paging{
+    margin-top : 80px;
+}

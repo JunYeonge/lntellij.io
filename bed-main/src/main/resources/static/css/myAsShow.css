@@ -1,0 +1,51 @@
+@font-face{
+    font-family: 'Noto Serif KR';
+    src: url('./font/MaruBuriTTF/MaruBuri-Regular.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-Bold.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-Light.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-SemiBold.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-ExtraLight.ttf') format('ttf');
+}
+@font-face{
+    font-family: 'NanumBarunGothic';
+    src: url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothic.ttf') format('ttf'),
+         url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothicBold.ttf') format('ttf'),
+         url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothicLight.ttf') format('ttf'),
+         url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothicUltraLight.ttf') format('ttf');
+}
+ul,li{list-style:none;}
+a{text-decoration:none;color:#555;}
+.cf{
+    content : "";
+    display : block;
+    clear : both;
+}
+.asTitle{
+    border-bottom : 2px solid #dedede;
+}
+.asContent > .asCon{padding:50px;}
+.asContent .asImg{
+    border-bottom : 2px solid #dedede;
+}
+.asContent .asImg p.txtImg{
+    font-family:'Noto Serif KR';
+    margin-bottom:10px;
+}
+.asContent .asImg p.txtImg span{
+    display : block;
+}
+.asContent .asCon>p{
+    color : #333;
+    font-weight : bold;
+}
+.asContent .asCon p span{
+    color : #777;
+    font-weight :400;
+}
+.asContent{
+    padding : 30px;
+}
+.asButton{
+    border-top: 2px solid #dedede;
+    padding-top : 50px;
+}
