@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/mainLayout}">
+<div layout:fragment="content" class="container">
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 작성 폼</title>
+</head>
+    <style>
+        .size{
+            width:500px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+
+        .size input{
+            width : 100%;
+            box-sizing : border-box;
+        }
+
+        .size textarea {
+            width: 100%;
+            margin-top : 10px;
+            min-height : 300px;
+        }
+    </style>
+<body>
+    <div class="size">
+        <form action="/board/writepro" method="post">
+            <input type="text" name="title">
+            <textarea name="content"></textarea>
+            <button type="submit" th:formaction="@{'/board/boardwrite'}">글쓰기</button>
+        </form>
+    </div>
+</body>
+</div>
+</html>

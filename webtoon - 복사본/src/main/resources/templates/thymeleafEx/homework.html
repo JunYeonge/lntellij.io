@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+    table, tr, td, th {
+        border : 1px solid black;
+    }
+</style>
+
+<body>
+<table>
+    <thead class="table">
+    <tr>
+        <th>순번</th>
+        <th>상품명</th>
+        <th>상품설명</th>
+        <th>가격</th>
+        <th>상품 등록일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="items,index : ${itemDto}">
+        <td th:text="${index.index}"></td>
+        <td th:text="${items.itemNm}"></td>
+        <td th:text="${items.itemDetail}"></td>
+        <td th:text="${items.price}"></td>
+        <td th:text="${items.regTime}"></td>
+    </tr>
+    </tbody>
+</table>
+    <h2>두 번째</h2>
+<table>
+    <thead class="table">
+    <tr>
+        <th>순번</th>
+        <th>상품명</th>
+        <th>상품설명</th>
+        <th>가격</th>
+        <th>상품 등록일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="items,index : ${itemDto}">
+        <td th:text="${index.index}"></td>
+        <td th:text="${items.itemNm}"></td>
+        <td th:text="${items.itemDetail}"></td>
+        <td th:text="${items.price}"></td>
+        <td th:text="${items.regTime}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
