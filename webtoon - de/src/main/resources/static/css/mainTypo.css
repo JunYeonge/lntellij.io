@@ -1,0 +1,105 @@
+@charset "utf-8";
+
+/* section1 */
+h1 {
+    font-size: 2rem;
+}
+
+#section1_today_category button,
+#section1_today_category a,
+#section1_today_category i {
+    font-size: 1.5rem;
+    color: #4e4e4e;
+    font-weight: bold;
+
+}
+
+#section1_today_category button:first-of-type {
+    color: #00dc64;
+}
+
+#section1_today_category a {
+    text-decoration: none;
+}
+
+.section1_btn_wrap p {
+    font-size: 3.2rem;
+    color: #666;
+}
+
+.section1_card h2 {
+    font-size: 1.8rem;
+}
+
+.section1_card h3 {
+    font-size: 1.4rem;
+}
+
+.section1_card a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* /section1 */
+
+
+#section2 a {
+    font-size: 1.5rem;
+}
+
+#section2 h3 {
+    font-size: 2rem;
+}
+
+/* section2 */
+.section2_hs_ranking_flex>div:nth-of-type(2) {
+    font-size: 2.2rem;
+}
+.section2_dr_mbm,
+.section2_hs_btn button {
+    font-size: 1.5rem;
+}
+
+.section2_dr_atag:hover {
+    background-color: #aeaeae7b;
+}
+.section2_dr_magb a,
+.section2_hs_rankingtext>div:nth-of-type(2) a,
+.section2_hs_comment_text li a {
+    font-size: 1.4rem;
+}
+
+.section2_dr_ml span{
+    font-size: 1.3rem;
+}
+.foco {
+    color: #666666;
+}
+.section2_btndv button::after {
+    color: #000;
+}
+.section2_hs_btn button,
+.section2_hs_comment a {
+    color: #666666;
+}
+.section2_hs_btn span {
+    font-size: 2rem;
+}
+.section2_hs_app p {
+    font-size: 1.3rem;
+}
+.section2_btndv p {
+    font-size: 2.4rem;
+}
+.section2_hs_btn button.active,
+.section2_btndv button.active,
+.section2_hs_app>div:nth-of-type(1) p span {
+    color: #00dc64;
+}
+
+.section2_btndv button {
+    color: black;
+}
+.section2_font{
+    font-size: 4rem;
+}

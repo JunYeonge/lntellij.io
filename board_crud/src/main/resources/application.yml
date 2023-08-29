@@ -1,4 +1,4 @@
-# application-private.yml
+# application.yml
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/board_crud?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
@@ -13,7 +13,7 @@ spring:
       ddl-auto: create
     properties:
       hibernate:
-        show_sql: false
+        show_sql: true
         format_sql: true
         default_batch_fetch_size: 100 # 배치전략을 위해 필요
     database: mysql

@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+/* reset */
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+/* header */
+#header_logo {
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+}
+
+#header_login a:nth-of-type(1) {
+    text-decoration: none;
+    font-size: 1.6rem;
+}
+
+#header_login a:nth-of-type(2) {
+    text-decoration: none;
+    color: #000;
+    font-size: 1.2rem;
+}
+
+#nav_bar a {
+    color: #000;
+    font-weight: bold;
+}
+
+nav button {
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: bold;
+
+}
+
+/* footer */
+.footer_terms a {
+    color: #000;
+    font-size: 1.2rem;
+}
+
+#developer_info h3,
+#developer_info a,
+#developer_info p {
+    font-size: 1.2rem;
+    color: #000;
+}

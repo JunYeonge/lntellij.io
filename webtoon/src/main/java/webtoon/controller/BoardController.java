@@ -1,11 +1,11 @@
 package webtoon.controller;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import webtoon.dto.BoardDto;
-import webtoon.entity.board.Board;
 import webtoon.service.BoardService;
 
 @Controller
@@ -13,6 +13,7 @@ import webtoon.service.BoardService;
 @RequestMapping
 public class BoardController {
 
+    @Autowired
     private BoardService boardService;
 
 
@@ -21,14 +22,13 @@ public class BoardController {
         return "/board/boardlist";
     }
 
-    @GetMapping("/board/boardwrite")
+    @GetMapping(value = "/board/boardwrite")
     public String boardWriteForm() {
         return "/board/boardwrite";
     }
 
     @PostMapping("/board/boardwrite")
     public String boardWritepro(BoardDto boardDto) {
-
-        return "/board/boardwrite";
+        return "redirect:/";
     }
 }

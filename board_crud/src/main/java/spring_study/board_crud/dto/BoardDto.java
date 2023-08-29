@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import spring_study.board_crud.domain.Board;
 
-
 @Data
 @NoArgsConstructor
 public class BoardDto {
@@ -12,10 +11,9 @@ public class BoardDto {
     private String title;
     private String content;
 
-    public BoardDto(Board board){
+    public BoardDto(Board board) {
         this.id = board.getId();
         this.title = board.getTitle();
         this.content = board.getContent();
     }
-
 }

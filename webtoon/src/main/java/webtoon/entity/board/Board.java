@@ -8,11 +8,13 @@ import webtoon.entity.member.Member;
 
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board extends BaseEntity {   // 게시판
 
     @Id
@@ -35,6 +37,15 @@ public class Board extends BaseEntity {   // 게시판
     @Column
     private int view_count;   // 조회수
 
+    @Column
+    private char deleteYn; //삭제여부
+
+    @Column
+    private LocalDateTime createDate = LocalDateTime.now();// 생성일
+
+    @Column
+    private LocalDateTime modifiedDate; // 수정일
+
 //    public static Board toSaveEntity(BoardDto boardDto) {
 //        Board board = new Board();
 //        board.setTitle(boardDto.getTitle());
@@ -45,12 +56,12 @@ public class Board extends BaseEntity {   // 게시판
 //    }
 
     @Builder
-    public Board(Long id, String user_id, String nickname, String content, String title, int view_count) {
-        this.id = id;
+    public Board(String user_id, String nickname, String content, String title, int view_count, char deleteYn) {
         this.user_id = user_id;
         this.nickname = nickname;
         this.content = content;
         this.title = title;
         this.view_count = view_count;
+        this.deleteYn = deleteYn;
     }
 }
