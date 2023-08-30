@@ -1,0 +1,58 @@
+@font-face{
+    font-family: 'Noto Serif KR';
+    src: url('./font/MaruBuriTTF/MaruBuri-Regular.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-Bold.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-Light.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-SemiBold.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-ExtraLight.ttf') format('ttf');
+}
+@font-face{
+    font-family: 'NanumBarunGothic';
+    src: url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothic.ttf') format('ttf'),
+         url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothicBold.ttf') format('ttf'),
+         url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothicLight.ttf') format('ttf'),
+         url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothicUltraLight.ttf') format('ttf');
+}
+*{margin:0;padding:0;border:0;}
+ul,li{list-style:none;}
+a{text-decoration:none;color:#555;}
+html{
+    position:relative;
+    min-height:100%
+    margin:0;
+    overflow-x: hidden;
+}
+body{
+    min-height:100%
+}
+nav{
+    position : fixed;
+    left : 0;
+    top : 0;
+    width : 100%;
+    border-bottom : 1px solid #eee;
+}
+.content{
+    position : relative;
+    margin-top : 200px;
+    margin-left : 300px;
+    margin-right : 90px;
+    margin-bottom : 200px;
+}
+.nav li.nav-item a.nav-link{
+    color : #555;
+}
+.nav li.nav-item a.nav-link:hover{
+    color : #2470dc;
+    background-color : #ddd;
+}
+.sidebar{
+    position: fixed;
+    width : 210px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}

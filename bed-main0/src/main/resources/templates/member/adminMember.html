@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+
+      layout:decorate="~{layouts/layout2}"
+>
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+<!--    <script th:src=@{/js/admin.js}"></script>-->
+    <script>
+                $(document).ready(function(){
+            $("#searchBtn").on("click",function(e) {
+                e.preventDefault();
+                page(0);
+            });
+        });
+
+        function page(page){
+            var searchDateType = $("#searchDateType").val();
+            var searchRoleType = $("#searchRoleType").val();
+            var searchBy = $("#searchBy").val();
+            var searchQuery = $("#searchQuery").val();
+
+            location.href="/admin/members/" + page + "?searchDateType=" + searchDateType
+            + "&searchRoleType=" + searchRoleType
+            + "&searchBy=" + searchBy
+            + "&searchQuery=" + searchQuery;
+        }
+    </script>
+</th:block>
+<!--<script th:src="@{/js/admin.js}" type="text/javascript"></script>-->
+<!--사용자 css 추가-->
+<th:block layout:fragment="css">
+<!--    <link th:href="@{/css/loginForm.css}" rel="stylesheet">-->
+        <link th:href="@{/css/admin.css}" rel="stylesheet">
+
+</th:block>
+
+<div layout:fragment="content">
+    <div th:replace="fragments/adminNav::aside" class="adminNav"></div>
+    <div class="admin-wrap">
+        <div class="container text-center">
+            <h2 class="client-txt text-start display-5 mb-3 .fs-1" style="margin-top:0;">회원리스트</h2>
+            <p class="text-start" style="margin-top:15px; color:#777;font-size:15px;">회원을 관리하는 페이지입니다.</p>
+            <div class="memberSub">
+            <section class="client">
+                <form th:action="@{'/admin/members/page=' + ${memberList.number}}" role="form" method="get" th:object="${memberSearchDto}">
+                    <div class="d-flex justify-content-end" th:object="${memberSearchDto}" style="margin-bottom:10px;">
+
+
+<!--                    <div class="client-wrap">-->
+    <!--                    <div class="row row-cols-auto">-->
+<!--                        <div class="text-center">-->
+                            <div class="g-col-4" id="memberSelect1">
+                                <label for="searchDateType"></label>
+                                <select name="searchDateType" id="searchDateType" th:field="*{searchDateType}" >
+                                    <option value="all">가입기간</option>
+                                    <option value="1d">1일</option>
+                                    <option value="1w">1주</option>
+                                    <option value="1m">1개월</option>
+                                    <option value="6m">6개월</option>
+                                </select>
+                            </div>
+                            <div class="g-col-4" id="memberSelect2">
+                                <label for="searchProType"></label>
+                                <select name="searchProType" id="searchProType" th:field="*{searchProType}">
+                                    <option value="">가입유형</option>
+                                    <option value="">전체</option>
+                                    <option value="email">EMAIL</option>
+                                    <option value="googl">google</option>
+                                    <option value="kakao">kakao</option>
+                                    <option value="naver">naver</option>
+                                </select>
+                            </div>
+                            <div class="g-col-4" id="memberSelect3">
+                                <label for="searchRoleType"></label>
+                                <select name="searchRoleType" id="searchRoleType" th:field="*{searchRoleType}">
+                                    <option value="">권한</option>
+                                    <option value="">전체</option>
+                                    <option value="ADMIN">관리자</option>
+                                    <option value="USER">사용자</option>
+                                </select>
+                            </div>
+                            <div class="col-4" id="memberSelect4">
+                                <label for="searchBy"></label>
+                                <select name="searchBy" id="searchBy" th:field="*{searchBy}">
+                                    <option value="email">아이디</option>
+                                    <option value="name">이름</option>
+                                    <option value="phoneNumber">전화번호</option>
+                                </select>
+                            </div>
+                            <div class="g-col-4 admin-search text-center">
+                                <label for="searchQuery"></label>
+                                <input th:field="*{searchQuery}" id="searchQuery" type="text" placeholder="검색어를 입력해주세요">
+                                <button class="btn" id="searchBtn" type="submit">검색</button>
+                            </div>
+
+    <!--                    <div class="admin-search">-->
+    <!--                        <form id="form" action="/admin/search/member" method="GET" class="admin-box">-->
+    <!--                            <input name="keyword" class="admin-search_input" type="text" placeholder="찾는 아이디 입력">-->
+    <!--                            <button type="submit" class="admin-search_btn">검색</button>-->
+    <!--                        </form>-->
+    <!--                    </div>-->
+<!--                        </div>-->
+                    </div>
+<!--                    </div>-->
+                        <table class="client_list">
+                            <thead>
+                                <tr>
+                                    <td>no.</td>
+                                    <td>가입유형</td>
+                                    <td>권한</td>
+                                    <td>아이디(이메일)</td>
+                                    <td>이름</td>
+                                    <td>주소</td>
+                                    <td>연락처</td>
+                                    <td>가입일</td>
+                                    <td>회원탈퇴</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="member, status : ${memberList}" class="">
+<!--                                <tr th:each="member : ${memberList.![member].sort(T(java.util.Comparator).comparingInt(member -> member.id).reversed())}" class="">-->
+                                    <td th:text="${member.id}"></td>
+                                    <td th:text="${member.provider}"></td>
+                                    <td th:text="${member.role}"></td>
+
+<!--                                    실패-->
+<!--                                    <td th:text="${member.role != 'ADMIN' ? '관리자' : '사용자'}" ></td>-->
+<!--                                    <td>-->
+<!--                                        <span th:if="${member.role == 'ADMIN'}" th:text = '관리자' ></span>-->
+<!--                                        <span th:if="${member.role == 'USER'}" th:text = '사용자'></span>-->
+<!--                                    </td>-->
+<!--                                    -->
+
+                                    <td th:text="${member.email}"></td>
+                                    <td th:text="${member.name}"></td>
+                <!--                    <td th:text="${member.username}"></td>-->
+                                    <td th:text="${member.merge_address}"></td>
+                                    <td th:text="${member.phoneNumber}"></td>
+                                    <td th:text="${#strings.substring(member.regTime, 0, 10)}"></td>
+                                    <td>
+                                        <input type="checkbox" name="selectedMembers" th:value="${member.id}"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+    <!--            <form action="/admin/members/delete" method="post">-->
+    <!--                <button class="delBtn" type="submit">선택된 회원 탈퇴</button>-->
+    <!--            </form>-->
+                <div class="d-grid d-md-flex justify-content-end">
+                    <button class="btn delBtn" type="submit" formaction="/admin/members/delete" formmethod="post">선택된 회원 탈퇴</button>
+                </div>
+    <!--                    페이지 버튼-->
+    <!--                    items.number 현재페이지를 의미. 0부터 시작-->
+                <div class="btn-group"  role="group" id="paging" th:with="start=${(memberList.number/maxPage)*maxPage + 1}, end=(${(memberList.totalPages == 0) ? 1 : (start + (maxPage - 1) < memberList.totalPages ? start + (maxPage - 1) : memberList.totalPages)})" >
+                    <ul class="pagination justify-content-center">
+                        <!--                이전버튼-->
+                        <li class="page-item" th:classappend="${memberList.first}?'disabled'">
+                            <a th:onclick="'javascript:page(' + ${memberList.number - 1} + ')'" aria-label='Previous' class="page-link">
+                                <span aria-hidden='true'>Previous</span>
+                            </a>
+                        </li>
+                        <!--                번호-->
+                        <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${memberList.number eq page-1}?'active':''">
+                            <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+                        </li>
+                        <!--                다음버튼-->
+                        <li class="page-item" th:classappend="${memberList.last}?'disabled'">
+                            <a th:onclick="'javascript:page(' + ${memberList.number + 1} + ')'" aria-label='Next' class="page-link">
+                                <span aria-hidden='true'>Next</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                </form>
+            </section>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+</html>
+
+

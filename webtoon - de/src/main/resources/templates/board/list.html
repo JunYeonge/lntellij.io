@@ -4,40 +4,37 @@
       layout:decorate="~{layouts/mainLayout}">
 
 <div layout:fragment="content" class="container">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
 
-<body>
 <h3>공지사항</h3>
-<body>
-<header th:insert="common/header.html"></header>
+
 <div class="container">
     <table class="table">
-        <thead class="thead-light">
+        <thead>
         <tr class="text-center">
-            <th scope="col">#</th>
+            <th scope="col"></th>
             <th scope="col">제목</th>
             <th scope="col">조회수</th>
             <th scope="col">작성일</th>
         </tr>
         </thead>
         <tbody>
-        <tr class="text-center" th:each="post : ${postList}">
+        <tr class="text-center" th:each="post : ${boardList}">
             <th scope="row">
-                <span th:text="${post.id}"></span>
+                <span th:text="${board.id}"></span>
             </th>
             <td>
-                <a th:href="@{'/post/' + ${post.id}}">
-                    <span th:text="${post.title}"></span>
+                <a th:href="@{'/board/' + ${board.id}}">
+                    <span th:text="${bord.title}"></span>
                 </a>
             </td>
             <td>
-                <span th:text="${post.author}"></span>
+                <span th:text="${board.nickname}"></span>
             </td>
             <td>
-                <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+                <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+            </td>
+            <td>
+                <span th:text="${board.view_Count}"></span>
             </td>
         </tr>
         </tbody>
@@ -45,10 +42,11 @@
     <div class="row">
         <div class="col-auto mr-auto"></div>
         <div class="col-auto">
-            <a class="btn btn-primary" th:href="@{/post}" role="button">글쓰기</a>
+            <a class="btn btn-primary" th:href="@{/board/post}" role="button">글쓰기</a>
         </div>
     </div>
 </div>
-</body>
+
 </div>
+
 </html>

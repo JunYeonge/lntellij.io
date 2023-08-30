@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+<head>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<th:block layout:fragment="css">
+    <link th:href="@{/css/myAsShow.css}" rel="stylesheet">
+</th:block>
+
+<div layout:fragment="content">
+    <input type="hidden" id="id" th:value="${asForm.id}">
+    <div class="adminAsForm cf">
+        <div class="asTitle cf">
+            <p style="color:#555;margin-bottom:10px;">[AS 신청서]</p>
+            <p th:text="${asForm.title}" style="font-size:35px;"></p>
+            <p th:text="${#strings.substring(asForm.regTime, 0, 10)}" style="color:#888;"></p>
+            <p th:text="${asForm.createdBy}" style="font-weight:400;text-align:right;
+          margin-right:100px;"></p>
+        </div>
+        <div class="asContent cf">
+            <div class="asCon asImg">
+                <p class="text-center txtImg">첨부이미지<br>
+                    <span th:if="${asForm.asFormImg != null}"><img th:src="${asForm.asFormImg.asImgUrl}"></span>
+                    <span th:unless="${asForm.asFormImg != null}">사진 없음</span>
+                </p>
+            </div>
+            <div class="asCon asTxt">
+                <p>신청자 : <span th:text="${asForm.name}"></span></p>
+                <p>신청상태 :
+                    <span  th:if="${asForm.AsFormStatus == T(com.bed.constant.AsFormStatus).CHECK}"  style="color:green;">신청 확인</span>
+                    <span  th:unless="${asForm.AsFormStatus == T(com.bed.constant.AsFormStatus).CHECK}"  style="color:#FF0E3C;">신청 대기</span>
+                </p>
+                <p>모델명 : <span th:text="${asForm.model}"></span></p>
+                <p>주소 : <span th:text="${asForm.home_addr} + ${asForm.home_addr2}"></span></p>
+                <p>연락처 : <span th:text="${asForm.tel}"></span></p>
+                <p>이메일 : <span th:text="${asForm.email}"></span></p>
+                <p>신청내용 : <span th:text="${asForm.content}" style="padding : 100px;"></span></p>
+            </div>
+        </div>
+    </div>
+    <div class="asButton cf text-center" style="margin-bottom:100px;">
+        <a href="/user/asSubmits" class="btn btn-outline-secondary">목록</a>
+        <!--    <a th:href="@{/admin/asSubmit/{id}/edit(id=${asForm.id})}" class="btn btn-warning">수정</a>-->
+        <a th:href="@{/user/asSubmit/{id}/delete(id=${asForm.id})}" class="btn btn-outline-danger">삭제</a>
+        <!-- Include the comments template -->
+    </div>
+    <div th:replace="comments/_userList::div"></div>
+</div>
+</html>

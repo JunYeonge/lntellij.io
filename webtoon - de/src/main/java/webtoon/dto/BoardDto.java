@@ -1,6 +1,5 @@
 package webtoon.dto;
 import lombok.*;
-import webtoon.entity.board.Board;
 import java.time.LocalDateTime;
 @Getter
 @Setter

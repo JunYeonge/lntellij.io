@@ -1,0 +1,14 @@
+a{text-decoration:none; color:#555;}
+.asFormSub{
+    margin : 80px 0;
+}
+.asFormSub table thead{
+    font-weight : bold;
+}
+.asFormSub table tbody{
+    font-size : 15px;
+    color : #888;
+}
+.paging{
+    margin : 80px 0;
+}

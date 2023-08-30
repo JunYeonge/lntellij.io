@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="myPageNavi">
+    <aside>
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 bg-light d-md-block sidebar collapse .custom-sidebar">
+            <div class="position-sticky mt-4 pt-5 sidebar-sticky d-flex flex-column justify-content-between"> <!-- Flex classes added here -->
+                <ul class="nav flex-column p-1 text-center mb-auto"> <!-- Margin bottom auto added here -->
+                    <li class="nav-item "><a class="nav-link active" aria-current="page" href="/cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        장바구니</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="/${memberId}/orders">
+                        <i class="fa-solid fa-file-word"></i>
+                        구매이력</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="/user/asSubmits">
+                        <i class="fa fa-wrench"></i>
+                        AS신청확인</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="/members/edit/password">
+                        <i class="fa-solid fa-gear"></i>
+                        정보수정</a></li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+</div>
+</html>

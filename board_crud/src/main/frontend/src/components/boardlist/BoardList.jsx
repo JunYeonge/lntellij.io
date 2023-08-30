@@ -11,6 +11,7 @@ const BoardList = (props) => {
     <>
        {Array.isArray(props.data) && props.data.length !== 0 ?
         props.data.map((i) => (
+            /* i는 반복문을 의미한다 */
             <BoardBox
                 key = {i.id}
                 id = {i.id}

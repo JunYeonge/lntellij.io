@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+
+      layout:decorate="~{layouts/layout1}">
+<th:block layout:fragment="css">
+    <link th:href="@{/css/mattress.css}" rel="stylesheet">
+</th:block>
+<!--<th:block layout:fragment="script">-->
+<!--    <script th:src="@{/js/mattress.js}" type="text/javascript"></script>-->
+<!--</th:block>-->
+<div layout:fragment="content">
+<div class="container-fluid">
+  <form th:action="@{'/mattress/result'}" role="form" method="get" th:object="${matList}">
+      <div class="d-flex justify-content-center text-center" th:object="${matSearchDto}">
+          <div class="row rStep1" id="matInfo" style="opacity: 0;">
+              <p style="color:#666;">step 1</p>
+              <h1>매트리스 사용자의 성별을 선택해주세요</h1>
+              <div th:field="*{gender}" class="col-lg-12 container d-flex">
+                  <a href="#" class="step-link1 gndCd man" data-val="M">남성</a>
+                  <a href="#" class="step-link1 gndCd woman" data-val="W">여성</a>
+              </div><br>
+                <a href="#" class="next-step btn btn-primary mx-auto" data-target=".rStep2" style="width:100px;">다음</a>
+          </div>
+          <div class="row rStep2" style="display:none;">
+              <p style="color:#666;">step 2</p>
+              <h1>매트리스 사용자의 연령대를 선택해주세요</h1>
+              <div th:field="*{age}" class="col-lg-12 container d-flex">
+              <a href="#" class="step-link2 ageCd ageCd10" data-val="AGE_10">10대</a>
+              <a href="#" class="step-link2 ageCd ageCd30" data-val="AGE_230">20-30대</a>
+              <a href="#" class="step-link2 ageCd ageCd50" data-val="AGE_450">40-50대</a>
+              <a href="#" class="step-link2 ageCd ageCd60" data-val="AGE_60">60대 이상</a>
+              </div><br>
+              <a href="#" class="next-step btn btn-primary mx-auto" data-target=".rStep3" style="width:100px;">다음</a>
+          </div>
+          <div class="row rStep3" style="display:none;">
+              <p style="color:#666;">step 3</p>
+              <h1>매트리스 사용자의 몸무게를 선택해주세요</h1>
+              <div th:field="*{weight}" class="col-lg-12 container d-flex">
+              <a href="#" class="step-link3 wgtCd w50" data-val="W_50">50KG 이하</a>
+              <a href="#" class="step-link3 wgtCd w60" data-val="W_560">50-60KG</a>
+              <a href="#" class="step-link3 wgtCd w80" data-val="W_780">70-80KG</a>
+              <a href="#" class="step-link3 wgtCd w90" data-val="W_90">90KG 이상</a>
+              </div><br>
+              <a href="#" class="next-step btn btn-primary mx-auto" data-target=".rStep4" style="width:100px;">다음</a>
+          </div>
+          <div class="row rStep4" style="display:none;">
+              <p style="color:#666;">step 4</p>
+              <h1>매트리스 사용자의 키를 선택해주세요</h1>
+              <div th:field="*{height}" class="col-lg-12 container d-flex">
+              <a href="#" class="step-link4 hgtCd h150" data-val="H_150">150CM 이하</a>
+              <a href="#" class="step-link4 hgtCd h160" data-val="H_160">160CM대</a>
+              <a href="#" class="step-link4 hgtCd h170" data-val="H_170">170CM대</a>
+              <a href="#" class="step-link4 hgtCd h180" data-val="H_180">180CM 이상</a>
+              </div><br>
+              <a href="#" id="searchBtn" class="rStep5 btn btn-primary mx-auto" style="width:100px;">결과</a>
+          </div>
+      <div class="swiper mySwiper2 slide rStep5" style="display:none;">
+          <h1>당신에게 맞는 추천 매트리스</h1>
+          <div class="swiper-wrapper mb-5 step-link">
+              <div th:each="mat : ${matList}" class="swiper-slide">
+                  <h2 th:text="${mat.title}"></h2>
+                  <img th:src="@{'/images/' + ${mat.image}}" th:alt="'슬라이드 ' + ${status.index + 1}">
+                  <p></p>
+              </div>
+          </div>
+      </div>
+    </div>
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+  </form>
+</div>
+</div>
+</html>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/mattress.js}" type="text/javascript"></script>
+    <script th:inline="javascript">
+document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function() {
+            window.scrollTo(0, 500);
+            document.getElementById("matInfo").style.opacity = 1;
+                 }, 500);
+        var matInfo = document.getElementById("matInfo");
+        var opacity = 0;
+        var interval = setInterval(fadeIn, 100);
+
+       function fadeIn() {
+            opacity += 0.1;
+            matInfo.style.opacity = opacity;
+
+            if (opacity >= 1) {
+                clearInterval(interval);
+            }
+        }
+
+
+  const rSteps = document.querySelectorAll(".row");
+  const stepLinks1 = document.querySelectorAll(".step-link1");
+  const stepLinks2 = document.querySelectorAll(".step-link2");
+  const stepLinks3 = document.querySelectorAll(".step-link3");
+  const stepLinks4 = document.querySelectorAll(".step-link4");
+  const nextSteps = document.querySelectorAll(".next-step");
+var gender ='';
+var age = '';
+var weight = '';
+var height = '';
+
+  // stepLink 클릭 이벤트 처리
+  stepLinks1.forEach(function (stepLink1) {
+    stepLink1.addEventListener("click", function (event) {
+      event.preventDefault();
+     gender = stepLink1.getAttribute("data-val");
+
+      // 선택된 데이터를 객체에 저장
+      console.log("Value:", gender);
+    });
+
+  });
+   stepLinks2.forEach(function (stepLink2) {
+    stepLink2.addEventListener("click", function (event) {
+      event.preventDefault();
+      age = stepLink2.getAttribute("data-val");
+
+      // 선택된 데이터를 객체에 저장
+      console.log("Value:", age);
+
+    });
+
+  });
+   stepLinks3.forEach(function (stepLink3) {
+    stepLink3.addEventListener("click", function (event) {
+      event.preventDefault();
+      weight = stepLink3.getAttribute("data-val");
+
+      // 선택된 데이터를 객체에 저장
+      console.log("Value:", weight);
+
+    });
+
+  });
+   stepLinks4.forEach(function (stepLink4) {
+    stepLink4.addEventListener("click", function (event) {
+      event.preventDefault();
+      height = stepLink4.getAttribute("data-val");
+
+      // 선택된 데이터를 객체에 저장
+      console.log("Value:", height);
+
+    });
+
+  });
+
+  // nextStep 클릭 이벤트 처리
+  nextSteps.forEach(function (nextStep) {
+    nextStep.addEventListener("click", function (event) {
+      event.preventDefault();
+      const target = nextStep.getAttribute("data-target");
+      rSteps.forEach(function (rStep) {
+        rStep.style.display = "none";
+      });
+      document.querySelector(target).style.display = "block";
+    });
+  });
+
+  // searchBtn 클릭 이벤트 처리
+  $(document).ready(function () {
+    $("#searchBtn").on("click", function (e) {
+      e.preventDefault();
+      console.log(gender,age,weight,height);
+      matList();
+    });
+  });
+
+    // 선택된 데이터에 대한 처리 수행
+  function matList() {
+
+
+  // 선택된 데이터에 대한 처리 수행
+         location.href = "/mattress/result?gender=" + gender +
+        "&age=" + age +
+        "&weight=" + weight +
+        "&height=" + height;
+}
+});
+    </script>
+</th:block>

@@ -1,0 +1,94 @@
+form>.d-flex {
+    float: right;
+    margin-bottom : 80px;
+}
+form > .d-flex > * {
+    float: left;
+    margin-left: 10px;
+}
+div #articleSelect1{
+    display: inline-block;
+    position: relative;
+    width: 108px;
+    height: 35px;
+    border: 1px solid #dedede;
+    line-height : 35px;
+}
+div #articleSelect2{
+    display: inline-block;
+    position: relative;
+    width: 108px;
+    height: 35px;
+    border: 1px solid #dedede;
+    line-height : 35px;
+}
+div #articleSelect3{
+    display: inline-block;
+    position: relative;
+    width: 108px;
+    height: 35px;
+    border: 1px solid #dedede;
+    line-height : 35px;
+}
+form > div input[type=text] {
+    font-weight: 300;
+}
+#searchQuery {
+    padding: 0 15px;
+    height: 35px;
+    border: 1px solid #dedede;
+    color: #777;
+    line-height: 28px;
+    font-size: 13px;
+}
+.notiSub .d-flex #searchBtn {
+    width: 100px;
+    height: 35px;
+    background: #000;
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+}
+.col4{
+    width : 500px;
+}
+.table thead tr td{
+    font-size : 15px;
+    text-align : center;
+}
+.table tbody tr td{
+    font-size : 15px;
+    color : #555;
+}
+.table tbody tr td .artiCon{
+    color : #555;
+    text-decoration : none;
+    font-weight : bold;
+}
+.delBtn{
+    padding : 0 10px;
+    height: 35px;
+    background: #000;
+    color: #fff;
+    line-height: 35px;
+    text-align: center;
+}
+a.writeBtn{
+    display : block;
+    margin-right : 10px;
+    float : left;
+    width : 100px;
+    padding: 0 10px;
+    text-decoration : none;
+    height: 35px;
+    background: #000;
+    color: #fff;
+    line-height: 35px;
+    text-align: center;
+}
+.table{
+    margin-bottom : 50px;
+}
+#paging{
+    margin-top : 80px;
+}

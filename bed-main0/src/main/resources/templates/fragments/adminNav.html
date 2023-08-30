@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="adminNav">
+    <aside>
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 bg-light d-md-block sidebar collapse .custom-sidebar">
+        <div class="position-sticky mt-4 pt-5 sidebar-sticky">
+            <ul class="nav flex-column p-1 text-center">
+                <li class="nav-item "><a class="nav-link active" aria-current="page" href="/admin/item/new">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    상품등록</a></li>
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="/admin/items">
+                    <i class="fa fa-sitemap"></i>
+                    상품관리</a></li>
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="/admin/members">
+                    <i class="fa-solid fa-person"></i>
+                    회원관리</a></li>
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="/admin/notices">
+                    <i class="fa-regular fa-clipboard"></i>
+                    게시판관리</a></li>
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="/admin/asSubmits">
+                    <i class="fa fa-wrench"></i>
+                    AS신청확인</a></li>
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="/admin/orders">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    주문관리</a></li>
+            </ul>
+        </div>
+        </nav>
+    </aside>
+</div>
+</html>

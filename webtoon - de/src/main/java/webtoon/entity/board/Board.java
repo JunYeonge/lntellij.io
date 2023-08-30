@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board extends BaseEntity {   // 게시판
 
     @Id
@@ -43,13 +42,4 @@ public class Board extends BaseEntity {   // 게시판
     @Column
     private LocalDateTime modifiedDate; // 수정일
 
-
-    @Builder
-    public Board(String user_id, String nickname, String content, String title, int view_count, char deleteYn) {
-        this.user_id = user_id;
-        this.nickname = nickname;
-        this.content = content;
-        this.title = title;
-        this.view_count = view_count;
-    }
 }

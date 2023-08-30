@@ -1,0 +1,266 @@
+@font-face{
+    font-family: 'NanumBarunGothic';
+    src: url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothic.ttf') format('ttf'),
+         url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothicBold.ttf') format('ttf'),
+         url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothicLight.ttf') format('ttf'),
+         url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothicUltraLight.ttf') format('ttf');
+}
+a{text-decoration:none;color:#000;}
+ul,li{list-style:none;padding-left:none !important;}
+.cf:after{
+    display:block;
+    content:'';
+    clear:both;
+}
+.csCenter{
+    font-family: 'NanumBarunGothic';
+}
+.cusSub{
+    margin:0;
+    padding:0;
+}
+.customerTab{
+
+    width : 1500px;
+    margin: 42px 0 100px 0;
+}
+.customerTab>li{
+    float:left;
+}
+.customerTab>li>a{
+    display:block;
+    width: 480px;
+    height : 60px;
+    line-height : 60px;
+    box-sizing: border-box;
+    border : 1px solid #ddd;
+    font-size : 20px;
+    color : #666;
+    margin-top : 50px;
+}
+.customerTab>li>a:hover{
+    background-color : #ddd;
+    color:#333;
+
+}
+.cusSub .asPro h3{
+    padding-bottom:20px;
+    background : url("/images/join_bg.gif") no-repeat 30px 100%;
+    background-size: 100% auto;
+    color : #000;
+    font-size : 20px;
+
+}
+.cusSub .asPro ol{
+    padding : 80px 70px 30px 30px;
+
+}
+.cusSub .asPro ol li{
+    float : left;
+    padding-right : 20px;
+    margin-bottom:20px;
+    background : url("/images/as_pro_arrow.gif") no-repeat 269px 50%;
+}
+.cusSub .asPro ol li span {
+    display : block;
+    width : 260px;
+    height : 70px;
+    border : 1px solid #dedede;
+    text-align : center;
+    line-height : 70px;
+}
+.cusSub .asPro ol li:nth-child(8) {
+    background: none;
+}
+.cusSub .asPro ol li:nth-child(9) {
+    padding-right: 14px;
+    background: none;
+}
+.cusSub .asPro ol li:nth-child(9) span {
+    position: relative;
+    border: 0;
+    font-size: 13px;
+}
+.cusSub .asPro ol li:nth-child(9) span img {
+    position: absolute;
+    left: 4px;
+    top: -5px;
+}
+.cusSub .asPro ol li:nth-child(10) {
+    background: none;
+    margin-left : 5px;
+}
+legend {
+    position: absolute;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    text-indent: -5000px;
+}
+.memAgree{
+    margin-top : 100px;
+}
+.memAgree fieldset > div {
+    padding: 40px 20px;
+    border: 1px solid #dedede;
+    margin-bottom : 20px;
+}
+.memAgree fieldset .agreeBox{
+    height: 250px;
+    clear: left;
+    overflow: auto;
+}
+.memAgree fieldset > div * {
+    font-size: 13px;
+    line-height: 20px;
+    color : #777;
+}
+.memAgree fieldset > p span {
+    padding-right: 7px;
+    color: #000;
+    font-size: 15px;
+    line-height: 16px;
+}
+.memAgree fieldset .etc_40 {
+    height: 120px;
+    clear: both;
+
+}
+.cusSub .memJoin {
+    padding-top: 140px;
+}
+.cusSub .memJoin h3{
+    font-size : 30px;
+    padding-bottom:20px;
+    background : url("/images/join_bg.gif") no-repeat 30px 100%;
+    background-size: 100% auto;
+}
+.cusSub .memJoin>div>p{
+    color : #777;
+    font-size : 13px;
+    float : right;
+}
+.memJoin dl {
+    padding-top: 43px;
+    padding-bottom: 31px;
+    background: url("/images/join_bg.gif") no-repeat 30px 100%;
+    background-size: 120% auto;
+}
+.memJoin dl:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.memJoin dl dt {
+    clear: left;
+    float: left;
+    width: 190px;
+    margin-right: 200px;
+    color: #000;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 30px;
+}
+.memJoin dl dd {
+    float: left;
+    width: 780px;
+    padding-bottom: 10px;
+    line-height: 30px;
+}
+.memJoin dl dd * {
+    float: left;
+}
+.memJoin dl dd input[type=text] {
+    width: 200px;
+}
+input[type=text] {
+    padding: 0 15px;
+    height: 28px;
+    border: 1px solid #dedede;
+    color: #777;
+    line-height: 28px;
+    font-size: 13px;
+    }
+.memJoin dl dd input[type=text]+label {
+    position: absolute;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    text-indent: -5000px;
+}
+.memJoin dl dd.address input[type=text] {
+    margin-bottom: 10px;
+}
+.memJoin dl dd a {
+    width: 110px;
+    height: 30px;
+    margin-left: 10px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+}
+.memJoin dl dd.address .street {
+    width: 308px;
+}
+.memJoin dl dd.address .addInput {
+    width: 398px;
+    margin-left: 10px;
+}
+.memJoin dl dd span {
+    width: 20px;
+    line-height: 30px;
+    text-align: center;
+}
+.memJoin dl dd select {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #dedede;
+    color: #777;
+    font-size: 13px;
+}
+.memJoin dl dd.email select {
+    width: 220px;
+    margin-left: 20px;
+}
+.memJoin dl dd.detail textarea {
+    width: 748px;
+    height: 208px;
+    padding: 10px 15px;
+    border: 1px solid #dedede;
+}
+.cusSub .memJoin fieldset > a {
+    display: block;
+    width: 480px;
+    height: 45px;
+    margin: 50px auto 50px auto;
+    background: #000;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    line-height: 45px;
+}
+
+
+.cusCenter{
+    border-top : 1px solid #ddd;
+    border-bottom :  1px solid #ddd;
+    padding : 100px 0;
+}
+.cusCenter .cs{
+    color : #222;
+    font-size : 20px;
+}
+.cs em{
+    padding : 0 10px;
+}
+.cs p{
+    color : #666;
+    font-size : 14px;
+}

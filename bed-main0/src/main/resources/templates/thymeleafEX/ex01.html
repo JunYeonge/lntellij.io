@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>상품 데이터 출력 예제</h1>
+<div>
+  상품명 : <span th:text="${itemDto.itemNm}"></span>입니다.
+</div>
+
+<div>
+  상품코드명 : <span th:text="${itemDto.itemNum}"></span>입니다.
+</div>
+<div>
+  상품명 : <span th:text="${itemDto.itemNm}"></span>입니다.
+</div>
+<div>
+  상품재고 : <span th:text="${itemDto.stockNum}"></span>입니다.
+</div>
+<div>
+  상품가격 : <span th:text="${itemDto.price}"></span>입니다.
+</div>
+<div>
+  부가세 : <span th:text="${tax}"></span>입니다.
+</div>
+<div>
+  상품세전가격 : <span th:text="${pre_tax}"></span>입니다.
+</div>
+<div>
+  브랜드 : <span th:text="${itemDto.brand}"></span>입니다.
+</div>
+
+<div>
+  상품상세설명 : <span th:text="${itemDto.itemDetail}"></span>
+</div>
+<div>
+  상품등록일 : <span th:text="${itemDto.regTime}"></span>
+</div>
+
+</body>
+</html>

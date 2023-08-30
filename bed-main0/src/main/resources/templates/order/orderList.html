@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout2}">
+
+<head>
+  <meta name="_csrf" th:content="${_csrf.token}"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+
+  <script th:inline="javascript">
+
+        function cancelOrder(orderId) {
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
+            var url = "/order/" + orderId + "/cancel";
+            var paramData = {
+                orderId : orderId,  //취소할 주문번호를 파라미터로 넘겨줍니다.
+            };
+
+            var param = JSON.stringify(paramData);
+
+            $.ajax({
+                url      : url,
+                type     : "POST",
+                contentType : "application/json",
+                data     : param,
+                beforeSend : function(xhr){
+                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                    xhr.setRequestHeader(header, token);
+                },
+                dataType : "json",
+                cache   : false,
+                success  : function(result, status){ //주문이 정상적으로 취소 됐으면 현재 페이지로 다시 redirect
+                    alert("주문이 취소 되었습니다.");
+                    location.href='/${memberId}/orders';
+                },
+                error : function(jqXHR, status, error){
+                    if(jqXHR.status == '401'){
+                        alert('로그인 후 이용해주세요');
+                        location.href='/members/login';
+                    } else{
+                        alert(jqXHR.responseText);
+                    }
+                }
+            });
+        }
+
+
+    </script>
+
+</th:block>
+
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+  <style>
+      @font-face{
+        font-family: 'Noto Serif KR';
+        src: url('./font/MaruBuriTTF/MaruBuri-Regular.ttf') format('ttf'),
+             url('./font/MaruBuriTTF/MaruBuri-Bold.ttf') format('ttf'),
+             url('./font/MaruBuriTTF/MaruBuri-Light.ttf') format('ttf'),
+             url('./font/MaruBuriTTF/MaruBuri-SemiBold.ttf') format('ttf'),
+             url('./font/MaruBuriTTF/MaruBuri-ExtraLight.ttf') format('ttf');
+      }
+      @font-face{
+        font-family: 'NanumBarunGothic';
+        src: url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothic.ttf') format('ttf'),
+             url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothicBold.ttf') format('ttf'),
+             url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothicLight.ttf') format('ttf'),
+             url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothicUltraLight.ttf') format('ttf');
+      }
+
+      .repImgDiv{
+          margin-right:15px;
+          margin-left:15px;
+          height:auto;
+      }
+      .repImg{
+          height:100px;
+          width:100px;
+      }
+      .fs18{
+          font-size:18px
+      }
+      .fs24{
+          font-size:24px
+      }
+
+    </style>
+</th:block>
+
+<div layout:fragment="content" style="padding-top:70px; text-align:center; " class="mt-5">
+    <div th:replace="fragments/myPageNavi::aside" class="myPageNavi"></div>
+<div class="odList" style="margin-left:10%;">
+    <h2 class="mb-4 mt-5" style="font-size:60px;">
+    구매 이력
+    </h2>
+
+    <div>
+        <table class="table">
+            <colgroup>
+            <col style="width:20%"/>
+            <col style="width:15%"/>
+            <col style="width:40%"/>
+            <col style="width:10%"/>
+            <col style="width:15%"/>
+
+            </colgroup>
+            <thead>
+                <tr class="text-center" style="font-size:20px;">
+                    <th>주문 일시</th>
+                    <th>상품 사진</th>
+                    <th>상품 이름</th>
+                    <th>구매 수량</th>
+                    <th>총 금액</th>
+
+                </tr>
+            </thead>
+            <tbody th:each="order : ${orders.getContent()}">
+                <tr th:each="orderItem : ${order.orderItemDtoList}">
+                    <td class="text-center align-middle">
+                        <h5 th:text="${order.orderDate} + ' 주문'"></h5>
+                        <th:block th:if="${order.orderStatus == T(com.bed.constant.OrderStatus).ORDER}">
+                            <button type="button" class="btn btn-outline-danger" th:value="${order.orderId}" onclick="cancelOrder(this.value)">주문취소</button>
+                        </th:block>
+                        <th:block th:unless="${order.orderStatus == T(com.bed.constant.OrderStatus).ORDER}">
+                            <h4>(취소 완료)</h4>
+                        </th:block>
+                    </td>
+                    <td class="text-center align-middle" >
+                        <div class="repImgDiv align-self-center">
+                            <div  class="text-center align-middle">
+                                <div class="repImgDiv">
+                                    <img th:src="${orderItem.imgUrl}" class = "rounded repImg" th:alt="${orderItem.itemNm}" href="/">
+
+                                    <!--                                   <p   th:text="${orderItem.itemNm}" class="fs24 font-weight-bold"></p>href="'/item/' + ${item.id}"-->
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td class="text-center align-middle" >
+                        <div class="text-center align-middle">
+<!--                            <p   th:text="${orderItem.itemNm}" class="fs24 font-weight-bold"href="'/item/' + ${item.id}" style="text-decoration: none;"></p>-->
+                            <p th:text="${orderItem.itemNm}"> /</p>
+                            <span th:text="${#numbers.formatInteger(orderItem.orderPrice,4 , 'COMMA')} +'원'"></span>
+                        </div>
+                    </td>
+                    <td class="text-center align-middle" >
+                        <span th:text="${orderItem.count} +'개'"></span>
+                    </td>
+                    <td class="text-center align-middle" >
+                        <span th:text="${#numbers.formatInteger(orderItem.count * orderItem.orderPrice,4 , 'COMMA')} +'원'"></span>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:with="start=${(orders.number/maxPage)*maxPage + 1}, end=(${(orders.totalPages == 0) ? 1 : (start + (maxPage - 1) < orders.totalPages ? start + (maxPage - 1) : orders.totalPages)})" >
+          <ul class="pagination justify-content-center">
+
+              <li class="page-item" th:classappend="${orders.number eq 0}?'disabled':''">
+                  <a th:href="@{'/orders/' + ${orders.number-1}}" aria-label='Previous' class="page-link">
+                      <span aria-hidden='true'>Previous</span>
+                  </a>
+              </li>
+
+              <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${orders.number eq page-1}?'active':''">
+                  <a th:href="@{'/orders/' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+              </li>
+
+              <li class="page-item" th:classappend="${orders.number+1 ge orders.totalPages}?'disabled':''">
+                  <a th:href="@{'/orders/' + ${orders.number+1}}" aria-label='Next' class="page-link">
+                      <span aria-hidden='true'>Next</span>
+                  </a>
+              </li>
+
+          </ul>
+    </div>
+
+</div>
+
+</div>
+</div>
+</html>

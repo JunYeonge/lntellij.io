@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
+      layout:decorate="~{layouts/layout1}"
+>
+
+
+<th:block layout:fragment="css">
+
+    <link th:href="@{/css/sheet.css}" rel="stylesheet">
+
+</th:block>
+<!--사용자 스크립트 추가-->
+<th:block layout:fragment="script">
+    <script th:src="@{/js/sheet.js}" type="text/javascript"></script>
+    <script th:inline="javascript">
+
+  </script>
+</th:block>
+<div layout:fragment="content">
+<section id="sec1">
+    <div class="container-fluid text-center">
+        <img src="/images/sheet_01.jpg" class="d-block w-100" alt="시트메인" style="opacity:0.7;">
+        <h1 class="display-1">LAYERING</h1>
+    </div>
+</section>
+<section id="sec2">
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <img src="/images/layering.jpg" alt="레이어링이미지">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <h2>BedBliss는<br> 최고 소재와 최신 기술의 완벽한 조화로<br>
+                    안락한 수면 생활을 제공하기 위해 노력합니다.</h2>
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#sec3">Method</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sec4">Material</a>
+                    </li>
+                </ul>
+            </div>
+    </div>
+    </div>
+</section>
+<section id="sec3">
+    <div class="container-fluid text-center">
+        <h1 class="display-3 text-center">Method</h1>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <img src="/images/ly_01_01.jpg" alt="레이어링기술1">
+                <h5>미라클버튼+핫멜트</h5>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                    더 알아보기
+                </button>
+                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                인체에 무해한 특수소재로 내장재를 빈틈없이<br> 접착하는
+                                핫멜트 공법 처리후 스프링판과<br> 내장재를 미라클버튼으로
+                                완벽히  고정함으로써<br> 장시간 사용에도 고른 탄력을 제공합니다.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <img src="/images/ly_01_02.jpg" alt="레이어링기술2">
+                <h5>하이테크 공법</h5>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                    더 알아보기
+                </button>
+                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                특수 MDI소재인 센서리폼과 스프링을<br> 일체화 시킴으로써
+                                소프트하면서도 탄력있는<br> 수면조건을 제공하고, 스프링의 소음방지 및
+                                <br>내구성을극대화시키는 신기술입니다.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <img src="/images/ly_01_03.jpg" alt="레이어링기술3" style="height:300px;width: 300px;">
+                <h5>에어웨이 공법</h5>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                    더 알아보기
+                </button>
+                <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                최적의 공기흐름을 위한 신개념의<br>공기순환 시스템으로
+                                매트리스를 사용하는 동안<br>위생적이고 쾌적한 잠자리를
+                                제공합니다.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <img src="/images/ly_01_04.jpg" alt="레이어링기술4">
+                <h5>올인원 공법</h5>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4">
+                    더 알아보기
+                </button>
+                <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                스프링과 내장재를 통째로 찍어서고정함으로써<br> 장기간 사용해도 내장재의
+                                쏠림이나 변형이<br> 적어 탄력이 일정하고 수명은 물론 가장자리
+                                <br>탄력까지 강화시켜주는 공법입니다.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <img src="/images/ly_01_05.jpg" alt="레이어링기술5">
+                <h5>오토컴플리스 공법</h5>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal5">
+                    더 알아보기
+                </button>
+                <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                계단식 상하구조와 스프링일체형 톱니바퀴<br>
+                                디자인의 에지훠머플러스를 채택, 가장자리<br>
+                                탄력강화는 물론 내장재를 완벽하게 고정해주는<br>
+                                최첨단 공법입니다.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <img src="/images/ly_01_06.jpg" alt="레이어링기술6">
+                <h5>하이필로우 공법</h5>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal6">
+                    더 알아보기
+                </button>
+                <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                기존 필로우탑의 외관변형 방지기능은 물론<br> 매트리스에
+                                가해지는 하중을 1차적으로<br> 분산시켜주어 최상의
+                                편안함을 제공하는 <br>신개념의 필로우탑 시스템입니다.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <img src="/images/ly_01_07.jpg" alt="레이어링기술7">
+                <h5>로얄필로우 공법</h5>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal7">
+                    더 알아보기
+                </button>
+                <div class="modal fade" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                기존 필로우탑에서 상단 재봉선이 느껴지는<br> 단점을 보완하여
+                                상단의 테이프 봉합을 없애<br> 고급스러운 외관은 물론
+                                매트리스 끝부분까지<br> 최상의 편안함을 제공하는
+                                신개념의 필로우 탑 시스템입니다.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <img src="/images/ly_01_08.jpg" alt="레이어링기술8">
+                <h5>투매트리스 공법</h5>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal8">
+                    더 알아보기
+                </button>
+                <div class="modal fade" id="exampleModal8" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                매트리스의 스프링이 한번 받쳐주고 아래에서는<br>
+                                파운데이션전용 스프링이 또 한번 받쳐줍니다.<br>
+                                하중을 이중으로 분산하기때문에 최상의 편안함을 느낄수 있으며
+                                매트리스의 수명도 오래갑니다.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="sec4">
+    <div class="container-fluid text-center">
+        <h1 class="display-3 text-center">Material</h1>
+        <div class="container-fluid row">
+            <div class="col-4">
+                <div id="list-example" class="list-group">
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">에어 컴포트 폼</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">파워패드</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-3">슈프림 울</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-4">인프라 화이버</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-5">Ultra Elastic 폼</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-6">통기성 메모리 폼</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-7">컴포트 화이버</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-8">고탄성폼</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-9">마이크로가드에코플러스</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-10">모스키토 프리원단</a>
+                </div>
+            </div>
+            <div class="col-8">
+                <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
+                    <div id="list-item-1" class="col">
+                    <img src="/images/ly_02_01.jpg" alt="레이어소재1">
+                    <h4>에어 컴포트 폼</h4>
+                    <p>특수해면구조에 타공기술을 더한 최첨단 소재. <br>매트리스 내부의 공기흐름을 원활하게 해줄뿐 아니라,
+                    복원력, 우수한 탄성으로 인체 곡선과 <br>움직임에 따라 민감하게 체압과 충격을 분산시켜주어
+                    숙면을 위한 최적의 조건을 만들어줍니다.</p>
+                    </div>
+                    <div id="list-item-2" class="col">
+                        <img src="/images/ly_02_02.jpg" alt="레이어소재2">
+                        <h4>파워패드</h4>
+                        <p>잡색 휄트 대신 카시미론 솜을 초압축 가공해 <br>내구성과 통기성이 탁월하고 위생적입니다.</p>
+                    </div>
+                    <div id="list-item-3" class="col">
+                        <img src="/images/ly_02_03.jpg" alt="레이어소재3">
+                        <h4>슈프림 울</h4>
+                        <p>겨울엔 따뜻하고 여름엔 시원한 100% 순수양모로 보온성과 탄력성은 물론<br>
+                        수분의 흡수, 발산 기능이 탁월해 4계절 내내 쾌적한 수면을 보장하는 천연소재입니다.</p>
+                    </div>
+                    <div id="list-item-4" class="col">
+                        <img src="/images/ly_02_04.jpg" alt="레이어소재4">
+                        <h4>인프라 화이버</h4>
+                        <p>순백의 카시미론 솜과 첨단 섬유를 사용해 근육피로와 스트레스를 해소시켜주며,<br>
+                            90%이상의 향균도를 나타내 향균효과 또한 뛰어납니다.</p>
+                    </div>
+                    <div id="list-item-5" class="col">
+                        <img src="/images/ly_02_05.jpg" alt="레이어소재5">
+                        <h4>Ultra Elastic 폼</h4>
+                        <p>일반 고탄성폼보다 밀도가 2배 이상 높아 안락하고 부드러울뿐 아니라<br>
+                            복원력과 탄력이 뛰어나기 때문에 무거운 하중이나 강한 충격에도 내구성이 우수합니다.</p>
+                    </div>
+                    <div id="list-item-6" class="col">
+                        <img src="/images/ly_02_06.jpg" alt="레이어소재6">
+                        <h4>통기성 메모리 폼</h4>
+                        <p>첨단 우주공학으로 탄생한 저탄성, 고밀도의 압력경감소재인 메모리폼에 통기성까지 더해<br>
+                            안락감은 물론 위생적인 수면조건을 제공합니다.</p>
+                    </div>
+                    <div id="list-item-7" class="col">
+                        <img src="/images/ly_02_07.jpg" alt="레이어소재7">
+                        <h4>컴포트 화이버</h4>
+                        <p>부드러우면서도 내구성이 강하게 카시미론 솜을 특수 가공한 소재로 <br>스프링과의 마찰로부터
+                            내장재를 보호해주고 소음을 감소시켜줍니다.</p>
+                    </div>
+                    <div id="list-item-8" class="col">
+                        <img src="/images/ly_02_08.jpg" alt="레이어소재8">
+                        <h4>고탄성폼</h4>
+                        <p>일반 스펀지보다 밀도가 높아 탄력과 복원력이 우수해 매트리스 커버에<br> 부드럽고 안락한
+                        탄력을 제공해줍니다.</p>
+                    </div>
+                    <div id="list-item-9" class="col">
+                        <img src="/images/ly_02_09.jpg" alt="레이어소재9">
+                        <h4>마이크로가드에코플러스</h4>
+                        <p>침대에 기생하는 진드기, 유해세균, 곰팡이를 방지해주는<br> 침대전용 방충, 향균, 항곰팡이제</p>
+                    </div>
+                    <div id="list-item-10" class="col">
+                        <img src="/images/ly_02_10.jpg" alt="레이어소재10">
+                        <h4>모스키토 프리원단</h4>
+                        <p>모기의 접근을 방지하는 유럽산 최고급 위생원단인 Mosquito Free원단은 모기나 다른 성가신 <br>
+                            곤충들은 물론 집먼지 진드기, 세균, 박테리아를 방지해줍니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
+
+</html>

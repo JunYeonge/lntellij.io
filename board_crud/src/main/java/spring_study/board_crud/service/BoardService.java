@@ -35,8 +35,8 @@ public class BoardService {
         board.setContent(content);
     }
     // id에 해당 하는 board 가 repository 에 존재 하지 않을 경우 NullPointerException 에러 핸들링
-    // (** 서버 죽지 않게 하기 위함 **)
-
+    // (** 서버 죽지 않게
+    @Transactional
     public void delete(Board board){
         boardRepository.delete(board);
     }

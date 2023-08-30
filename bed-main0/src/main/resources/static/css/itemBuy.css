@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Barun+Gothic&display=swap');
+@font-face{
+    font-family: 'Noto Serif KR';
+    src: url('./font/MaruBuriTTF/MaruBuri-Regular.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-Bold.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-Light.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-SemiBold.ttf') format('ttf'),
+         url('./font/MaruBuriTTF/MaruBuri-ExtraLight.ttf') format('ttf');
+}
+@font-face{
+    font-family: 'Nanum Barun Gothic';
+    src: url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothic.ttf') format('ttf'),
+         url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothicBold.ttf') format('ttf'),
+         url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothicLight.ttf') format('ttf'),
+         url('./font/NanumFontTTF_BARUNGOTHIC/NanumBarunGothicUltraLight.ttf') format('ttf');
+}
+@font-face{
+    font-family: 'NanumSquareNeo';
+    src: url('./font/NanumSquareNeo/NanumSquareNeo-aLt.ttf') format('ttf'),
+         url('./font/NanumSquareNeo/NanumSquareNeo-bRg.ttf') format('ttf'),
+         url('./font/NanumSquareNeo/NanumSquareNeo-cBd.ttf') format('ttf'),
+         url('./font/NanumSquareNeo/NanumSquareNeo-dEb.ttf') format('ttf');
+         url('./font/NanumSquareNeo/NanumSquareNeo-eHv.ttf') format('ttf');
+         url('./font/NanumSquareNeo/NanumSquareNeo-Variable.ttf') format('ttf');
+}
+a{text-decoration:none;}
+.filter{
+    border-top : 1px solid #dedede;
+    border-bottom : 1px solid #dedede;
+    padding : 50px 0;
+}
+.filter > .checkbox{
+    margin : 20px 100px 20px 100px;
+}
+.filter label{
+    font-family: 'Noto Serif KR';
+}
+
+.filter .checkbox label input[type="checkbox"]{
+    display : inline-block;
+    border : 1px solid #ccc;
+    width : 15px; height : 15px;
+    border-radius : 4px;
+    margin-left : 10px;
+    cursor: pointer;
+    outline: none;
+}
+
+#searchBox{
+    margin : 60px 0;
+}
+#searchBox input#searchQuery{
+    width : 1000px;
+    margin-right : 10px;
+    border : 2px solid #555;
+}
+#itemBox h5{
+    color : #777;
+}

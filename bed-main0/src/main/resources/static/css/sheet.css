@@ -1,0 +1,107 @@
+section{
+    position : relative;
+    margin-top : 100px;
+    height : 1000px;
+}
+section{
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+section.active {
+  opacity: 1;
+}
+
+#sec1 h1{
+    position : absolute;
+    top : 35%; right:50%;
+    transform: translate(50%,0);
+}
+#sec1 img{
+    box-shadow : 1px 5px 50px #666;
+}
+#sec2{
+   margin-top : -50px;
+}
+#sec2 img{
+    width : 650px;
+}
+#sec2 h2{
+    margin-top : 200px;
+    font-weight : bold;
+    line-height: 1.5;
+}
+#sec2 ul li a{
+    color : #999;
+    font-size : 30px;
+    margin-top : 50px;
+    transition: 0.5s all;
+}
+#sec2 ul li a:hover{
+    color : #555;
+    font-size : 35px;
+}
+
+
+#sec3 h1{
+    margin: 70px 0;
+}
+
+#sec3 img{
+    box-shadow : 1px 5px 5px #aaa;
+}
+
+#sec3 .col-lg-3 {
+  position: relative; /* 부모 요소를 relative로 설정 */
+
+}
+
+#sec3 .col-lg-3:hover img {
+  opacity : 0.5;
+}
+
+#sec3 .col-lg-3 h5{
+    font-weight : bold;
+    opacity: 0; /* h5와 p 숨기기 */
+    position: absolute; /* 절대 위치로 설정 */
+    transform: translate(-50%, -50%); /* 중앙 정렬 */
+    transition: opacity 0.5s ease; /* 서서히 나타나도록 애니메이션 설정 */
+    top : 25%; left: 50%;
+}
+#sec3 .col-lg-3 button {
+  font-weight : bold;
+  opacity: 0; /* h5와 p 숨기기 */
+  position: absolute; /* 절대 위치로 설정 */
+  top: 50%; /* 상위 요소의 중앙으로 위치 */
+  left: 50%; /* 상위 요소의 중앙으로 위치 */
+  transform: translate(-50%, -50%); /* 중앙 정렬 */
+  transition: opacity 0.5s ease; /* 서서히 나타나도록 애니메이션 설정 */
+}
+#sec3 .col-lg-3 .modal{
+    margin-top : 300px;
+}
+
+#sec4 h1{
+margin: 70px 0;
+}
+.scrollspy-example {
+    overflow-y: scroll;
+    height: 480px; /* 스크롤 영역의 높이를 조정할 수 있습니다. */
+  }
+.scrollspy-example img{
+    margin-top : 25px;
+    box-shadow : 1px 5px 5px #888;
+}
+  .scrollspy-example h4{
+    margin: 20px 0;
+    color : #333;
+  }
+  .scrollspy-example p {
+    margin-bottom: 20px;
+    color : #888;
+  }
+  .list-group-item.active {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+    color : #333;
+  }

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Swiper 스타일시트 -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <!-- Swiper 스크립트 -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<!--    부트스트랩       -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <title>메인페이지1</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <script th:src="@{/js/main.js}" type="text/javascript"></script>
+
+</head>
+<body>
+<!--메인 헤더-->
+<nav class="navbar navbar-expand-lg navbar-transparent p-1 fixed-top" >
+    <div class="container-fluid">
+        <a class="navbar-brand fs-1" th:style="'margin-left:20px;'" href="/">BedBliss</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse fs-5 p-3" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/item/buy">Bed</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/mattress">Mattress</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/story/gallery">Factory</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/CsCenter/faq">C/S</a>
+                </li>
+            </ul>
+            <li class="nav-item p-3" sec:authorize="isAnonymous()">
+                <a class="nav-link active" aria-current="page" href="/members/login">Login</a>
+            </li>
+            <li class="nav-item p-3"  sec:authorize="isAuthenticated()">
+                <span th:text="${#authentication.principal.nickname}"></span>
+                <span>님 환영합니다.</span>
+            </li>
+            <li class="nav-item dropdown p-3 " sec:authorize="hasRole('ROLE_USER')">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    MyPage
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/cart">장바구니</a></li>
+                    <li><a class="dropdown-item" href="${memberId}/orders">구매이력</a></li>
+                    <li><a class="dropdown-item" href="/user/asSubmits">AS신청확인</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/members/edit/password">정보수정</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Admin
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/admin/item/new">상품등록</a></li>
+                    <li><a class="dropdown-item" href="/admin/items">상품관리</a></li>
+                    <li><a class="dropdown-item" href="/admin/members">회원관리</a></li>
+                    <li><a class="dropdown-item" href="/admin/notices">게시판관리</a></li>
+                    <li><a class="dropdown-item" href="/admin/asSubmits">AS신청확인</a></li>
+                    <li><a class="dropdown-item" href="/admin/orders">주문관리</a></li>
+                </ul>
+            </li>
+            <li class="nav-item p-3" sec:authorize="isAuthenticated()">
+                <a class="nav-link active" aria-current="page" href="/members/logout">Logout</a>
+            </li>
+        </div>
+    </div>
+</nav>
+<!--메인 슬라이더-->
+<section>
+<div class="swiper-container">
+    <div class="swiper mySwiper1 slide">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <h1 th:style="'position:absolute; top:39%; right:22%;font-size:58px;color:#333;font-family: Noto Serif KR;'">같은 공간, 다른 라이프</h1>
+                <p th:style="'position:absolute; top:47%; right:26%;font-size:24px;color:#333;font-family: Noto Serif KR;'">일상에서 사소한 행복을 누려보세요.</p>
+                <figure>
+                    <video autoplay muted loop>
+                        <source src="/images/main.mp4" type="video/mp4"/>
+                    </video>
+                </figure>
+            </div>
+            <div class="swiper-slide">
+                <img src="/images/main1.jpg" alt="메인1">
+                <h1 th:style="'position:absolute; top:41%; right:16%;font-size:58px;font-family: Noto Serif KR;'">합리적인 가격, 높은 퀄리티</h1>
+                <p th:style="'position:absolute; top:49%; right:27%;font-size:24px;font-family: Noto Serif KR;'">두가지 매력을 지닌 서비스</p>
+            </div>
+            <div class="swiper-slide">
+                <img src="/images/main2.jpg" alt="메인2">
+                <h1 th:style="'position:absolute; top:31%; right:46%;font-size:58px;font-family: Noto Serif KR;'">침대 하나로 달라진 공간</h1>
+                <p th:style="'position:absolute; top:40%; right:43%;font-size:24px;font-family: Noto Serif KR;'">만족스러운 스타일링, 어떻게 완성해야할까요?</p>
+            </div>
+            <div class="swiper-slide">
+                <img src="/images/main3.jpg" alt="메인3">
+                <h1 th:style="'position:absolute; top:39%; right:23%;font-size:58px;font-family: Noto Serif KR;'">따스함을 사로잡다</h1>
+                <p th:style="'position:absolute; top:47%; right:22%;font-size:24px;font-family: Noto Serif KR;'">다양한 컨셉으로 나다운 공간을 누려보세요.</p>
+            </div>
+            <div class="swiper-slide">
+                <img src="/images/main4.jpg" alt="메인4">
+                <h1 th:style="'position:absolute; top:27%; right:45%;font-size:56px;font-family: Noto Serif KR;'">가장 새로운 공간을 지금 만나보세요.</h1>
+            </div>
+        </div>
+
+        <div class="swiper-button swiper-button-next" th:style="'position:absolute; top:600px; right:30%;color:#FFEB91'"></div>
+        <div class="swiper-button swiper-button-prev" th:style="'position:absolute; top:600px; left:65%;color:#FFEB91'"></div>
+    </div>
+</div>
+</section>
+<!--아티클 1:영상과 글-->
+<article id="article1">
+    <div class="row">
+        <div class="col-6">
+            <figure>
+                <video autoplay muted loop>
+                    <source src="/images/article.mp4" type="video/mp4"/>
+                </video>
+            </figure>
+        </div>
+        <div class="col-6">
+            <div class="txt text-center">
+                <h2 th:style="'font-size:38px;font-weight:bold;padding:10px;'">오늘밤 <br>
+                    어떤 스프링으로 만든 침대에서 <br>
+                    주무시겠습니까</h2>
+                <p class="mb-4">첨단 공합이 적용된 스프링은 인체곡선과 하중 분포에 따라 <br>
+                    위에서 한번 부드럽게 맞춰주고 밑에서 또 한번 단단하게 받쳐줍니다.</p>
+                <p><a href="/story/spring" class="site1 text-center">더 알아보기</a></p>
+            </div>
+        </div>
+    </div>
+</article>
+<!--아티클 0 : 영상 글 추가-->
+<article id="article0">
+    <div class="row">
+        <div class="col-6">
+            <div class="txt text-center">
+                <h2 th:style="'font-size:38px;font-weight:bold;padding:10px;'">특별한 기술과 함께 <br>
+                    건강한 수면을 즐겨보세요.</h2>
+                <p class="mb-4">좋은 매트리스만큼 몸에 닿는 시트 또한 중요합니다. <br>
+                    특별한 향균원단과 봉제방식으로 만들어 쾌적한 수면을 약속드립니다.</p>
+                <p><a href="/story/sheet" class="site1 text-center">더 알아보기</a></p>
+            </div>
+        </div>
+        <div class="col-6">
+            <figure class="text-center">
+                <video autoplay muted loop th:style="'width:400px;'">
+                    <source src="/images/article2.mp4" type="video/mp4"/>
+                </video>
+            </figure>
+        </div>
+    </div>
+</article>
+<!--아티클2:서브 슬라이더-->
+<article id="article2">
+    <h1 class="display-1 text-center mb-4">COLLECTION</h1>
+    <div class="swiper mySwiper2 slide">
+        <div class="swiper-wrapper mb-5">
+            <div class="swiper-slide">
+                <img src="/images/slide1.jpg" alt="슬라이드1">
+            </div>
+            <div class="swiper-slide">
+                <img src="/images/slide2.jpg" alt="슬라이드2">
+            </div>
+            <div class="swiper-slide">
+                <img src="/images/slide3.jpg" alt="슬라이드3">
+            </div>
+            <div class="swiper-slide">
+                <img src="/images/slide4.jpg" alt="슬라이드4">
+            </div>
+            <div class="swiper-slide">
+                <img src="/images/slide5.jpg" alt="슬라이드5">
+            </div>
+            <div class="swiper-slide">
+                <img src="/images/slide6.jpg" alt="슬라이드6">
+            </div>
+            <div class="swiper-slide">
+                <img src="/images/slide7.jpg" alt="슬라이드7">
+            </div>
+        </div>
+        <div class="swiper-scrollbar"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+</article>
+<article id="article3">
+    <h1>BedBliss와 함께한 분들의 후기</h1>
+    <img src="/images/img2.jpg" alt="아티클2">
+    <div class="boardlist">
+        <div class="swiper mySwiper3">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <span>01</span>
+                    <h4>침대를 바꾸고 나서는 바로 꿀잠이에요 :) 최고급형 매트리스답게 적당히 폭신 탄탄^^
+                        다들 직접 누워보세요.</h4>
+                    <p>김○○님</p>
+                </div>
+                <div class="swiper-slide">
+                    <span>02</span>
+                    <h4>매장에서 단번에 구매해버린 침대에요. 눕자마자 이거다!!!했어요.
+                        프레임도 깔끔해서 방 인테리어에도 딱이에요~</h4>
+                    <p>류○○님</p>
+                </div>
+                <div class="swiper-slide">
+                    <span>03</span>
+                    <h4>침대를 잘 구매하고 너무 만족하게 잠들고 있어요. 매니저님도 너무 설명을 잘해주셔서
+                    잘 구입할 수 있었어요.</h4>
+                    <p>박○○님</p>
+                </div>
+                <div class="swiper-slide">
+                    <span>04</span>
+                    <h4>침대가 너무 마음에 들어서 일부러 후기 작성합니다. 평소에 매장이 크고 깨끗해서 눈여겨봐둔 곳이였는데
+                    늦은 시간에 방문했는데도 친절하게 상담해주셨어요. </h4>
+                    <p>김○○님</p>
+                </div>
+                <div class="swiper-slide">
+                    <span>05</span>
+                    <h4>부모님께서 너무 좋아하세요. 여기서 사길 잘한 선택 같아요.
+                    신상품이 나와서 누워보고 결정하려 했는데 바로 구매해버렸네요~</h4>
+                    <p>정○○님</p>
+                </div>
+                <div class="swiper-slide">
+                    <span>06</span>
+                    <h4>이사를 가게 되면서 침대를 새로 구매했어요. 당연히 침대는 BedBliss죠.
+                    디자인이 심플하고 깔끔하면서 깊은 수면의 질까지도 향상되는 느낌입니다!!!</h4>
+                    <p>최○○님</p>
+                </div>
+                <div class="swiper-slide">
+                    <span>07</span>
+                    <h4>설명을 잘해주셔서 제게 딱 맞는 침대를 구매할 수 있었어요. 온라인 상담하고
+                        매장방문하길 잘한 것 같아요.</h4>
+                    <p>윤○○님</p>
+                </div>
+                <div class="swiper-slide">
+                    <span>08</span>
+                    <h4>신혼침대로 구입한건데 제일 만족도가 높아요. 프레임도 저희 취향에 딱 맞고 이뻐요.
+                    벌써 구매한지 4개월인데 아직까지도 만족하고 있어요.</h4>
+                    <p>홍○○님</p>
+                </div>
+                <div class="swiper-slide">
+                    <span>09</span>
+                    <h4>허리통증이 있고 예민한 편이라 고민이 많았는데 너무 편안하게 잠들고 있어요. 같이 디자인 골라주신
+                    사장님도 너무 친절하세요.</h4>
+                    <p>백○○님</p>
+                </div>
+            </div>
+            <div class="swiper-scrollbar"></div>
+        </div>
+    </div>
+</article>
+<!--푸터-->
+<footer class="container-fluid" th:style="'background-color:#000;'">
+    <img class="d-block w-100" src="/images/footer.jpg" th:style="'opacity:0.7;'" alt="First slide">
+    <div class="footer_container pt-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 border-top" >
+            <div class="col mb-3">
+                <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+                    <img src="/images/Blogo.png" th:style="'width:200px;margin:10px 95px;'" alt="로고">
+                </a>
+            </div>
+            <div class="col mb-3"></div>
+            <div class="col mb-3">
+                <p class="mt-5" style="font-size:25px;color : #aaa;">Info</p>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-3">
+                        <a href="/" class="nav-link p-0 text-muted">Home</a>
+                    </li>
+                    <li class="nav-item mb-3">
+                        <a href="/story/gallery" class="nav-link p-0 text-muted">기업정보</a>
+                    </li>
+                    <li class="nav-item mb-3">
+                        <a href="/CsCenter/faq" class="nav-link p-0 text-muted">FAQs</a>
+                    </li>
+                </ul>
+            </div>
+            <!--        <div class="col mb-3"></div>-->
+            <div class="col mb-3">
+                <p class="mt-5" style="font-size:25px;color : #aaa;">Service</p>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2">
+                        <p class="nav-link p-0 text-muted">전화번호 : 02-1234-5678</p>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <p class="nav-link p-0 text-muted">본사 : 경기도 성남시 분당구 미금</p>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <p class="nav-link p-0 text-muted">FAX : 02-123-4567</p>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="/CsCenter/asSubmit"  class="nav-link p-0 text-muted">AS 신청</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
