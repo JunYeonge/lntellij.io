@@ -31,13 +31,4 @@ public class Board {   // 게시판
     private int view_count;   // 조회수
 
 
-
-    public static Board toSaveEntity(BoardDto boardDto) {
-        Board board = new Board();
-        board.setTitle(boardDto.getTitle());
-        board.setNickname(boardDto.getNickname());
-        board.setContent(boardDto.getContent());
-        board.setView_count(0);
-        return board;
-    }
 }

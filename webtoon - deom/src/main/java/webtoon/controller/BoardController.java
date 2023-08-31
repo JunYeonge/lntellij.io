@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import webtoon.dto.BoardDto;
 import webtoon.service.BoardService;
 
-import java.util.List;
 
 
 @Controller
@@ -23,9 +22,7 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/board/list")
-    public String findAll(Model model){
-        List<BoardDto> boardDtoList = boardService.findAll();
-        model.addAttribute("boardList",boardDtoList);
+    public String findAll(){
         return "board/list";
     }
 
@@ -35,8 +32,8 @@ public class BoardController {
     }
 
     @PostMapping("/board/post")
-    public String boardPost(@ModelAttribute BoardDto boardDto){
-        Long id = boardService.save(boardDto);
+    public String boardPost(){
+
         return "redirect:/";
     }
 
