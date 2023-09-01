@@ -13,7 +13,7 @@
       <td th:text="${nickname}"></td>
       <td th:text="${content}"></td>
     </table>
-    <input type="submit" value="글작성">
+    <a th:href="@{/board/view}" role="button">글작성</a>
   </form>
 </div>
 </html>

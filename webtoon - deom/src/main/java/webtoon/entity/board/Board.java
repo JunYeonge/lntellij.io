@@ -30,4 +30,8 @@ public class Board {   // 게시판
     @Column
     private int view_count;   // 조회수
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> eb7cef68413b67b4cb0583ba02ed8515b89f93f9
 }
