@@ -24,16 +24,16 @@ public class BoardController {
 
     @GetMapping("/board/list")
     public String list(){
-        return "/board/boardlist";
+        return "/board/list";
     }
 
-    @GetMapping(value = "/board/boardwrite")
+    @GetMapping("/board/write")
     public String boardWriteForm(Module module) {
-        return "/board/boardwrite";
+        return "/board/write";
     }
 
-    @PostMapping("/board/boardwrite")
+    @PostMapping("/board/write")
     public String boardWritepro(BoardDto boardDto) {
-        return "redirect:/";
+        return "redirect:/board/list";
     }
 }
