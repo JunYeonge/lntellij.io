@@ -16,14 +16,19 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
+    @Autowired
+    public BoardController(BoardService boardService) {
+        this.boardService = boardService;
+    }
 
-    @GetMapping("/board/boardlist")
+
+    @GetMapping("/board/list")
     public String list(){
         return "/board/boardlist";
     }
 
     @GetMapping(value = "/board/boardwrite")
-    public String boardWriteForm() {
+    public String boardWriteForm(Module module) {
         return "/board/boardwrite";
     }
 
