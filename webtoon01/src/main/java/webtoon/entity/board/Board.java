@@ -1,13 +1,9 @@
 package webtoon.entity.board;
 
 
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.*;
 import webtoon.dto.BoardDto;
+import webtoon.dto.BoardFormDto;
 import webtoon.entity.BaseEntity;
 import webtoon.entity.member.Member;
 
@@ -19,23 +15,35 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 public class Board extends BaseEntity {   // 게시판
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="board_id")
     private Long id;
 
-    private String title;
-    private String content;
-    private int viewCount;
-    private String username;
+    @Column
+    private String user_id;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+    @Column
+    private String nickname;    //닉네임
 
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    @Column(length = 2000, nullable = false)
+    private String content;  // 내용
+
+    @Column(length = 50, nullable = false)
+    private String title;  // 제목
+
+    @Column
+    private int view_count;   // 조회수
+
+    @Column
+    private LocalDateTime createDate = LocalDateTime.now();// 생성일
+
+    @Column
+    private LocalDateTime modifiedDate; // 수정일
+
+
 
 
 }

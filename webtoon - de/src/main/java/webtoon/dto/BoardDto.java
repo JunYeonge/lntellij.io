@@ -1,5 +1,8 @@
 package webtoon.dto;
 import lombok.*;
+import org.modelmapper.ModelMapper;
+import webtoon.entity.board.Board;
+
 import java.time.LocalDateTime;
 @Getter
 @Setter
@@ -14,5 +17,11 @@ public class BoardDto {
     private int view_count; //조회수
     private LocalDateTime createDate;
     private LocalDateTime modifiedDate;
+
+    private static ModelMapper modelMapper = new ModelMapper();
+
+    public static BoardDto of(Board board) {
+        return modelMapper.map(board, BoardDto.class);
+    }
 
 }

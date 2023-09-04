@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
       layout:decorate="~{layouts/mainLayout}">
 <div layout:fragment="content" class="container">
 <head>
@@ -28,16 +28,11 @@
 <body>
     <div class="size">
         <form action="/board/list" method="post">
-            <label for="title">제목</label>
-            <input type="text" id="title" name="title" required><br>
-
-            <label for="content">내용</label>
-            <input type="text" id="content" name="content" required><br>
-
-            <label for="user_id">작성자</label>
-            <input type="text" id="user_id" name="user_id" required><br>
-
-            <button type="submit">글 생성</button>
+            writer: <input type="text" name="boardWriter"> <br>
+            pass: <input type="text" name="boardPass"> <br>
+            title: <input type="text" name="boardTitle"> <br>
+            contents: <textarea name="boardContents" cols="30" rows="10"></textarea> <br>
+            <input type="submit" value="글작성">
         </form>
     </div>
 </body>

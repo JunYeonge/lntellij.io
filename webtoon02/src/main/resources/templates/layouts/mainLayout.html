@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/mainlayout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link th:href="@{/css/mainStyle1.css}" rel="stylesheet">
+    <link th:href="@{/css/mainStyle2.css}" rel="stylesheet">
+    <link th:href="@{/css/mainTypo.css}" rel="stylesheet">
+    <link th:href="@{/css/header_footer_Typo.css}" rel="stylesheet">
+    <link th:href="@{/css/header_footer.css}" rel="stylesheet">
+    <script th:src="@{/js/mainScript.js}"></script>
+    <th:block layout:fragment="css"></th:block>
+</head>
+<body>
+<header th:replace="~{fragments/mainHeader::header}"></header>
+<div layout:fragment="content"></div>
+<div layout:fragment="content2"></div>
+<footer  th:replace="~{fragments/mainFooter::footer}"></footer>
+</body>
+</html>

@@ -1,41 +1,58 @@
 package webtoon.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import webtoon.dto.BoardDto;
-import webtoon.service.BoardService;
 
-
-
-@Controller
-@RequestMapping
 @RequiredArgsConstructor
+@Controller
 public class BoardController {
 
-    @Autowired
     private final BoardService boardService;
 
-    @GetMapping("/board/list")
-    public String findAll(){
-        return "board/list";
+    @GetMapping("/board")
+    public String getBoardIndexPage(Model model) {
+        model.addAttribute("result", boardService.findAll());
+        return "/board/index";
     }
 
-    @GetMapping("/board/post")
-    public String post(){
-        return "board/post";
+    @GetMapping("/board/write")
+    public String getBoardWritePage(Model model, Board.RequestDto requestDto) {
+
+        if (requestDto.getId() != null) {
+            model.addAttribute("info", boardService.findById(requestDto.getId()));
+        }
+
+        return "/board/write";
     }
 
-    @PostMapping("/board/post")
-    public String boardPost(){
+    @PostMapping("/board/save")
+    public String save(Model model, Board.RequestDto requestDto) {
+        String url = "/error/blank";
 
-        return "redirect:/";
+        if (boardService.save(requestDto) > 0) {
+            url = "redirect:/board";
+        }
+
+        return url;
     }
 
+    @PostMapping("/board/update")
+    public String update(Model model, Board.RequestDto requestDto) {
+        String url = "/error/blank";
 
+        if (boardService.updateBoard(requestDto) > 0) {
+            url = "redirect:/board";
+        }
+
+        return url;
+    }
+
+    @PostMapping("/board/delete")
+    public String delete(Model model, Board.RequestDto requestDto) {
+        boardService.deleteBoard(requestDto);
+        return "redirect:/board";
+    }
 }

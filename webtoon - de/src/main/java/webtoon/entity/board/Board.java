@@ -3,6 +3,7 @@ package webtoon.entity.board;
 
 import lombok.*;
 import webtoon.dto.BoardDto;
+import webtoon.dto.BoardFormDto;
 import webtoon.entity.BaseEntity;
 import webtoon.entity.member.Member;
 
@@ -41,5 +42,12 @@ public class Board extends BaseEntity {   // 게시판
 
     @Column
     private LocalDateTime modifiedDate; // 수정일
+
+    public void updateboard(BoardFormDto boardFormDto) {
+        this.title = boardFormDto.getTitle();
+        this.content = boardFormDto.getContent();
+        this.view_count = boardFormDto.getView_count();
+        this.nickname = boardFormDto.getNickname();
+    }
 
 }
