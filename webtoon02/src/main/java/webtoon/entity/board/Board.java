@@ -15,33 +15,48 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@Table(name = "board_table")
 public class Board extends BaseEntity {   // 게시판
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="board_id")
     private Long id;
 
-    @Column
-    private String user_id;
+    @Column(length = 20, nullable = false)
+    private String boardWriter;
 
     @Column
-    private String nickname;    //닉네임
+    private String boardPass;    //닉네임
 
     @Column(length = 2000, nullable = false)
-    private String content;  // 내용
+    private String boardContent;  // 내용
 
     @Column(length = 50, nullable = false)
-    private String title;  // 제목
+    private String boardTitle;  // 제목
 
     @Column
-    private int view_count;   // 조회수
-
-    @Column
-    private LocalDateTime createDate = LocalDateTime.now();// 생성일
-
-    @Column
-    private LocalDateTime modifiedDate; // 수정일
+    private int boardHits;   // 조회수
 
 
+    public static Board toSaveEntity(BoardDto boardDto) {
+        Board board = new Board();
+        board.setBoardWriter(boardDto.getBoardWriter());
+        board.setBoardPass(boardDto.getBoardPass());
+        board.setBoardTitle(boardDto.getBoardTitle());
+        board.setBoardContent(boardDto.getBoardContent());
+        board.setBoardHits(0);
+        return board;
+    }
+
+
+    public static Board toUpdateEntity(BoardDto boardDto) {
+        Board board = new Board();
+        board.setId(boardDto.getId());
+        board.setBoardWriter(boardDto.getBoardWriter());
+        board.setBoardPass(boardDto.getBoardPass());
+        board.setBoardTitle(boardDto.getBoardTitle());
+        board.setBoardContent(boardDto.getBoardContent());
+        board.setBoardHits(boardDto.getBoardHits());
+        return board;
+    }
 }

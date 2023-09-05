@@ -14,7 +14,5 @@ public class BoardComment {
     @GeneratedValue
     private Long id;
 
-    private LocalDateTime boardTime; //작성일
-
 
 }

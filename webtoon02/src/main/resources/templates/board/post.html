@@ -27,11 +27,11 @@
     </style>
 <body>
     <div class="size">
-        <form action="/board/list" method="post">
+        <form th:action="@{/board/post}" method="post">
             writer: <input type="text" name="boardWriter"> <br>
             pass: <input type="text" name="boardPass"> <br>
             title: <input type="text" name="boardTitle"> <br>
-            contents: <textarea name="boardContents" cols="30" rows="10"></textarea> <br>
+            contents: <textarea name="boardContent" cols="30" rows="10"></textarea> <br>
             <input type="submit" value="글작성">
         </form>
     </div>

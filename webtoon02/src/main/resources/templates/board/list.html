@@ -1,16 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layouts/mainLayout}">
+<div layout:fragment="content" class="container">
+    <head>
     <meta charset="UTF-8">
-    <title>게시판 리스트</title>
+    <title>게시물 리스트</title>
 </head>
-<body>
+<table>
+    <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>writer</th>
+        <th>date</th>
+        <th>hits</th>
+    </tr>
+    <tr th:each="board: ${boardList}">
+        <td th:text="${board.id}"></td>
+        <td><a th:href="@{|/board/list/${board.id}|}" th:text="${board.boardTitle}"></a></td>
+        <td th:text="${board.boardWriter}"></td>
+        <td th:text="*{#temporals.format(board.boardRegTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        <td th:text="${board.boardHits}"></td>
+    </tr>
+</table>
     <button onclick="saveReq()">글작성</button>
-</body>
+    <a href="/board/post">글작성(링크)</a>
+    <a href="/board/list">리스트(링크)</a>
 
-<script>
-    const saveReq = () => {
-        location.href = "/board/post";
-    }
-</script>
+</div>
 </html>
