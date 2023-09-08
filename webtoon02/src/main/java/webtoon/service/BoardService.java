@@ -3,6 +3,10 @@ package webtoon.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import webtoon.dto.BoardDto;
@@ -57,6 +61,17 @@ public class BoardService {
 
     public void delete(Long id) {
         boardRepository.deleteById(id);
+    }
+
+    public Page<BoardDto> paging(Pageable pageble) {
+        int page = pageble.getPageNumber() - 1;
+        int pageLimit = 10; // 한 페이지에 보여줄 글 갯수
+        // 한페이지당 25개씩 글을 보여주고 정렬기준은 ID 가준으로 내림차순 정렬
+        Page<Board> board = boardRepository.findAll(PageRequest.of(page,pageLimit, Sort.by(Sort.Direction.DESC,"id")));
+        //DESC : 내림차순
+
+    Page<BoardDto> boardDtos = board.map(board1 -> new BoardDto(board1.getBoardWriter(), board1.getBoardTitle(), board1.getBoardHits(), board1.getRegTime()));
+    return boardDtos;
     }
 }
 

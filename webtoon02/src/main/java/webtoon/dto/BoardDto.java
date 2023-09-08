@@ -36,10 +36,14 @@ public class BoardDto {
         return boardDto;
     }
 
+    public BoardDto(String boardWriter, String boardTitle, int boardHits, LocalDateTime boardRegTime) {
+        this.boardWriter = boardWriter;
+        this.boardTitle = boardTitle;
+        this.boardHits = boardHits;
+        this.boardRegTime = boardRegTime;
+    }
 
-
-
-//    public static BoardDto boardDto (Board board){
+    //    public static BoardDto boardDto (Board board){
 //        BoardDto boardDto = new BoardDto();
 //        boardDto.setId(board.getId());
 //        boardDto.setUser_id(board.getUser_id());

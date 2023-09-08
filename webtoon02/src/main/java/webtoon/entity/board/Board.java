@@ -3,13 +3,10 @@ package webtoon.entity.board;
 
 import lombok.*;
 import webtoon.dto.BoardDto;
-import webtoon.dto.BoardFormDto;
 import webtoon.entity.BaseEntity;
-import webtoon.entity.member.Member;
 
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 
 @Entity
@@ -38,8 +35,11 @@ public class Board extends BaseEntity {   // 게시판
     private int boardHits;   // 조회수
 
 
+
+
     public static Board toSaveEntity(BoardDto boardDto) {
         Board board = new Board();
+        board.setId(boardDto.getId());
         board.setBoardWriter(boardDto.getBoardWriter());
         board.setBoardPass(boardDto.getBoardPass());
         board.setBoardTitle(boardDto.getBoardTitle());
@@ -60,3 +60,4 @@ public class Board extends BaseEntity {   // 게시판
         return board;
     }
 }
+
