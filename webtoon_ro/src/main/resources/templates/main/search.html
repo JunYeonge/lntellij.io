@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/searchLayout}">
+
+<section id="search_section" layout:fragment="content">
+
+    <form th:action="@{/main/search}" method="get">
+        <div id="search_input">
+            <input name="searchQuery" type="search" id="search" placeholder="검색어를 입력하세요">
+            <button>검색</button>
+        </div>
+
+        <div id="checke_input">
+            <div class="checkBox_wrap">
+                <input type="radio" id="allRadio" class="searchTypeCheck" name="searchType" value="all" checked>
+                <label for="allRadio">전체검색</label>
+            </div>
+
+            <div class="checkBox_wrap">
+                <input type="radio" id="titleRadio" class="searchTypeCheck" name="searchType" value="title">
+                <label for="titleRadio">작품명</label>
+            </div>
+
+            <div class="checkBox_wrap">
+                <input type="radio" id="writerRadio" class="searchTypeCheck" name="searchType" value="writer">
+                <label for="writerRadio">작가명</label>
+            </div>
+
+            <div class="checkBox_wrap">
+                <input type="radio" id="genresRadio" class="searchTypeCheck" name="searchType" value="genre">
+                <label for="genresRadio">장르검색</label>
+            </div>
+
+        </div>
+
+
+    </form>
+
+    <div>
+        <h1 th:inline="text">
+            <span th:if="${searchWord}" th:text="'\'' + ${searchWord} + '\' 의 검색결과 입니다.'"></span>
+            <span th:unless="${searchWord}">검색어를 입력해주세요.</span>
+        </h1>
+    </div>
+    <div class="checkMessage">
+        <p th:text="${searchType}"></p>
+    </div>
+    <!--    에러메시지 출력-->
+    <div th:if="${errorMessage}" class="checkMessage">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+
+    <div th:each="webtoon : ${searchAll}" class="search_webtoon">
+        <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+            <div><img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                      th:alt="${webtoon.title}"></div>
+        </a>
+        <div>
+            <div>
+                <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+                    <h2 th:text="${webtoon.title}">작품 이름</h2>
+                </a>
+                <a th:href="@{/main/search(searchQuery=${webtoon.user_nickName}, searchType='writer')}">
+                    <h3>작가 : <span th:text="${webtoon.user_nickName}">작가명</span></h3>
+                </a>
+                <p th:text="${webtoon.webtoonInfo}">웹툰 설명</p>
+            </div>
+            <div>
+                <div class="webtoon_day">
+                <span th:each="day : ${#strings.arraySplit(webtoon.day, '#')}" class="day"
+                      th:text="'#' + ${day}"> </span>
+                </div>
+                <div class="webtoon_tag">
+                <span th:each="genre : ${#strings.arraySplit(webtoon.genre, '#')}" class="genre"
+                      th:text="'#' + ${genre}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:each="webtoon : ${searchTitle}" class="search_webtoon">
+        <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+            <div><img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                      th:alt="${webtoon.title}"></div>
+        </a>
+        <div>
+            <div>
+                <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+                    <h2 th:text="${webtoon.title}">작품 이름</h2>
+                </a>
+                <a th:href="@{/main/search(searchQuery=${webtoon.user_nickName}, searchType='writer')}">
+                    <h3>작가 : <span th:text="${webtoon.user_nickName}">작가명</span></h3>
+                </a>
+                <p th:text="${webtoon.webtoonInfo}">웹툰 설명</p>
+            </div>
+            <div>
+
+                <div class="webtoon_day">
+                <span th:each="day : ${#strings.arraySplit(webtoon.day, '#')}" class="day"
+                      th:text="'#' + ${day}"> </span>
+                </div>
+                <div class="webtoon_tag">
+                <span th:each="genre : ${#strings.arraySplit(webtoon.genre, '#')}" class="genre"
+                      th:text="'#' + ${genre}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:each="webtoon : ${searchWriter}" class="search_webtoon">
+        <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+            <div><img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                      th:alt="${webtoon.title}"></div>
+        </a>
+        <div>
+            <div>
+                <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+                    <h2 th:text="${webtoon.title}">작품 이름</h2>
+                </a>
+                <a th:href="@{/main/search(searchQuery=${webtoon.user_nickName}, searchType='writer')}">
+                    <h3>작가 : <span th:text="${webtoon.user_nickName}">작가명</span></h3>
+                </a>
+                <p th:text="${webtoon.webtoonInfo}">웹툰 설명</p>
+            </div>
+            <div>
+                <div class="webtoon_day">
+                <span th:each="day : ${#strings.arraySplit(webtoon.day, '#')}" class="day"
+                      th:text="'#' + ${day}"> </span>
+                </div>
+                <div class="webtoon_tag">
+                <span th:each="genre : ${#strings.arraySplit(webtoon.genre, '#')}" class="genre"
+                      th:text="'#' + ${genre}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:each="webtoon : ${searchGenre}" class="search_webtoon">
+        <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+            <div><img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                      th:alt="${webtoon.title}"></div>
+        </a>
+        <div>
+            <div>
+                <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+                    <h2 th:text="${webtoon.title}">작품 이름</h2>
+                </a>
+                <a th:href="@{/main/search(searchQuery=${webtoon.user_nickName}, searchType='writer')}">
+                    <h3>작가 : <span th:text="${webtoon.user_nickName}">작가명</span></h3>
+                </a>
+                <p th:text="${webtoon.webtoonInfo}">웹툰 설명</p>
+            </div>
+            <div>
+                <div class="webtoon_day">
+                <span th:each="day : ${#strings.arraySplit(webtoon.day, '#')}" class="day"
+                      th:text="'#' + ${day}"> </span>
+                </div>
+                <div class="webtoon_tag">
+                <span th:each="genre : ${#strings.arraySplit(webtoon.genre, '#')}" class="genre"
+                      th:text="'#' + ${genre}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchQueryInput = document.getElementById('search');
+            const allRadio = document.getElementById('allRadio');
+            const titleRadio = document.getElementById('titleRadio');
+            const writerRadio = document.getElementById('writerRadio');
+            const genresRadio = document.getElementById('genresRadio');
+
+            let errorMessage = [[${errorMessage}]];
+            if (errorMessage != null) {
+                alert(errorMessage);
+            }
+
+            allRadio.addEventListener('change', () => {
+                searchQueryInput.placeholder = '검색어를 입력하세요';
+            });
+
+            titleRadio.addEventListener('change', () => {
+                searchQueryInput.placeholder = '작품명을 입력하세요';
+            });
+
+            writerRadio.addEventListener('change', () => {
+                searchQueryInput.placeholder = '작가명을 입력하세요';
+            });
+
+            genresRadio.addEventListener('change', () => {
+                searchQueryInput.placeholder = '장르를 입력하세요. ex) 액션';
+            });
+
+
+        });
+
+    </script>
+</section>
+
+</html>

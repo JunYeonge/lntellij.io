@@ -1,0 +1,370 @@
+@charset "utf-8";
+
+@media screen and (min-width: 1320px) {
+
+    /* section1 */
+    #section1 {
+
+        width: 1320px;
+        padding: 0 64px;
+        margin: 0 auto;
+        height: 450px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #section1_today_category {
+        margin-top: 8px;
+        margin-bottom: 4px;
+        width: 1192px;
+        height: 50px;
+        display: flex;
+        flex-shrink: 0;
+        justify-content: space-between;
+        line-height: 50px;
+    }
+
+    #section1_today_category>div {
+        display: flex;
+    }
+
+    #section1_today_category i {
+        line-height: 50px;
+    }
+
+    .section1_btn_wrap {
+        display: flex;
+        margin-left: 24px;
+    }
+
+    .section1_btn_wrap button {
+        display: inline-block;
+        background-color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    #section1 .section1_btn_wrap p {
+        line-height: 48px;
+        margin: 0 2px;
+    }
+
+    /* slide */
+    .section1_slide_wrap {
+        width: 1192px;
+        height: 360px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .section1_slide_move {
+        width: 1192px;
+        height: 360px;
+        position: relative;
+        display: flex;
+        left: 0;
+        transition: 1s;
+    }
+
+    .section1_slide {
+        width: 1192px;
+        height: 360px;
+        flex-shrink: 0;
+    }
+
+
+
+    #section1_slide_btn_wrap {
+        position: absolute;
+        width: 1192px;
+        display: flex;
+        justify-content: space-between;
+        top: 40%;
+    }
+
+    #section1_slide_btn_wrap button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        border: none;
+        position: absolute;
+        cursor: pointer;
+        z-index: 1;
+        background-color: #fff;
+        box-shadow: 0px 2px 5px #7d7d7d;
+    }
+
+    #section1_slide_prev {
+        left: -20px;
+        display: none;
+    }
+
+    #section1_slide_next {
+        right: -20px;
+    }
+
+    .section1_slide {
+        display: flex;
+        justify-content: space-between;
+        margin-right: 12px;
+    }
+
+    .section1_card {
+        width: 230px;
+        height: auto;
+    }
+
+    .section1_card img {
+        width: 230px;
+        height: 345px;
+        object-fit: fill;
+        display: inline-block;
+        object-fit: cover;
+        transition: .5s;
+    }
+
+    .section1_card img:hover {
+        transform: scale(1.1);
+        overflow: hidden;
+    }
+
+    .section1_card h2 {
+        margin-bottom: 4px;
+    }
+
+    .section1_card h2,
+    .section1_card h3 {
+        width: fit-content;
+    }
+
+    .section1_card a>div {
+        overflow: hidden;
+        width: 230px;
+        height: 300px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+
+    .section1_card a:hover {
+        text-decoration: underline;
+    }
+
+    /* /section1 */
+
+
+}
+
+/* 태블릿 화면 크기 (768px 이상, 1320px 미만) */
+@media screen and (min-width: 768px) and (max-width: 1319px) {
+
+    #section1 {
+        padding: 0 15px;
+        width: 768px;
+        margin: 0 auto;
+        height: 450px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #section1_today_category {
+        margin-top: 8px;
+        margin-bottom: 4px;
+        width: 738px;
+        height: 50px;
+        display: flex;
+        flex-shrink: 0;
+        justify-content: space-between;
+        line-height: 50px;
+    }
+
+    #section1_today_category>div {
+        display: flex;
+    }
+
+    #section1_today_category i {
+        line-height: 50px;
+    }
+
+    .section1_btn_wrap {
+        display: flex;
+        margin-left: 24px;
+    }
+
+    .section1_btn_wrap button {
+        display: inline-block;
+        background-color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    .section1_btn_wrap p {
+        line-height: 48px;
+        margin: 0 2px;
+    }
+
+    /* slide */
+    .section1_slide_wrap {
+        width: 738px;
+        height: 360px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .section1_slide_move {
+        width: 738px;
+        height: 360px;
+        position: relative;
+        display: flex;
+        left: 0;
+        transition: .8s;
+    }
+
+    .section1_slide {
+        height: 360px;
+        flex-shrink: 0;
+    }
+
+
+
+    #section1_slide_btn_wrap {
+        position: absolute;
+        width: 708px;
+        display: flex;
+        justify-content: space-between;
+        top: 40%;
+    }
+
+    #section1_slide_btn_wrap button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        border: none;
+        position: absolute;
+        cursor: pointer;
+        z-index: 1;
+        background-color: #fff;
+        box-shadow: 0px 2px 5px #7d7d7d;
+    }
+
+    #section1_slide_prev {
+        /* left: -20px; */
+        display: none;
+    }
+
+    #section1_slide_next {
+        right: -28px;
+    }
+
+    .section1_slide {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .section1_card {
+        margin-right: 24px;
+        width: 230px;
+        height: auto;
+    }
+
+    .section1_card img {
+        width: 230px;
+        height: 345px;
+        object-fit: fill;
+        display: inline-block;
+        object-fit: cover;
+        transition: .5s;
+    }
+
+    .section1_card img:hover {
+        transform: scale(1.1);
+        overflow: hidden;
+    }
+
+    .section1_card h2 {
+        margin-bottom: 4px;
+    }
+
+    .section1_card h2,
+    .section1_card h3 {
+        width: fit-content;
+    }
+
+    .section1_card a>div {
+        overflow: hidden;
+        width: 230px;
+        height: 300px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+
+    .section1_card a:hover {
+        text-decoration: underline;
+    }
+
+    /* test */
+
+    .section1_slide:nth-of-type(1) .section1_card:nth-of-type(3),
+    .section1_slide:nth-of-type(2) .section1_card:nth-of-type(1),
+    .section1_slide:nth-of-type(2) .section1_card:nth-of-type(4) {
+        margin-right: 466px;
+    }
+
+}
+
+/* 모바일 화면 크기 이하 (480px 이하) */
+@media screen and (max-width: 767px) {
+    #section1 {
+        width: 390px;
+        /* 임시 */
+        /* overflow: hidden; */
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    /* 임시 */
+    #section1_slide_btn_wrap,
+    #section1_today_category {
+        display: none;
+    }
+
+    .section1_card img {
+        width: 360px;
+        height: 540px;
+        object-fit: cover;
+    }
+
+    /* 이 부분은 상의하며 수정 */
+    .section1_card h2,
+    .section1_card h3 {
+        position: relative;
+        bottom: 60px;
+        background-color: #fff;
+    }
+
+    .section1_card h3 {
+        background-color: #fff;
+        padding-bottom: 54px;
+    }
+
+    /* 여기도 마찬가지 */
+    .section1_slide_wrap {
+        width: 360px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .section1_slide_move {
+        position: relative;
+        display: flex;
+        left: 0;
+        transition: 1s;
+    }
+
+    .section1_slide {
+        display: flex;
+        flex-shrink: 0;
+    }
+
+}
