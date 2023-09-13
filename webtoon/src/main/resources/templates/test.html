@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+
+<head>
+    <title>File Upload Example</title>
+</head>
+
+<body>
+<form role="form" method="post" enctype="multipart/form-data" th:object="${webtoonFormDto}">
+
+<input type="text" th:field="*{genre}" id="genre" placeholder="장르를 선택하세요">
+
+<input type="checkbox" id="actionCheckbox" class="genresCheck" name="genres" value="액션">
+<label for="actionCheckbox">액션</label>
+
+<input type="checkbox" id="fantasyCheckbox" class="genresCheck" name="genres" value="판타지">
+<label for="fantasyCheckbox">판타지</label>
+
+<input type="checkbox" id="romanceCheckbox" class="genresCheck" name="genres" value="로맨스">
+<label for="romanceCheckbox">로맨스</label>
+
+<input type="checkbox" id="dailyCheckbox" class="genresCheck" name="genres" value="일상">
+<label for="dailyCheckbox">일상</label>
+
+<input type="checkbox" id="thrillerCheckbox" class="genresCheck" name="genres" value="스릴러">
+<label for="thrillerCheckbox">스릴러</label>
+
+<input type="checkbox" id="comedyCheckbox" class="genresCheck" name="genres" value="개그">
+<label for="comedyCheckbox">개그</label>
+
+<input type="checkbox" id="martialCheckbox" class="genresCheck" name="genres" value="무협/사극">
+<label for="martialCheckbox">무협/사극</label>
+
+<input type="checkbox" id="dramaCheckbox" class="genresCheck" name="genres" value="드라마">
+<label for="dramaCheckbox">드라마</label>
+
+<input type="checkbox" id="emotionalCheckbox" class="genresCheck" name="genres" value="감성">
+<label for="emotionalCheckbox">감성</label>
+</form>
+<script th:inline="javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+
+        let checkboxes = document.querySelectorAll('.genresCheck');
+        let genreField = document.querySelector("#genre");
+
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener("change", function () {
+                let selectedGenres = Array.from(checkboxes)
+                    .filter(function (checkbox) {
+                        return checkbox.checked;
+                    })
+                    .map(function (checkbox) {
+                        return checkbox.nextElementSibling.textContent;
+                    })
+                    .join("#");
+
+                if (selectedGenres === "") {
+                    genreField.value = "";
+                    genreField.placeholder = "장르를 선택하세요";
+                } else {
+                    genreField.value = "#" + selectedGenres;
+                    genreField.placeholder = selectedGenres;
+                }
+            });
+        });
+
+    });
+</script>
+
+</body>
+
+</html>

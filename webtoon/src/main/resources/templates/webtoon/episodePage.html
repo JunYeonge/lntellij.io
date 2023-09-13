@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/webtoonPageLayout}">
+<th:block layout:fragment="css">
+    <style>
+        #nav_bar a:nth-of-type(2) {
+            background-color: #00dc64;
+            color: #fff;
+        }
+
+
+    </style>
+</th:block>
+<section layout:fragment="content">
+    <h1>에피소드 페이지 만들어야함</h1>
+
+    <script th:inline="javascript">
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+            let errorMessage = /*[[${errorMessage}]]*/ null;
+
+            if (errorMessage) {
+                alert(errorMessage);
+                window.location.href = '/main';
+            }
+
+            let successMessage = /*[[${successMessage}]]*/ null;
+
+            console.log(successMessage);
+            if (successMessage !== null && successMessage !== "") {
+                alert(successMessage);
+            }
+
+        });
+    </script>
+
+
+</section>
+</html>

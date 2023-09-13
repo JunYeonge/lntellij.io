@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 상세보기</title>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Title</th>
+        <td th:text="${board.boardTitle}"></td>
+    </tr>
+    <tr>
+        <th>Writer</th>
+        <td th:text="${board.boardWriter}"></td>
+    </tr>
+    <tr>
+        <th>Content</th>
+        <td th:text="${board.boardContent}"></td>
+    </tr>
+</table>
+<button onclick="listReq()">목록</button>
+<button onclick="updateReq()">수정</button>
+<button id="deleteButton">삭제</button>
+
+<!-- 댓글 작성 부분 -->
+<div id="comment-write">
+    <input type="text" id="commentWriter" placeholder="작성자">
+    <input type="text" id="commentContents" placeholder="내용">
+    <button id="comment-write-btn">댓글 작성</button>
+</div>
+
+<!-- 댓글 출력 부분 -->
+<div id="comment-list">
+    <table>
+        <tr>
+            <th>작성자</th>
+            <th>내용</th>
+            <th>작성시간</th>
+        </tr>
+        <tr th:each="comment: ${commentList}">
+            <td th:text="${comment.commentWriter}"></td>
+            <td th:text="${comment.commentContent}"></td>
+            <td><span th:text="${#temporals.format(comment.regTime, 'yy-MM-dd HH:mm:ss')}"></span></td>
+        </tr>
+    </table>
+</div>
+
+<script th:inline="javascript">
+    const formatDateTime = (dateTime) => {
+        const date = new Date(dateTime);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+
+    const commentWrite = () => {
+        const writer = document.getElementById("commentWriter").value;
+        const contents = document.getElementById("commentContents").value;
+        if (!contents) {
+            // 내용이 비어있으면 댓글 작성을 막음
+            alert("댓글 내용을 입력하세요.");
+            return;
+        }
+        console.log("작성자: ", writer);
+        console.log("내용: ", contents);
+        const id = [[${board.id}]];
+        $.ajax({
+           type: "post",
+           url: `/board/list/${id}`, // URL 경로 수정
+           data: {
+               "commentWriter": writer,
+               "commentContent": contents,
+               "boardId": id
+           },
+           success: function (res) {
+               console.log("요청 성공", res);
+               let output = "<table>";
+               output += "<tr><th>댓글번호</th>";
+               output += "<th>작성자</th>";
+               output += "<th>내용</th>";
+               output += "<th>작성시간</th></tr>";
+               for (let i in res) {
+                   output += "<tr>";
+                   output += "<td>" + res[i].id + "</td>";
+                   output += "<td>" + res[i].commentWriter + "</td>";
+                   output += "<td>" + res[i].commentContent + "</td>";
+                   output += "<td><span>" + formatDateTime(res[i].regTime) + "</span></td>";
+                   output += "</tr>";
+               }
+               output += "</table>";
+               document.getElementById('comment-list').innerHTML = output;
+               document.getElementById('commentWriter').value = '';
+               document.getElementById('commentContents').value = '';
+           },
+           error: function (err) {
+               console.log("요청 실패", err);
+           }
+        });
+    }
+
+    document.getElementById("comment-write-btn").addEventListener("click", commentWrite);
+
+    const listReq = () => {
+        location.href = "/board/list";
+    }
+
+    const updateReq = () => {
+    const id = [[${board.id}]];
+    location.href = `/board/update/${id}`;
+}
+
+    $('#deleteButton').click(function () {
+        const id = [[${board.id}]]; // Thymeleaf를 통해 서버에서 board.id를 가져옵니다.
+        if (confirm("게시물을 삭제하시겠습니까?")) {
+            $.ajax({
+                type: "DELETE",
+                url: `/board/delete/${id}`, // 삭제할 게시물의 ID를 포함한 URL
+                success: function () {
+                    alert("게시물이 삭제되었습니다.");
+                    // 삭제 성공 시 어떤 동작을 할지 여기에 작성합니다.
+                    location.href = "/board/list"; // 삭제 후 목록 페이지로 이동
+                },
+                error: function (err) {
+                    console.log("삭제 요청 실패", err);
+                    // 삭제 실패 시 어떤 동작을 할지 여기에 작성합니다.
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

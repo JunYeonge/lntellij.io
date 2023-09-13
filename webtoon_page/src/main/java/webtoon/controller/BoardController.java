@@ -26,7 +26,7 @@ public class BoardController {
     @GetMapping("/list")
     public String findAll(@RequestParam(name = "page", defaultValue = "1") int page, Model model){
         // 한 페이지에 표시할 아이템 수와 페이지 번호 설정
-        int pageSize = 10;
+        int pageSize = 3;
         Pageable pageable = PageRequest.of(page - 1, pageSize, Sort.by("id").descending()); // 내림차순 정렬
 
         Page<BoardDto> boardDtoPage = boardService.findAll(pageable);

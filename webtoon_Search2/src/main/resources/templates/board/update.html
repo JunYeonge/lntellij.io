@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layouts/mainLayout}">
+<div layout:fragment="content" class="container">
+    <head>
+        <meta charset="UTF-8">
+        <title>수정 페이지</title>
+    </head>
+    <body>
+    <form action="/board/update" method="post" name="updateForm">
+
+        <input type="hidden" name="id" th:value="${boardUpdate.id}">
+
+        writer: <input type="text" name="boardWriter" th:value="${boardUpdate.boardWriter}" readonly> <br>
+        title: <input type="text" name="boardTitle" th:value="${boardUpdate.boardTitle}"> <br>
+        content: <textarea name="boardContent" cols="30" rows="10" th:text="${boardUpdate.boardContent}"></textarea> <br>
+
+        <input type="hidden" name="boardHits" th:value="${boardUpdate.boardHits}">
+
+        <input type="submit" value="글수정">
+    </form>
+    </body>
+</div>
+<script th:inline="javascript">
+    $('#updateForm').submit(function (e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+
+        $.ajax({
+            type: "POST",
+            url: "/board/update",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function () {
+                alert("게시물이 수정되었습니다.");
+                location.href = "/board/list/" + id; // 수정 완료 후 목록 페이지로 이동
+            },
+            error: function (err) {
+                console.log("업데이트 요청 실패", err);
+            }
+        });
+    });
+</html>

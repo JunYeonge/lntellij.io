@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layouts/mainLayout}">
+<div layout:fragment="content" class="container">
+    <head>
+        <style>
+            .disabled {
+                pointer-events: none;
+                opacity: 0.5;
+            }
+        </style>
+        <meta charset="UTF-8">
+        <title>게시물 리스트</title>
+    </head>
+    <table>
+        <form th:action="@{/board/list}" method="get">
+            <input type="text" name="keyword" placeholder="검색어 입력">
+            <button type="submit">검색</button>
+        </form>
+        <tr>
+            <th>title</th>
+            <th>writer</th>
+            <th>date</th>
+            <th>hits</th>
+        </tr>
+        <tr th:each="board: ${boardList}">
+            <td><a th:href="@{|/board/list/${board.id}|}" th:text="${board.boardTitle}"></a></td>
+            <td th:text="${board.boardWriter}"></td>
+            <td th:text="*{#temporals.format(board.boardRegTime, 'yyyy-MM-dd')}"></td>
+            <td th:text="${board.boardHits}"></td>
+        </tr>
+    </table>
+    <div th:if="${#lists.isEmpty(boardList)}">
+        <p>검색 결과가 없습니다.</p>
+    </div>
+
+
+    <div class="pagination">
+        <!-- First 링크는 항상 활성화 -->
+        <a th:href="@{/board/list(page=1)}">First</a>
+
+        <!-- Prev 링크를 현재 페이지가 1이면 비활성화, 아니면 활성화 -->
+        <a th:href="@{/board/list(page=${currentPage - 1})}" th:class="${currentPage == 1} ? 'disabled' : ''">prev</a>
+
+        <!-- 페이지 번호 표시 -->
+        <span th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
+        <a th:href="@{/board/list(page=${pageNumber})}" th:text="${pageNumber}" th:class="${pageNumber == currentPage} ? 'active'"></a>
+    </span>
+
+        <!-- Next 링크를 현재 페이지가 마지막 페이지면 비활성화, 아니면 활성화 -->
+        <a th:href="@{/board/list(page=${currentPage + 1})}" th:class="${currentPage == totalPages} ? 'disabled' : ''">next</a>
+
+        <!-- Last 링크는 항상 활성화 -->
+        <a th:href="@{/board/list(page=${totalPages})}">Last</a>
+    </div>
+
+    <a href="/board/post">글작성(링크)</a>
+    <a href="/board/list">리스트(링크)</a>
+</div>
+</html>

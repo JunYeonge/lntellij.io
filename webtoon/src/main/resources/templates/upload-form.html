@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- head 내용 -->
+</head>
+<body>
+<form th:action="@{/upload}" method="post" enctype="multipart/form-data">
+  <label for="imageCount">업로드할 이미지 개수:</label>
+  <input type="number" id="imageCount" name="imageCount" min="1" max="10" value="1">
+  <button type="button" id="generateFields">입력 필드 생성</button>
+  <div id="imageInputs"></div>
+  <button type="submit">업로드</button>
+</form>
+<div class="selectedImages"></div>
+<script th:inline="javascript">
+        var selectedFiles = []; // 선택한 파일들을 저장하는 배열
+
+        document.getElementById('generateFields').addEventListener('click', function() {
+
+
+            var imageCount = parseInt(document.getElementById('imageCount').value);
+            var imageInputsDiv = document.getElementById('imageInputs');
+            imageInputsDiv.innerHTML = ''; // 기존 입력 필드 초기화
+
+            for (var i = 0; i < imageCount; i++) {
+                var imageInput = document.createElement('input');
+                imageInput.type = 'file';
+                imageInput.name = 'files';
+                imageInput.className = 'imageInput';
+                imageInput.addEventListener('change', handleFileChange);
+                imageInputsDiv.appendChild(imageInput);
+
+                // .selectedImages 요소 추가
+                var selectedImagesDiv = document.querySelector('.selectedImages');
+                var selectedImage = document.createElement('img');
+                selectedImage.className = 'selectedImage';
+                selectedImagesDiv.appendChild(selectedImage);
+            }
+        });
+
+        function handleFileChange(event) {
+            var selectedImagesDiv = document.querySelector('.selectedImages');
+            var selectedImage = selectedImagesDiv.querySelector('.selectedImage:last-child');
+            var files = event.target.files;
+            for (var i = 0; i < files.length; i++) {
+                var newSelectedImage = selectedImage.cloneNode(true); // 복제
+                newSelectedImage.src = URL.createObjectURL(files[i]);
+                newSelectedImage.style.maxWidth = '200px'; // 이미지 크기 제한
+                selectedImagesDiv.appendChild(newSelectedImage);
+
+                selectedFiles.push(files[i]); // 선택한 파일을 배열에 저장
+            }
+        }
+
+        // 이미지 업로드 시 순서대로 선택한 이미지들을 서버로 전송
+        document.querySelector('form').addEventListener('submit', function(event) {
+            selectedFiles.forEach(function(file, index) {
+                var formData = new FormData();
+                formData.append('file', file);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/upload', true);
+                xhr.send(formData);
+            });
+        });
+    </script>
+<!-- 나머지 내용 -->
+</body>
+</html>

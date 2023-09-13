@@ -42,7 +42,7 @@
 
 <div id="comment-write">
     <input type="text" id="commentWriter" placeholder="작성자">
-    <input type="text" id="commentContent" placeholder="내용">
+    <input type="text" id="commentContent" placeholder="댓글내용">
     <button id="comment-write-btn">댓글 작성</button>
 </div>
 <script th:inline="javascript">
@@ -73,7 +73,7 @@
     // AJAX를 사용하여 댓글을 서버에 전송
     $.ajax({
         type: 'POST',
-        url: '/board/comment', // 댓글 저장 엔드포인트 URL로 변경해야 합니다.
+        url: '/board/list/{id}', // 댓글 저장 엔드포인트 URL로 변경해야 합니다.
         data: JSON.stringify(commentData),
         contentType: 'application/json',
         success: function (response) {

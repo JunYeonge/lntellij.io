@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/mainLayout}">
+<th:block layout:fragment="css">
+    <style>
+#nav_bar a:nth-of-type(1) {
+    background-color: #00dc64;
+    color: #fff;
+}
+    </style>
+</th:block>
+<!-- section1 -->
+<section id="section1" layout:fragment="content">
+    <!--     section1 날짜 카테고리-->
+    <div id="section1_today_category">
+        <div>
+            <h1>n요일 웹툰</h1>
+            <div class="section1_btn_wrap">
+                <button>인기순</button>
+                <p>·</p>
+                <button>업데이트순</button>
+                <p>·</p>
+                <button>조회순</button>
+                <p>·</p>
+                <button>별점순</button>
+            </div>
+        </div>
+        <div>
+            <a href="#">n요웹툰 전체보기</a>
+            &nbsp;
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+    </div>
+    <!-- 캐로셀 좌우 버튼 -->
+    <div id="section1_slide_btn_wrap">
+        <button id="section1_slide_prev"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="section1_slide_next"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+    <!-- 메인 캐로셀 -->
+    <div class="section1_slide_wrap">
+        <div class="section1_slide_move">
+            <!--slide1-1-->
+            <div class="section1_slide">
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="images/KakaoTalk_20230411_143157216.jpg" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="images/ex3.jpg" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="images/쥐.png" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="images/main1.png" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="images/main2.png" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+            </div>
+            <!--slide1-2-->
+            <div class="section1_slide">
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+            </div>
+            <!--slide1-3 -->
+            <div class="section1_slide">
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+            </div>
+            <!--slide1-4-->
+            <div class="section1_slide">
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+                <div class="section1_card">
+                    <a href="#">
+                        <div><img src="" alt="img"></div>
+                    </a>
+                    <h2><a href="#">작품명 쓰는 곳</a></h2>
+                    <h3><a href="#">작가 이름</a></h3>
+                </div>
+            </div>
+            <!--/slide-->
+        </div>
+    </div>
+</section>
+<!-- /section1 -->
+
+<!-- section2 -->
+<section id="section2" class="section" layout:fragment="content2">
+    <div class="section2_wrap">
+        <div class="jy_dm">
+            <div class="section2_jjywrap">
+                <div class="section2_jjpart1">
+                    <div class="section2_jjtitle">
+                        <h3>user님, 이런 웹툰의 추천은 어떠세요?</h3>
+                    </div>
+                    <div class="section2_trov">
+                        <ul class="section2_mainimg section2_jjmainimg">
+                            <li>
+                                <div class="section2_tr"><a href="#"><img src="" alt=""></a></div>
+                                <div><span><a href="#">제목1</a></span></div>
+                            </li>
+                            <li>
+                                <div class="section2_tr"><a href="#"><img src="" alt=""></a></div>
+                                <div><span><a href="#">제목2</a></span></div>
+                            </li>
+                            <li>
+                                <div class="section2_tr"><a href="#"><img src="" alt=""></a></div>
+                                <div><span><a href="#">제목3</a></span></div>
+                            </li>
+                            <li>
+                                <div class="section2_tr"><a href="#"><img src="" alt=""></a></div>
+                                <div><span><a href="#">제목4</a></span></div>
+                            </li>
+                            <li>
+                                <div class="section2_tr"><a href="#"><img src="" alt=""></a></div>
+                                <div><span><a href="#">제목5</a></span></div>
+                            </li>
+                            <li>
+                                <div class="section2_tr section2_tr_hi"><a href="#"><img src="" alt=""></a></div>
+                                <div class="section2_tr_hi"><span><a href="#">제목6</a></span></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section2_jjpart2">
+                    <div class="section2_jjy">
+                        <div class="section2_titdv">
+                            <div class="section2_td">
+                                <h3 class="active section2_h3">가장 핫한 <strong class="h3Text">로맨스</strong>웹툰만 모아봤어요!
+                                </h3>
+
+                                <div class="section2_btndv">
+
+                                    <button type="button" role="tab"
+                                            class="active romance tabButton"><span>로맨스</span></button>
+                                    <p>·</p>
+                                    <button type="button" role="tab"
+                                            class="fantasy tabButton"><span>판타지</span></button>
+                                    <p>·</p>
+                                    <button type="button" role="tab"
+                                            class="action tabButton"><span>액션</span></button>
+                                    <p>·</p>
+                                    <button type="button" role="tab"
+                                            class="daily tabButton"><span>일상</span></button>
+                                    <p>·</p>
+                                    <button type="button" role="tab"
+                                            class="thriller tabButton"><span>스릴러</span></button>
+                                    <p>·</p>
+                                    <button type="button" role="tab"
+                                            class="comedy tabButton"><span>개그</span></button>
+                                    <p>·</p>
+                                    <button type="button" role="tab"
+                                            class="martial-arts tabButton"><span>무협/사극</span></button>
+                                    <p>·</p>
+                                    <button type="button" role="tab"
+                                            class="drama tabButton"><span>드라마</span></button>
+                                    <p>·</p>
+                                    <button type="button" role="tab"
+                                            class="sentimental tabButton"><span>감성</span></button>
+                                    <p>·</p>
+                                    <button type="button" role="tab"
+                                            class="sports tabButton"><span>스포츠</span></button>
+                                </div> <!-- section2_btndv -->
+                            </div><!-- section2_td -->
+
+                            <!-- 클래스 추가 -->
+                            <div class="section2_jy_fontnone">
+                                <a href="#"><span class="linkText">로맨스</span> 웹툰 더보기 <i
+                                        class="fa-sharp fa-solid fa-chevron-right fa-xs foco"></i></a>
+                            </div>
+                        </div> <!-- section2_titdv -->
+
+
+                        <div class="section2_trov section2_jy_trov">
+                            <ul class="section2_mainimg section2_jj">
+                                <li class="active"><a href="#">
+                                    <div class="section2_tr"><img src="" alt=""></div>
+                                </a>
+                                    <div class="section2_topa">
+                                        <span class="section2_font"><strong>1</strong></span>
+                                        <div class="section_jjy_tit"><a href="#">제목1</a></div>
+                                    </div>
+                                </li>
+                                <li><a href="#">
+                                    <div class="section2_tr"><img src="" alt=""></div>
+                                </a>
+                                    <div class="section2_topa">
+                                        <span class="section2_font"><strong>2</strong></span>
+                                        <div class="section_jjy_tit"><a href="#">제목2</a></div>
+                                    </div>
+                                </li>
+                                <li><a href="#">
+                                    <div class="section2_tr"><img src="" alt=""></div>
+                                </a>
+                                    <div class="section2_topa">
+                                        <span class="section2_font"><strong>3</strong></span>
+                                        <div class="section_jjy_tit"><a href="#">제목3</a></div>
+                                    </div>
+                                </li>
+                                <li><a href="#">
+                                    <div class="section2_tr"><img src="" alt=""></div>
+                                </a>
+                                    <div class="section2_topa">
+                                        <span class="section2_font"><strong>4</strong></span>
+                                        <div class="section_jjy_tit"><a href="#">제목4</a></div>
+                                    </div>
+                                </li>
+                                <li><a href="#">
+                                    <div class="section2_tr"><img src="" alt=""></div>
+                                </a>
+                                    <div class="section2_topa">
+                                        <span class="section2_font"><strong>5</strong></span>
+                                        <div class="section_jjy_tit"><a href="#">제목5</a></div>
+                                    </div>
+                                </li>
+                                <li class="section2_tr_hi"><a href="#">
+                                    <div class="section2_tr"><img src="" alt=""></div>
+                                </a>
+                                    <div class="section2_topa">
+                                        <span class="section2_font"><strong>6</strong></span>
+                                        <div class="section_jjy_tit"><a href="#">제목6</a></div>
+                                    </div>
+                                </li>
+                            </ul> <!-- section2_maining -->
+                        </div> <!-- section2_trov -->
+                    </div> <!-- section2_jjy -->
+                </div>
+            </div> <!-- section2_jjywrap -->
+
+
+            <!-- 준영222222 -->
+            <div class="section2_dr_wrap">
+
+                <div class="section2_dr">
+                    <div class="section2_dr_new_f">
+                        <div>
+                            <h3>이달의 신작</h3>
+                        </div>
+                        <div><a href="#">신작웹툰 더보기<i class="fa-sharp fa-solid fa-chevron-right fa-xs"></i></a></div>
+                    </div>
+                    <div class="section2_dr_wrapflex">
+                        <ul class="section2_dr_mr">
+                            <li>
+                                <ul class="section2_dr_ulsize">
+                                    <li>
+                                        <div class="section2_dr_img"><a href="#"><img src="" alt=""></a></div>
+                                    </li>
+                                    <li>
+                                        <div class="section2_dr_tile"><a href="#">작가 제목</a></div>
+                                    </li>
+                                    <li>
+                                        <div class="section2_dr_name"><a href="">작가이름</a></div>
+                                        <div class="section2_dr_ti"><a href="">2줄짜리 작품 설명입니다!!!2줄짜리 작품 설명입니다!!!2줄짜리
+                                            작품 설명입니다!!!2줄짜리 작품 설명입니다!!!</a></div>
+                                        <div class="section2_dr_aflex">
+                                            <a href="#">
+                                                <div class="section2_dr_atag">#장르</div>
+                                            </a>
+                                            <a href="#">
+                                                <div class="section2_dr_atag">#액션</div>
+                                            </a>
+                                            <a href="#">
+                                                <div class="section2_dr_atag">#보내줘</div>
+                                            </a>
+
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+
+                        <ul class="section2_dr_mr">
+                            <li>
+                                <ul>
+                                    <li>
+                                        <div class="section2_dr_img"><a href="#"><img src="" alt=""></a></div>
+                                    </li>
+                                    <li>
+                                        <div class="section2_dr_tile"><a href="#">작가 제목</a></div>
+                                    </li>
+                                    <li>
+                                        <div class="section2_dr_name"><a href="">작가이름</a></div>
+                                        <div class="section2_dr_ti"><a href="">2줄짜리 작품 설명입니다!!!2줄짜리 작품 설명입니다!!!2줄짜리
+                                            작품 설명입니다!!!2줄짜리 작품 설명입니다!!!</a></div>
+                                        <div class="section2_dr_aflex">
+                                            <a href="#">
+                                                <div class="section2_dr_atag">#장르</div>
+                                            </a>
+                                            <a href="#">
+                                                <div class="section2_dr_atag">#액션</div>
+                                            </a>
+                                            <a href="#">
+                                                <div class="section2_dr_atag">#보내줘</div>
+                                            </a>
+
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="section2_dr_mr">
+                            <li>
+                                <ul>
+                                    <li>
+                                        <div class="section2_dr_img"><a href="#"><img src="" alt=""></a></div>
+                                    </li>
+                                    <li>
+                                        <div class="section2_dr_tile"><a href="#">작가 제목</a></div>
+                                    </li>
+                                    <li>
+                                        <div class="section2_dr_name"><a href="">작가이름</a></div>
+                                        <div class="section2_dr_ti"><a href="">2줄짜리 작품 설명입니다!!!2줄짜리 작품 설명입니다!!!2줄짜리
+                                            작품 설명입니다!!!2줄짜리 작품 설명입니다!!!</a></div>
+                                        <div class="section2_dr_aflex">
+                                            <a href="#">
+                                                <div class="section2_dr_atag">#장르</div>
+                                            </a>
+                                            <a href="#">
+                                                <div class="section2_dr_atag">#액션</div>
+                                            </a>
+                                            <a href="#">
+                                                <div class="section2_dr_atag">#보내줘</div>
+                                            </a>
+
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="section2_dr_challenge">
+                    <div class="section2_dr_wrapflex">
+                        <ul>
+                            <li>
+                                <div class="section2_dr_mb">
+                                    <h3>새로운 베스트 도전</h3>
+                                </div>
+                                <ul class="section2_dr_text">
+                                    <li>
+                                        <div class="section2_dr_mideimg"><a href="#"><img src="" alt=""
+                                                                                          class="section2_dr_hoimg"></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="section2_dr_mbd"><a href="#">작가 제목</a></div>
+                                    </li>
+                                    <li>
+                                        <div class="section2_dr_mbd"><a href="#">작가이름</a></div>
+                                    </li>
+                                    <li>
+                                        <div class="section2_dr_ile"><a href="#">여긴 2줄짜리 작품 설명
+                                            입니다.하지만 지금은 집에 넘 가고싶고 너무 졸리고롤도 하고싶습니다 너는 못할꺼야</a></div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="section2_dr_mobile">
+                                <div class="section2_dr_mb">
+                                    <h3>추천 베스트도전&도전만화</h3>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <div class="section2_dr_liflex">
+                                            <div class="section2_dr_imgminisize"><a href="#"><img src="" alt=""></a>
+                                            </div>
+                                            <div class="section2_dr_ml">
+                                                <div class="section2_dr_mbm">
+                                                    <a href="#">제목입니다.</a>
+                                                </div>
+                                                <div class="section2_dr_magb">
+                                                    <a href="#">작가입니다.</a>
+                                                </div>
+                                                <div>
+                                                    <span>★1.0(별점)</span>
+                                                    <span>※100(조회)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="section2_dr_liflex">
+                                            <div class="section2_dr_imgminisize"><a href="#"><img src="" alt=""></a>
+                                            </div>
+                                            <div class="section2_dr_ml">
+                                                <div class="section2_dr_mbm">
+                                                    <a href="#">제목입니다.</a>
+                                                </div>
+                                                <div class="section2_dr_magb">
+                                                    <a href="#">작가입니다.</a>
+                                                </div>
+                                                <div>
+                                                    <span>★1.0(별점)</span>
+                                                    <span>※100(조회)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="section2_dr_liflex">
+                                            <div class="section2_dr_imgminisize"><a href="#"><img src="" alt=""></a>
+                                            </div>
+                                            <div class="section2_dr_ml">
+                                                <div class="section2_dr_mbm">
+                                                    <a href="#">제목입니다.</a>
+                                                </div>
+                                                <div class="section2_dr_magb">
+                                                    <a href="#">작가입니다.</a>
+                                                </div>
+                                                <div>
+                                                    <span>★1.0(별점)</span>
+                                                    <span>※100(조회)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="section2_dr_mobile">
+                                <div class="section2_dr_rig section2_dr_mb"><a href="#">베스트도전 전체보기<i
+                                        class="fa-sharp fa-solid fa-chevron-right fa-xs"></i></a></div>
+                                <ul>
+                                    <li>
+                                        <div class="section2_dr_liflex">
+                                            <div class="section2_dr_imgminisize"><a href="#"><img src="" alt=""></a>
+                                            </div>
+                                            <div class="section2_dr_ml">
+                                                <div class="section2_dr_mbm">
+                                                    <a href="#">제목입니다.</a>
+                                                </div>
+                                                <div class="section2_dr_magb">
+                                                    <a href="#">작가입니다.</a>
+                                                </div>
+                                                <div>
+                                                    <span>★1.0(별점)</span>
+                                                    <span>※100(조회)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="section2_dr_liflex">
+                                            <div class="section2_dr_imgminisize"><a href="#"><img src="" alt=""></a>
+                                            </div>
+                                            <div class="section2_dr_ml">
+                                                <div class="section2_dr_mbm">
+                                                    <a href="#">제목입니다.</a>
+                                                </div>
+                                                <div class="section2_dr_magb">
+                                                    <a href="#">작가입니다.</a>
+                                                </div>
+                                                <div>
+                                                    <span>★1.0(별점)</span>
+                                                    <span>※100(조회)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="section2_dr_liflex">
+                                            <div class="section2_dr_imgminisize"><a href="#"><img src="" alt=""></a>
+                                            </div>
+                                            <div class="section2_dr_ml">
+                                                <div class="section2_dr_mbm">
+                                                    <a href="#">제목입니다.</a>
+                                                </div>
+                                                <div class="section2_dr_magb">
+                                                    <a href="#">작가입니다.</a>
+                                                </div>
+                                                <div>
+                                                    <span>★1.0(별점)</span>
+                                                    <span>※100(조회)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--  준영이이이이이이-->
+        </div>
+        <div class="section2_hs_wrap">
+            <!-- 랭킹조회 -->
+            <div class="section2_hs_rankingwrap">
+                <div class="section2_hs_btn_menu">
+                    <h3>실시간 신작랭킹</h3>
+                    <div class="section2_hs_btn">
+                        <button type="button" role="tab" onclick="showContent('all')" class="active">전체</button>
+                        <span>·</span>
+                        <button type="button" role="tab" onclick="showContent('male')">남성</button>
+                        <span>·</span>
+                        <button type="button" role="tab" onclick="showContent('female')">여성</button>
+                    </div>
+                </div>
+                <ul class="section2_hs_list">
+                    <li class="section2_hs_ranking">
+                        <div class="section2_hs_ranking_flex">
+                            <div><a href="#"><img src="" alt=""></a></div>
+                            <div><Strong>1</Strong></div>
+                            <div class="section2_hs_rankingtext">
+                                <div><a href="#"><strong>제목입니다.제목입니다.제목입니다.</strong></a></div>
+                                <div><a href="#">텍스트초과시 뒤에 ...남길꼬야야야야</a></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="section2_hs_ranking">
+                        <div class="section2_hs_ranking_flex">
+                            <div><a href="#"><img src="" alt=""></a></div>
+                            <div><Strong>2</Strong></div>
+                            <div class="section2_hs_rankingtext">
+                                <div><a href="#"><strong>111111111111111111111111111111</strong>.</a></div>
+                                <div><a href="#">작가입니다.</a></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="section2_hs_ranking">
+                        <div class="section2_hs_ranking_flex">
+                            <div><a href="#"><img src="" alt=""></a></div>
+                            <div><Strong>3</Strong></div>
+                            <div class="section2_hs_rankingtext">
+                                <div><a href="#"><strong>제목입니다</strong>.</a></div>
+                                <div><a href="#">작가입니다.</a></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="section2_hs_ranking">
+                        <div class="section2_hs_ranking_flex">
+                            <div><a href="#"><img src="" alt=""></a></div>
+                            <div><Strong>4</Strong></div>
+                            <div class="section2_hs_rankingtext">
+                                <div><a href="#"><strong>제목입니다</strong>.</a></div>
+                                <div><a href="#">작가입니다.</a></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="section2_hs_ranking">
+                        <div class="section2_hs_ranking_flex">
+                            <div><a href="#"><img src="" alt=""></a></div>
+                            <div><Strong>5</Strong></div>
+                            <div class="section2_hs_rankingtext">
+                                <div><a href="#"><strong>제목입니다</strong>.</a></div>
+                                <div><a href="#">텍스트초과시 뒤에 ...남길꼬야야야야.</a></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <!-- 배너 -->
+            </div> <!-- /랭킹조회 -->
+
+            <div class="section2_hs_banner">
+                <div class="section2_hs_banner1">
+                    <a href="#"><img src="" alt=""></a>
+                </div>
+                <div class="section2_hs_banner2">
+                    <a href="#"><img src="" alt=""></a>
+                    <a href="#"><img src="" alt=""></a>
+                </div>
+            </div> <!-- /배너 -->
+
+            <!-- 공지사항 -->
+            <div class="section2_hs_tablet">
+                <div class="section2_hs_announcement">
+                    <div class="section2_hs_comment">
+                        <h3>공지사항</h3>
+                        <a th:href="@{board/list}">더보기 <i class="fa-sharp fa-solid fa-chevron-right fa-xs"></i></a>
+                    </div>
+                    <div>
+                        <ul class="section2_hs_comment_text">
+                            <li th:if="${boardTitles.isEmpty()}">
+                                <p>아직 게시글이 없습니다.</p>
+                            </li>
+                            <li th:each="title : ${boardTitles}">
+                                <a th:href="@{'/board/list/' + ${title.id}}" th:text="${title.boardTitle}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div> <!-- /공지사항 -->
+                <!-- 앱 설치안내 -->
+                <div class="section2_hs_app">
+                    <div>
+                        <h3>네이버웹툰 앱 설치 안내</h3>
+                        <p>쿠키오븐의 <span>무료쿠키</span>로 미리보기 회차를 열람하고<br>
+                            매일 지급되는 <span>무료대여권</span>으로 작품을 열람해 보세요!</p>
+                    </div>
+                    <div class="section2_hs_app_img">
+                        <div><img src="" alt=""></div>
+                        <div>
+                            <div><a href=""><img src="" alt=""></a></div>
+                            <div><a href=""><img src="" alt=""></a></div>
+                        </div>
+                    </div>
+                </div> <!-- /앱 설치 안내 -->
+            </div>
+        </div>
+    </div> <!-- /section2_wrap -->
+</section>
+<!-- /section2 -->
+
+</html>

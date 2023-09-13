@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- header -->
+<header th:fratment="mainHeader">
+    <div class="banner_wrap">
+        <div id="header_banner">
+            <a href="/" id="header_logo">Index - 웹툰</a>
+            <div id="header_login">
+                <a href="#"><i class="fa-solid fa-magnifying-glass fa-lg" style="color: #000000;"></i></a>
+                <a href="#">로그인</a>
+                <button><i class="fa-solid fa-bars fa-2xl" style="color: #000000;"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="banner_wrap">
+        <nav>
+            <div id="nav_bar">
+                <a th:href="@{/main}">홈</a>
+                <a th:href="@{/main/allWebtoon}">모든 웹툰</a>
+                <a th:href="@{/main/dailyWebtoon}">요일</a>
+                <a th:href="@{/main/myPage}">마이페이지</a>
+            </div>
+            <button>작품 등록</button>
+        </nav>
+    </div>
+</header>
+</html>
