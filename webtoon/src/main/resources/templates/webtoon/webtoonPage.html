@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/webtoonPageLayout}">
 <th:block layout:fragment="css">
-    
+
     <style>
         #nav_bar a:nth-of-type(2) {
             background-color: #00dc64;
@@ -19,7 +19,8 @@
         <img th:src="@{${webtoonData.webtoonPath + '/' + webtoonData.thumbnail1}}" th:alt="${webtoonData.title}">
         <div id="webtoon_info">
             <h1 th:text="${webtoonData.title}">작품명</h1>
-            <a th:href="@{/main/search(searchQuery=${webtoonData.user_nickName}, searchType='writer')}"><h3><i class="fa-solid fa-feather"></i> 작가 : <span
+            <a th:href="@{/main/search(searchQuery=${webtoonData.user_nickName}, searchType='writer')}"><h3><i
+                    class="fa-solid fa-feather"></i> 작가 : <span
                     th:text="${webtoonData.user_nickName}"></span> <i class="fa-solid fa-users-viewfinder"></i> 조회수 :
                 <span th:text="${webtoonData.view}">조회수</span>
                 <br>

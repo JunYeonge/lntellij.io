@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/webtoonPageLayout}">
+      layout:decorate="~{layouts/episodePageLayout.html}">
 <th:block layout:fragment="css">
     <style>
         #nav_bar a:nth-of-type(2) {
@@ -13,28 +13,205 @@
     </style>
 </th:block>
 <section layout:fragment="content">
-    <h1>에피소드 페이지 만들어야함</h1>
+    <h1 th:if="${successMessage != null and successMessage != ''}" th:text="${successMessage}"></h1>
+
+
+    <div id="img_wrap">
+        <img th:src="@{${episodeViewDto.webtoonPath + '/' + episodeViewDto.webtoonImgPath}}">
+    </div>
+
+    <div id="content_wrap">
+
+        <h3 th:if="${message}" th:text="${message}" class="message">좋아요 | 별점 | 댓글</h3>
+        <h3 th:unless="${message}" class="message">좋아요 | 별점 | 댓글</h3>
+
+        <div id="likeButton">
+            <form role="form" th:action="@{/checkLike}" method="post">
+                <i id="heart" class="fa-solid fa-heart"></i>
+                <p th:if="${userLikeRecode}" class="userLike" th:text="${userLikeRecode}"></p>
+                <p th:unless="${userLikeRecode}" class="userLike">not</p>
+
+                <input type="hidden" name="episodeId" th:value="${episodeViewDto.id}">
+                <button id="like" th:if="${#request.userPrincipal != null}">좋아요</button>
+                <a href="/members/login" th:unless="${#request.userPrincipal != null}">로그인 후 <br> 이용해 주세요.</a>
+            </form>
+        </div>
+        <div id="starButton">
+
+            <form role="form" th:action="@{/checkStar}" method="post">
+                <div>
+                    <i class="star fas fa-star" data-value="1"></i>
+                    <i class="star fas fa-star" data-value="2"></i>
+                    <i class="star fas fa-star" data-value="3"></i>
+                    <i class="star fas fa-star" data-value="4"></i>
+                    <i class="star fas fa-star" data-value="5"></i>
+                </div>
+                <p th:if="${userStarRecode}" class="userStar" th:text="${userStarRecode}"></p>
+                <p th:unless="${userStarRecode}" class="userStar">not</p>
+
+                <input type="hidden" id="ratingInput" name="rating" value="0">
+                <input type="hidden" name="episodeId" th:value="${episodeViewDto.id}">
+                <button th:if="${userStarRecode == null and #request.userPrincipal != null}">별점 주기</button>
+                <button th:if="${userStarRecode != null and #request.userPrincipal != null}">별점 다시 주기</button>
+                <a href="/members/login" th:unless="${#request.userPrincipal != null}">로그인 후 <br> 이용해 주세요.</a>
+            </form>
+        </div>
+        <div id="shareButton">
+            <div>
+                <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                <button>공유하기</button>
+            </div>
+        </div>
+    </div>
+
+    <div th:unless="${#request.userPrincipal != null}" class="board_wrap">
+        <h2>댓글 등록</h2>
+        <form>
+            <div class="btn_wrap">
+                <textarea disabled placeholder="로그인 후 이용 가능합니다."></textarea>
+                <div class="deco"><span class="char-count">0/200</span></div>
+                <button type="submit" disabled>등록 하기</button>
+            </div>
+        </form>
+    </div>
+
+    <div th:if="${#request.userPrincipal != null}" class="board_wrap">
+        <h2>댓글 등록</h2>
+        <h4 th:text="${@memberService.getLoggedInUserNickname()}">유저 닉네임</h4>
+        <form th:object="${episodeCommentForm}" th:action="@{/createEpisodeComment}" method="post">
+            <input type="hidden" th:field="*{episodeId}" th:value="${episodeCommentForm.id}"/>
+            <div class="btn_wrap">
+                <textarea required id="comment" name="comment" th:field="*{comment}"
+                          placeholder="댓글을 입력해주세요."></textarea>
+                <div class="deco"><span class="char-count">0/200</span></div>
+                <button type="submit">등록 하기</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="commentList">
+        <p>악플, 유해한 언어를 포함한 댓글은 삭제될 수 있습니다.</p>
+        <div th:if="${episodeCommentList.isEmpty()}">
+            <p>댓글이 없습니다.</p>
+        </div>
+        <div class="commentForm" th:each="comment : ${episodeCommentList}">
+            <h2><span th:text="${comment.user_name}">글쓴이</span> <span th:text="${comment.registrationDate}">등록일</span>
+            </h2>
+            <textarea th:text="${comment.comment}" readonly id="" cols="30" rows="10">33</textarea>
+        </div>
+    </div>
+
 
     <script th:inline="javascript">
 
-        document.addEventListener("DOMContentLoaded", function () {
 
+        var message = /*[[${message}]]*/ null;
+        if (message) {
+            alert(message);
+        }
 
-            let errorMessage = /*[[${errorMessage}]]*/ null;
+        var textarea = document.getElementById('comment');
+        var counterElement = document.querySelector('.char-count');
 
-            if (errorMessage) {
-                alert(errorMessage);
-                window.location.href = '/main';
+        // textarea 요소에 input 이벤트를 추가하여 글자 수를 세고 제한을 적용합니다.
+        textarea.addEventListener('input', function () {
+            var maxLength = 200; // 최대 글자 수
+            var currentLength = this.value.length;
+
+            // 글자 수를 업데이트합니다.
+            if (counterElement) {
+                counterElement.textContent = currentLength + '/' + maxLength;
             }
 
-            let successMessage = /*[[${successMessage}]]*/ null;
-
-            console.log(successMessage);
-            if (successMessage !== null && successMessage !== "") {
-                alert(successMessage);
+            // 글자 수가 최대 길이를 초과하면 자르기
+            if (currentLength > maxLength) {
+                this.value = this.value.slice(0, maxLength);
+                if (counterElement) {
+                    counterElement.textContent = maxLength + '/' + maxLength;
+                }
             }
-
         });
+
+        // "공유하기" 버튼 클릭 이벤트 처리
+        document.getElementById('shareButton').addEventListener('click', function () {
+            // 현재 페이지의 URL을 가져옵니다.
+            var currentURL = window.location.href;
+
+            // 텍스트를 클립보드에 복사합니다.
+            copyToClipboard(currentURL);
+
+            // 복사 후 출력
+            document.querySelector(".message").innerHTML = "링크 복사가 되었습니다.";
+        });
+
+        // 텍스트를 클립보드에 복사하는 함수
+        function copyToClipboard(text) {
+            var textArea = document.createElement("textarea");
+            textArea.value = text;
+
+            // textArea를 화면에 추가하고 선택합니다.
+            document.body.appendChild(textArea);
+            textArea.select();
+
+            // 클립보드에 복사합니다.
+            document.execCommand('copy');
+
+            // textArea를 제거합니다.
+            document.body.removeChild(textArea);
+        }
+
+
+        //     별점
+        const stars = document.querySelectorAll('.star');
+        const ratingInput = document.getElementById('ratingInput');
+
+        stars.forEach(star => {
+            star.addEventListener('click', function () {
+                const value = parseInt(this.getAttribute('data-value'));
+
+                // input 창에 별점 표시
+                ratingInput.value = value;
+
+                // 클릭한 별과 그 이전 별들의 색상 변경
+                stars.forEach(s => {
+                    const sValue = parseInt(s.getAttribute('data-value'));
+                    if (sValue <= value) {
+                        s.style.color = '#f2eb0d'; // 선택한 별 이하의 별들은 노란색
+                    } else {
+                        s.style.color = '#ccc'; // 선택한 별보다 높은 별들은 회색
+                    }
+                });
+            });
+        });
+
+        // 유저 좋아요 가져오기
+        let userHeart = document.querySelector(".userLike").textContent;
+        let heart = document.getElementById("heart");
+
+        if (userHeart === "on") {
+            heart.style.color = "#d53f3f";
+        } else {
+            heart.style.color = "#ccc";
+        }
+
+        //     전에 준 별점 가져오기
+
+        let userStar = parseFloat(document.querySelector(".userStar").textContent);
+        if (userStar > 0 && userStar <= 5) {
+            ratingInput.value = userStar.toString();
+        } else {
+            ratingInput.value = 0;
+        }
+        // userStar 값에 따라 별을 색칠
+        for (let i = 1; i <= 5; i++) {
+            let starElement = document.querySelector('i[data-value="' + i + '"]');
+            if (i <= userStar) {
+                starElement.style.color = '#f2eb0d';
+            } else {
+                starElement.style.color = '#ccc'; // 별 색칠 클래스 제거
+            }
+        }
+
     </script>
 
 

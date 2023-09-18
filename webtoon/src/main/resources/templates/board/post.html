@@ -1,40 +1,116 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
-      layout:decorate="~{layouts/mainLayout}">
-<div layout:fragment="content" class="container">
-<head>
-    <meta charset="UTF-8">
-    <title>게시물 작성 폼</title>
-</head>
+      layout:decorate="~{layouts/boardLayout}">
+
+<th:block layout:fragment="css">
     <style>
-        .size{
-            width:500px;
+
+        /* Form Container Styles */
+        .container {
+            max-width: 860px;
             margin: 0 auto;
-            margin-top: 40px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        .size input{
-            width : 100%;
-            box-sizing : border-box;
+        /* Form Size Styles */
+        .size {
+            width: 100%;
         }
 
+        .size input,
         .size textarea {
             width: 100%;
-            margin-top : 10px;
-            min-height : 300px;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .size input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .size input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Edit Button Styles */
+        .edit-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .edit-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* List Button Styles */
+        .list-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .list-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Heading Styles */
+        h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Remove Label Styles */
+        label {
+            display: none;
         }
     </style>
-<body>
+</th:block>
+<div layout:fragment="content" class="container">
+    <h3>게시글 작성</h3>
+    <div class="size">
+        <form th:action="@{/board/post}" method="post">
+            <input type="text" name="boardTitle" id="boardTitle" placeholder="제목" required><br>
 
-<div class="size">
-    <form th:action="@{/board/post}" method="post">
-        writer: <input type="text" name="boardWriter"> <br>
-        title: <input type="text" name="boardTitle"> <br>
-        contents: <textarea name="boardContent" cols="30" rows="10"></textarea> <br>
-        <input type="submit" value="글작성">
-    </form>
+            <input th:value="${@memberService.getLoggedInUserNickname()}" readonly type="text" name="boardWriter"><br>
+
+            <textarea name="boardContent" id="boardContent" placeholder="내용" cols="30" rows="10" required></textarea><br>
+
+            <input type="submit" value="글 작성">
+
+            <a th:href="@{'/board/list'}">
+                <div id="listButton" class="list-button">목록</div>
+            </a>
+        </form>
+    </div>
+    <div th:if="${param.error}" class="error-message">
+        <span th:text="${param.error}"></span>
+    </div>
 </div>
-</body>
-</div>
+<script th:inline="javascript">
+
+</script>
 </html>

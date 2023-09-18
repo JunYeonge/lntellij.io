@@ -67,7 +67,6 @@
                 </div>
             </div>
 
-            <!--        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
         </form>
     </div>
 
@@ -76,10 +75,10 @@
 
 
 
-            let errorMessage = /*[[@{${errorMessage}}]]*/ "";
-            console.log(errorMessage)
-            if (errorMessage !== null && errorMessage !== "") {
+            let errorMessage = /*[[${errorMessage}]]*/ null;
 
+            // errorMessage가 존재한다면, 경고창을 띄웁니다.
+            if (errorMessage) {
                 alert(errorMessage);
             }
 

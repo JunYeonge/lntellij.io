@@ -1,5 +1,13 @@
 @charset "utf-8";
 
+
+.none_list {
+    width: 100%;
+    display: block;
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+}
 @media screen and (min-width: 1320px) {
 
     /* section1 */
@@ -24,7 +32,7 @@
         line-height: 50px;
     }
 
-    #section1_today_category>div {
+    #section1_today_category > div {
         display: flex;
     }
 
@@ -73,7 +81,6 @@
     }
 
 
-
     #section1_slide_btn_wrap {
         position: absolute;
         width: 1192px;
@@ -96,7 +103,7 @@
 
     #section1_slide_prev {
         left: -20px;
-        display: none;
+        /*display: none;*/
     }
 
     #section1_slide_next {
@@ -105,8 +112,12 @@
 
     .section1_slide {
         display: flex;
-        justify-content: space-between;
+        justify-content: left;
         margin-right: 12px;
+    }
+
+    .section1_slide > div {
+        margin-right: 8px;
     }
 
     .section1_card {
@@ -117,7 +128,6 @@
     .section1_card img {
         width: 230px;
         height: 345px;
-        object-fit: fill;
         display: inline-block;
         object-fit: cover;
         transition: .5s;
@@ -129,7 +139,7 @@
     }
 
     .section1_card h2 {
-        margin-bottom: 4px;
+        margin-bottom: 2px;
     }
 
     .section1_card h2,
@@ -137,7 +147,7 @@
         width: fit-content;
     }
 
-    .section1_card a>div {
+    .section1_card a > div {
         overflow: hidden;
         width: 230px;
         height: 300px;
@@ -146,10 +156,20 @@
         margin-bottom: 15px;
     }
 
-    .section1_card a:hover {
+    .section1_card h2:hover,
+    .section1_card h3:hover {
         text-decoration: underline;
+        text-decoration-thickness: 2px;
     }
 
+
+    .empty_webtoon {
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+        line-height: 280px;
+    }
     /* /section1 */
 
 
@@ -178,7 +198,7 @@
         line-height: 50px;
     }
 
-    #section1_today_category>div {
+    #section1_today_category > div {
         display: flex;
     }
 
@@ -226,7 +246,6 @@
     }
 
 
-
     #section1_slide_btn_wrap {
         position: absolute;
         width: 708px;
@@ -270,7 +289,6 @@
     .section1_card img {
         width: 230px;
         height: 345px;
-        object-fit: fill;
         display: inline-block;
         object-fit: cover;
         transition: .5s;
@@ -290,7 +308,7 @@
         width: fit-content;
     }
 
-    .section1_card a>div {
+    .section1_card a > div {
         overflow: hidden;
         width: 230px;
         height: 300px;
@@ -304,11 +322,14 @@
     }
 
     /* test */
-
     .section1_slide:nth-of-type(1) .section1_card:nth-of-type(3),
     .section1_slide:nth-of-type(2) .section1_card:nth-of-type(1),
     .section1_slide:nth-of-type(2) .section1_card:nth-of-type(4) {
         margin-right: 466px;
+    }
+
+    .empty_webtoon {
+        display: none;
     }
 
 }
@@ -367,4 +388,7 @@
         flex-shrink: 0;
     }
 
+    .empty_webtoon {
+        display: none;
+    }
 }

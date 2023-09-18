@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Document</title>
+
+    <script src="https://js.tosspayments.com/v1/payment-widget"></script>
+
+    <style>
+        .paymentpage {
+            width: 768px;
+            margin: auto;
+        }
+        .hidden_button {
+            visibility: hidden;
+        }
+        button{
+            width: 120px;
+            margin: 8px 0;
+            display: inline-block;
+            text-align: center;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            padding: 2px 16px;
+            background-color: #00dc64;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .payment-button.active {
+            background-color: #ff0000;
+        }
+        .payment_money span{
+            margin-right: 16px;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <h2 id="itemName">쿠키 결제</h2>
+    <div class="payment_money">
+        <i class="fa-solid fa-cookie-bite"
+           style="color: #ffd700;"></i>
+        <span>100쿠키</span>
+        <button class="payment-button" onclick="getPaymentWidget(100)" data-price="100">100원</button>
+    </div>
+    <div class="payment_money">
+        <i class="fa-solid fa-cookie-bite"
+           style="color: #ffd700;"></i>
+        <span>300쿠키</span>
+        <button class="payment-button" onclick="getPaymentWidget(300)" data-price="300">300원</button>
+    </div>
+    <div class="payment_money">
+        <i class="fa-solid fa-cookie-bite"
+           style="color: #ffd700;"></i>
+        <span>500쿠키</span>
+        <button class="payment-button" onclick="getPaymentWidget(500)" data-price="500">500원</button>
+    </div>
+    <div class="payment_money">
+        <i class="fa-solid fa-cookie-bite"
+           style="color: #ffd700;"></i>
+        <span>1000쿠키</span>
+        <button class="payment-button" onclick="getPaymentWidget(1000)" data-price="1000">1000원</button>
+    </div>
+
+</section>
+
+<section class="paymentpage">
+    <div id="target_area">
+    </div>
+    <div id="button_area">
+        <button onclick="reqPayment()" id="payment_button" class="hidden_button">충전하기</button>
+    </div>
+</section>
+
+<!-- ... 이전 코드 ... -->
+
+<script th:inline="javascript">
+    const clientKey = 'test_ck_k6bJXmgo28eLxLPZknYrLAnGKWx4';
+    const paymentWidget = PaymentWidget(clientKey, PaymentWidget.ANONYMOUS); // 비회원 결제
+    let selectedPrice = 500; // 초기 선택 금액
+    let errorMessage = /*[[${errorMessage}]]*/ null;
+
+    if (errorMessage) {
+        alert(errorMessage);
+    }
+
+    function getPaymentWidget(price) {
+        selectedPrice = price; // 선택한 금액 업데이트
+
+        // 결제 방식을 렌더링
+        paymentWidget.renderPaymentMethods('#target_area', price);
+
+        // 결제하기 버튼을 표시
+        document.getElementById('payment_button').classList.remove('hidden_button');
+
+        // 모든 버튼의 active 클래스 제거
+        const buttons = document.querySelectorAll('.payment-button');
+        buttons.forEach(button => {
+            button.classList.remove('active'); // 기존 active 클래스 제거
+        });
+
+        // 클릭한 버튼에 active 클래스 추가
+        const selectedButton = document.querySelector(`.payment-button[data-price="${price}"]`);
+        if (selectedButton) {
+            selectedButton.classList.add('active'); // 선택한 버튼에 active 클래스 추가
+        }
+    }
+    // "충전하기" 버튼 클릭 이벤트 처리
+    function reqPayment() {
+        const uuid = self.crypto.randomUUID();
+        const itemsName = document.querySelector('#itemName').textContent;
+
+        paymentWidget.requestPayment({
+            orderId: uuid,
+            orderName: itemsName,
+            amount: selectedPrice, // 선택한 금액으로 설정
+            successUrl: 'http://localhost:8080/payment/success',
+            failUrl: 'http://localhost:8080/payment/error',
+        });
+    }
+
+</script>
+</body>
+</html>

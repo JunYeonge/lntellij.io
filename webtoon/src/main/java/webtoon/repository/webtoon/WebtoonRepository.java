@@ -3,7 +3,6 @@ package webtoon.repository.webtoon;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import webtoon.dto.WebtoonDto;
 import webtoon.entity.webtoon.Webtoon;
 
 import java.util.List;
@@ -40,6 +39,16 @@ public interface WebtoonRepository extends JpaRepository<Webtoon, Long> {
 
     List<Webtoon> findByMemberId(Long memberId);
 
+
+
+//    준영
+
+    @Query("SELECT w FROM Webtoon w ORDER BY RAND()")
+    List<Webtoon> findRandomWebtoons();
+
+    @Query("SELECT w FROM Webtoon w " +
+            "ORDER BY w.registrationDate DESC")
+    List<Webtoon> findAllByOrderWebtoonData_RegistrationDateDesc();
 
 
 }

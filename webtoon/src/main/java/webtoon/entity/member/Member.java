@@ -9,6 +9,8 @@ import webtoon.entity.Purchase.PurchaseHistory;
 import webtoon.entity.board.Board;
 import webtoon.entity.board.BoardComment;
 import webtoon.entity.episodes.EpisodeComment;
+import webtoon.entity.episodes.LikeRecord;
+import webtoon.entity.episodes.StarRecord;
 import webtoon.entity.webtoon.Webtoon;
 
 import javax.persistence.*;
@@ -20,7 +22,6 @@ import java.util.List;
 @Table(name = "member")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends BaseEntity {
 
@@ -28,9 +29,6 @@ public class Member extends BaseEntity {
     @GeneratedValue
     @Column(name = "member_id")
     private Long id;
-
-    @Column
-    private String user_id;
 
     @Column
     private String password;   // 암호
@@ -44,11 +42,6 @@ public class Member extends BaseEntity {
     @Column
     private String address; // 주소
 
-    private String postcode;
-    private String detailAddress;
-    private String extraAddress;
-    private String merge_address;
-
     @Column
     private String nickname; // 닉네임
 
@@ -57,24 +50,41 @@ public class Member extends BaseEntity {
 
     @Column
     private int age;    // 나이
+
     @Column
     private String age_range;
 
     @Column
     private String gender; // 성별
 
-    @Column
+    @Transient
     private String residentIdFront; // 주민등록번호 앞 6자리
 
-    @Column
+    @Transient
     private String residentIdBack;  // 주민등록번호 뒷 7자리
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Transient
+    private String postcode;
 
-    private String provider;    // oauth2를 이용할 경우 어떤 플랫폼을 이용하는지
-    private String providerId;  // oauth2를 이용할 경우 아이디값
+    @Transient
+    private String detailAddress;
+
+    @Transient
+    private String extraAddress;
+
+    @Transient
+    private String merge_address;
+
+    // oauth2를 이용할 경우 어떤 플랫폼을 이용하는지
+    @Transient
+    private String provider;
+
+    // oauth2를 이용할 경우 아이디값
+    @Transient
+    private String providerId;
 
     private boolean active;
 
@@ -111,6 +121,21 @@ public class Member extends BaseEntity {
             cascade = {CascadeType.REMOVE}
     )
     private List<Board> boards = new ArrayList();
+
+    @OneToMany(
+            mappedBy = "member",
+            cascade = {CascadeType.REMOVE}
+    )
+    private List<LikeRecord> likeRecords = new ArrayList();
+
+
+    @OneToMany(
+            mappedBy = "member",
+            cascade = {CascadeType.REMOVE}
+    )
+    private List<StarRecord> starRecords = new ArrayList();
+
+
 
     public String getProvider() {
         return provider;

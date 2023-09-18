@@ -17,11 +17,6 @@ public interface MemberRepository extends JpaRepository<Member, Long>, QuerydslP
     Member findByEmail(String email);
     Member findByNickname(String nickname);
 
-
-    @Query(value = "select * from member m where m.email like %:keyword%", nativeQuery = true)
-    List<Member> searchByKeyword(String keyword);
-
-
     List<Member> findAllByActiveIsFalseAndDeactivatedAtBefore(LocalDateTime threeMonthsAgo); // 3개월 전에 탈퇴한 회원 찾기
 
 }

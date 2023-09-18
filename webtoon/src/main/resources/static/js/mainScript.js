@@ -1,54 +1,19 @@
 // section1 script
 // 날짜 함수
-function section1_today() {
-    let today = new Date();
-    let day = today.getDay();
+function section1_today(day) {
     let todayArr = ["일", "월", "화", "수", "목", "금", "토"];
     document.querySelector("h1").innerText = todayArr[day] + "요웹툰";
     document.querySelector("#section1_today_category a").innerHTML = todayArr[day] + "요웹툰 전체보기 ";
 
-}
-// 캐로셀 함수
-function section1_desktop_script() {
-    const section1_slide_prev = document.querySelector("#section1_slide_prev");
-    const section1_slide_next = document.querySelector("#section1_slide_next");
-    const section1_slide = document.querySelector(".section1_slide_move");
-    const section1_category = document.querySelectorAll(".section1_btn_wrap button");
-    let slide_count = 0;
-    section1_slide.style.left = slide_count + "px";
-    // 캐로셀 prev 함수
-    section1_slide_prev.onclick = function () {
+    const daysOfWeek = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+    const days = daysOfWeek[day];
 
-        section1_slide_next.style.display = "block"
-        slide_count += 1204;
-        section1_slide.style.left = slide_count + "px";
-        if (slide_count == 0) {
-            section1_slide_prev.style.display = "none";
-        }
-    }
-    // 캐로셀 next 함수
-    section1_slide_next.onclick = function () {
-        section1_slide_prev.style.display = "block"
-        slide_count -= 1204;
-        section1_slide.style.left = slide_count + "px";
-        if (slide_count == -3612) {
-            section1_slide_next.style.display = "none";
-        }
-    }
-    // 카테고리 버튼 색
-    for (let i = 0; i < section1_category.length; i++) {
-        section1_category[i].onclick = function () {
-            for (let j = 0; j < section1_category.length; j++) {
-                section1_category[j].style.color = "#4e4e4e";
-            }
-            section1_category[i].style.color = "#00dc64";
-            section1_slide.style.left = 0;
-            slide_count = 0;
-            section1_slide_prev.style.display = "none";
-            section1_slide_next.style.display = "block"
-        };
-    }
+    document.querySelector("#dayLink").setAttribute("href", "/dayWebtoon?day=" + days);
+
+
 }
+
+
 // /section1 script
 
 // mobile js
@@ -59,6 +24,7 @@ function section1_mobile_script() {
     let currentIndex = 0;
     let startX = null;
     wrapper.style.left = "0px"
+
     function goToSlide(index) {
         // .section1_slide_move의 left 값을 조정
         wrapper.style.left = `-${index * 360}px`;
@@ -106,7 +72,6 @@ function section1_mobile_script() {
 }
 
 function section1_script() {
-    section1_today();
 
     if (window.matchMedia("(min-width: 768px)").matches) {
         section1_desktop_script();
@@ -114,6 +79,7 @@ function section1_script() {
         section1_mobile_script();
     }
 }
+
 // /section1
 
 // section2 script
@@ -130,7 +96,8 @@ function section2_genre() {
             buttons[i].style.color = "#00dc64";
             slide_count = 0;
         }
-    };
+    }
+    ;
     // 버튼 클릭 시 텍스트 변경
     // 모든 버튼 요소들을 가져옵니다.
 
@@ -150,6 +117,33 @@ function section2_genre() {
             const h3TextElement = document.querySelector(".section2_titdv .h3Text");
             const linkTextElement = document.querySelector(".section2_titdv .linkText");
 
+
+            const changeLink = document.querySelector(".section2_jy_fontnone a")
+            let genre = "";
+            if (buttonText === "로맨스") {
+                genre = "romance";
+            } else if (buttonText === "판타지") {
+                genre = "fantasy";
+            } else if (buttonText === "액션") {
+                genre = "action";
+            } else if (buttonText === "일상") {
+                genre = "daily";
+            } else if (buttonText === "스릴러") {
+                genre = "thriller";
+            } else if (buttonText === "개그") {
+                genre = "comedy";
+            } else if (buttonText === "무협/사극") {
+                genre = "martial";
+            } else if (buttonText === "드라마") {
+                genre = "drama";
+            } else if (buttonText === "감성") {
+                genre = "sentimental";
+            } else if (buttonText === "스포츠") {
+                genre = "sports";
+            }
+
+            changeLink.href = "/webtoon?genre=" + genre;
+
             h3TextElement.textContent = buttonText;
             linkTextElement.textContent = buttonText;
         });
@@ -159,6 +153,7 @@ function section2_genre() {
     buttonstext[0].classList.add("active");
     buttons[0].classList.add("active");
 }
+
 // section2_rank script
 function showContent(type) {
     const lists = document.querySelectorAll('.section2_hs_list li');
@@ -192,13 +187,13 @@ let bWidth = window.innerWidth;
 let size = 1;
 window.addEventListener("resize", () => {
     const nWidth = window.innerWidth;
-    if (((bWidth >= 768 && nWidth < 768) || (bWidth < 768 && nWidth >= 768)) && size==1) {
+    if (((bWidth >= 768 && nWidth < 768) || (bWidth < 768 && nWidth >= 768)) && size == 1) {
         size = 0;
         setTimeout(() => {
             location.reload();
         }, 500);
 
-    } else if (bWidth < 768 && nWidth >= 768){
+    } else if (bWidth < 768 && nWidth >= 768) {
         size = 1;
     }
 

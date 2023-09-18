@@ -17,14 +17,7 @@ public class EpisodeComment {
     private Long id;
 
     @Column
-//          유저의 닉네임
     private String nickname;
-
-    @Column
-    private String likes;    //좋아요
-
-    @Column
-    private String no_likes; //싫어요
 
     @Column
     private String registrationDate; // 등록일

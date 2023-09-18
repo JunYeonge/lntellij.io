@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface WebtoonDataRepository extends JpaRepository<WebtoonData, Long> {
 
-    List<WebtoonData> findByWebtoonId(Long webtoonId);
+    WebtoonData findByWebtoonId(Long webtoonId);
 
 }

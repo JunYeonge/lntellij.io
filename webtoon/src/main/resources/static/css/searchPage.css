@@ -4,6 +4,7 @@ section {
     width: 1320px;
     padding: 0 64px;
     margin: 32px auto;
+    min-height: 640px;
 }
 
 #search_input {

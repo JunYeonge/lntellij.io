@@ -1,0 +1,126 @@
+@charset "utf-8";
+
+.continer,
+.admin-wrap,
+.client{
+    width: 760px;
+    margin: 0 auto;
+}
+.text-center{
+    text-align: center;
+}
+
+.continer > div {
+    display: inline-block;
+    margin: 16px 10px;
+}
+
+/* 테이블 스타일 */
+.client_list {
+    width: 768px;
+    border-collapse: collapse;
+}
+
+.client_list th, .client_list td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.client_list th {
+    background-color: #f2f2f2;
+}
+
+/* 테이블 줄 번호 스타일 */
+.client_list td:first-child {
+    font-weight: bold;
+}
+
+/* 선택된 회원 스타일 (예: 배경색 변경) */
+.client_list input[type="checkbox"]:checked + label {
+    background-color: #4CAF50;
+    color: white;
+}
+.pagination{
+    display: flex;
+    list-style: none;
+}
+.btn
+{
+    display: inline-block;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 2px 16px;
+    background-color: #00dc64;
+    color: #fff;
+    font-weight: bold;
+}
+/* 페이지 버튼 컨테이너 */
+#paging {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    margin: 16px auto;
+}
+
+/* 페이지 버튼 스타일 */
+.pagination {
+    list-style: none;
+    padding: 0;
+}
+
+.page-item {
+    display: inline-block;
+    margin-right: 5px; /* 페이지 버튼 간격 조정 */
+}
+
+.page-link {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    background-color: #f2f2f2;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.memserchBtn,
+.delBtn{
+    display: inline-block;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 2px 16px;
+    background-color: #00dc64;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.memserchBtn:hover,
+.delBtn:hover{
+    color: #3b3b3b;
+    background-color: #00c257;
+}
+
+.memberout_err p{
+    color: red;
+    font-size: 2rem;
+}
+
+.page-link:hover {
+    color: #3b3b3b;
+    background-color: #00c257;
+}
+
+.page-item.disabled .page-link {
+    background-color: #ccc;
+    pointer-events: none;
+}
+
+.page-item.active .page-link {
+    background-color: #00dc64;
+    color: #fff;
+    font-weight: bold;
+}

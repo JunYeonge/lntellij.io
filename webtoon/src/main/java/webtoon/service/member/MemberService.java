@@ -45,6 +45,14 @@ public class MemberService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
 
     }
+
+    public boolean isUserInRole(String role) {
+        // 여기에서 현재 사용자의 역할을 확인하고, role과 일치하는지 확인하는 로직을 작성합니다.
+        // 예를 들어, Spring Security의 Authentication 객체를 이용할 수 있습니다.
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(role));
+    }
     public boolean isNicknameDuplicate(String nickname) {
         Member existingMember = memberRepository.findByNickname(nickname);
         return existingMember != null;
@@ -191,14 +199,14 @@ public class MemberService implements UserDetailsService {
 
         return matcher.matches();
     }
-
-    private void validateDupulicateMember(Member member) {
-        Member findMember = memberRepository.findByEmail(member.getEmail());
-        if (findMember != null) {
-            throw new IllegalStateException("이미 가입된 회원입니다.");
-        }
-
-    }
+//
+//    private void validateDupulicateMember(Member member) {
+//        Member findMember = memberRepository.findByEmail(member.getEmail());
+//        if (findMember != null) {
+//            throw new IllegalStateException("이미 가입된 회원입니다.");
+//        }
+//
+//    }
 
 
     @Override
@@ -280,5 +288,31 @@ public class MemberService implements UserDetailsService {
             }
 
         });
+    }
+    //  이메일 대신 닉네임 출력 로직
+    public String getLoggedInUserNickname() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            // 사용자가 인증되었을 때만 닉네임을 가져옵니다.
+            String username = authentication.getName();
+            Member loggedInUser = memberRepository.findByEmail(username);
+            if (loggedInUser != null) {
+                return loggedInUser.getNickname();
+            }
+        }
+        return null; // 로그인하지 않은 사용자인 경우 null 반환
+    }
+
+    public int getLoggedInUserPoint() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            // 사용자가 인증되었을 때만 닉네임을 가져옵니다.
+            String username = authentication.getName();
+            Member loggedInUser = memberRepository.findByEmail(username);
+            if (loggedInUser != null) {
+                return loggedInUser.getPoint();
+            }
+        }
+        return 0; // 로그인하지 않은 사용자인 경우 null 반환
     }
 }

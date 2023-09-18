@@ -30,9 +30,6 @@ public class WebtoonData {  //작품 정보
     @Column
     private int allLike;
 
-    @Column
-    private int ratedBy;
-
     @OneToOne
     @JoinColumn(name = "webtoon_id")
     private Webtoon webtoon;

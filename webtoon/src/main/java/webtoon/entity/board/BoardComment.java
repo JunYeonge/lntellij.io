@@ -2,6 +2,8 @@ package webtoon.entity.board;
 
 import lombok.Getter;
 import lombok.Setter;
+import webtoon.dto.board.CommentDto;
+import webtoon.entity.BaseEntity;
 import webtoon.entity.member.Member;
 
 import javax.persistence.*;
@@ -11,29 +13,30 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(name = "comments")
-public class BoardComment {
+public class BoardComment extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @Column(length = 20, nullable = false)
+    private String commentWriter;
+
+    @Column
+    private String commentContent;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private Board board;
 
-    private String content;
-
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private Member member; // 댓글 작성자 정보
+    private Member member;
 
-
-    // 생성 시간 설정
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
+    public static BoardComment toSaveEntity(CommentDto commentDto, Board board) {
+        BoardComment commentEntity = new BoardComment();
+        commentEntity.setCommentContent(commentDto.getCommentContent());
+        commentEntity.setCommentWriter(commentDto.getCommentWriter());
+        commentEntity.setBoard(board);
+        return commentEntity;
     }
-
 }

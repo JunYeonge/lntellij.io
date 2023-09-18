@@ -16,19 +16,19 @@
     <!--     section1 날짜 카테고리-->
     <div id="section1_today_category">
         <div>
-            <h1>n요일 웹툰</h1>
+            <h1>모든요일 웹툰</h1>
             <div class="section1_btn_wrap">
-                <button>인기순</button>
+                <button>조회순</button>
                 <p>·</p>
                 <button>업데이트순</button>
                 <p>·</p>
-                <button>조회순</button>
+                <button>인기순</button>
                 <p>·</p>
                 <button>별점순</button>
             </div>
         </div>
         <div>
-            <a href="#">n요웹툰 전체보기</a>
+            <a id="dayLink" href="#">n요웹툰 전체보기</a>
             &nbsp;
             <i class="fa-solid fa-chevron-right"></i>
         </div>
@@ -42,157 +42,119 @@
     <div class="section1_slide_wrap">
         <div class="section1_slide_move">
             <!--slide1-1-->
+
+            <!--월요일-->
             <div class="section1_slide">
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="images/KakaoTalk_20230411_143157216.jpg" alt="img"></div>
+                <p class="empty_webtoon" th:if="${#lists.isEmpty(mondayWebtoons)}">아직 등록된 월요웹툰이 없습니다!</p>
+                <div class="section1_card" th:each="webtoon : ${mondayWebtoons}"
+                     th:unless="${#lists.isEmpty(mondayWebtoons)}">
+                    <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+
+                        <div><img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                                  th:alt="${webtoon.title}"></div>
                     </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="images/ex3.jpg" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="images/쥐.png" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="images/main1.png" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="images/main2.png" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
+                    <h2><a th:href="@{/main/search(searchQuery=${webtoon.title}, searchType='title')}"
+                           th:text="${webtoon.title}">작품명 쓰는 곳</a></h2>
+                    <h3><a th:href="@{/main/search(searchQuery=${webtoon.user_nickName}, searchType='writer')}"
+                           th:text="${webtoon.user_nickName}">작가 이름</a></h3>
                 </div>
             </div>
-            <!--slide1-2-->
+            <!--화요일-->
             <div class="section1_slide">
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="" alt="img"></div>
+                <p class="empty_webtoon" th:if="${#lists.isEmpty(tuesdayWebtoons)}">아직 등록된 화요웹툰이 없습니다!</p>
+                <div class="section1_card" th:each="webtoon : ${tuesdayWebtoons}"
+                     th:unless="${#lists.isEmpty(tuesdayWebtoons)}">
+                    <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+
+                        <div><img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                                  th:alt="${webtoon.title}"></div>
                     </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
+                    <h2><a th:href="@{/main/search(searchQuery=${webtoon.title}, searchType='title')}"
+                           th:text="${webtoon.title}">작품명 쓰는 곳</a></h2>
+                    <h3><a th:href="@{/main/search(searchQuery=${webtoon.user_nickName}, searchType='writer')}"
+                           th:text="${webtoon.user_nickName}">작가 이름</a></h3>
                 </div>
             </div>
-            <!--slide1-3 -->
+            <!--수요일-->
             <div class="section1_slide">
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="" alt="img"></div>
+                <p class="empty_webtoon" th:if="${#lists.isEmpty(wednesdayWebtoons)}">아직 등록된 수요웹툰이 없습니다!</p>
+                <div class="section1_card" th:each="webtoon : ${wednesdayWebtoons}"
+                     th:unless="${#lists.isEmpty(wednesdayWebtoons)}">
+                    <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+
+                        <div><img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                                  th:alt="${webtoon.title}"></div>
                     </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
+                    <h2><a th:href="@{/main/search(searchQuery=${webtoon.title}, searchType='title')}"
+                           th:text="${webtoon.title}">작품명 쓰는 곳</a></h2>
+                    <h3><a th:href="@{/main/search(searchQuery=${webtoon.user_nickName}, searchType='writer')}"
+                           th:text="${webtoon.user_nickName}">작가 이름</a></h3>
                 </div>
             </div>
-            <!--slide1-4-->
+            <!--목요일-->
             <div class="section1_slide">
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="" alt="img"></div>
+                <p class="empty_webtoon" th:if="${#lists.isEmpty(thursdayWebtoons)}">아직 등록된 목요웹툰이 없습니다!</p>
+                <div class="section1_card" th:each="webtoon : ${thursdayWebtoons}"
+                     th:unless="${#lists.isEmpty(thursdayWebtoons)}">
+                    <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+
+                        <div><img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                                  th:alt="${webtoon.title}"></div>
                     </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
-                </div>
-                <div class="section1_card">
-                    <a href="#">
-                        <div><img src="" alt="img"></div>
-                    </a>
-                    <h2><a href="#">작품명 쓰는 곳</a></h2>
-                    <h3><a href="#">작가 이름</a></h3>
+                    <h2><a th:href="@{/main/search(searchQuery=${webtoon.title}, searchType='title')}"
+                           th:text="${webtoon.title}">작품명 쓰는 곳</a></h2>
+                    <h3><a th:href="@{/main/search(searchQuery=${webtoon.user_nickName}, searchType='writer')}"
+                           th:text="${webtoon.user_nickName}">작가 이름</a></h3>
                 </div>
             </div>
+            <!--금요일-->
+            <div class="section1_slide">
+                <p class="empty_webtoon" th:if="${#lists.isEmpty(fridayWebtoons)}">아직 등록된 금요웹툰이 없습니다!</p>
+                <div class="section1_card" th:each="webtoon : ${fridayWebtoons}"
+                     th:unless="${#lists.isEmpty(fridayWebtoons)}">
+                    <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+                        <div><img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                                  th:alt="${webtoon.title}"></div>
+                    </a>
+                    <h2><a th:href="@{/main/search(searchQuery=${webtoon.title}, searchType='title')}"
+                           th:text="${webtoon.title}">작품명 쓰는 곳</a></h2>
+                    <h3><a th:href="@{/main/search(searchQuery=${webtoon.user_nickName}, searchType='writer')}"
+                           th:text="${webtoon.user_nickName}">작가 이름</a></h3>
+                </div>
+            </div>
+            <!--토요일-->
+            <div class="section1_slide">
+                <p class="empty_webtoon" th:if="${#lists.isEmpty(saturdayWebtoons)}">아직 등록된 토요웹툰이 없습니다!</p>
+                <div class="section1_card" th:each="webtoon : ${saturdayWebtoons}"
+                     th:unless="${#lists.isEmpty(saturdayWebtoons)}">
+                    <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+
+                        <div><img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                                  th:alt="${webtoon.title}"></div>
+                    </a>
+                    <h2><a th:href="@{/main/search(searchQuery=${webtoon.title}, searchType='title')}"
+                           th:text="${webtoon.title}">작품명 쓰는 곳</a></h2>
+                    <h3><a th:href="@{/main/search(searchQuery=${webtoon.user_nickName}, searchType='writer')}"
+                           th:text="${webtoon.user_nickName}">작가 이름</a></h3>
+                </div>
+            </div>
+            <!--일요일-->
+            <div class="section1_slide">
+                <p class="empty_webtoon" th:if="${#lists.isEmpty(sundayWebtoons)}">아직 등록된 일요웹툰이 없습니다!</p>
+                <div class="section1_card" th:each="webtoon : ${sundayWebtoons}"
+                     th:unless="${#lists.isEmpty(sundayWebtoons)}">
+                    <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+
+                        <div><img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                                  th:alt="${webtoon.title}"></div>
+                    </a>
+                    <h2><a th:href="@{/main/search(searchQuery=${webtoon.title}, searchType='title')}"
+                           th:text="${webtoon.title}">작품명 쓰는 곳</a></h2>
+                    <h3><a th:href="@{/main/search(searchQuery=${webtoon.user_nickName}, searchType='writer')}"
+                           th:text="${webtoon.user_nickName}">작가 이름</a></h3>
+                </div>
+            </div>
+
             <!--/slide-->
         </div>
     </div>
@@ -204,35 +166,35 @@
     <div class="section2_wrap">
         <div class="jy_dm">
             <div class="section2_jjywrap">
+
                 <div class="section2_jjpart1">
                     <div class="section2_jjtitle">
-                        <h3>user님, 이런 웹툰의 추천은 어떠세요?</h3>
+                        <h3>
+                            <span th:if="${#request.userPrincipal != null}"
+                                  th:text="${@memberService.getLoggedInUserNickname()} + '님, '"></span>
+                            <span th:unless="${#request.userPrincipal != null}"></span>
+                            이런 웹툰의 추천은 어떠세요?
+                        </h3>
                     </div>
                     <div class="section2_trov">
                         <ul class="section2_mainimg section2_jjmainimg">
-                            <li>
-                                <div class="section2_tr"><a href="#"><img src="" alt=""></a></div>
-                                <div><span><a href="#">제목1</a></span></div>
+                            <li th:unless="${not #lists.isEmpty(webtoonDtos)}">
+                                <span class="none_list">웹툰을 등록하고 추천받으세요!</span>
                             </li>
-                            <li>
-                                <div class="section2_tr"><a href="#"><img src="" alt=""></a></div>
-                                <div><span><a href="#">제목2</a></span></div>
-                            </li>
-                            <li>
-                                <div class="section2_tr"><a href="#"><img src="" alt=""></a></div>
-                                <div><span><a href="#">제목3</a></span></div>
-                            </li>
-                            <li>
-                                <div class="section2_tr"><a href="#"><img src="" alt=""></a></div>
-                                <div><span><a href="#">제목4</a></span></div>
-                            </li>
-                            <li>
-                                <div class="section2_tr"><a href="#"><img src="" alt=""></a></div>
-                                <div><span><a href="#">제목5</a></span></div>
-                            </li>
-                            <li>
-                                <div class="section2_tr section2_tr_hi"><a href="#"><img src="" alt=""></a></div>
-                                <div class="section2_tr_hi"><span><a href="#">제목6</a></span></div>
+
+                            <li th:each="webtoonDto : ${webtoonDtos}">
+                                <div class="section2_tr">
+                                    <a
+                                            th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoonDto.id})}"><img
+                                            th:src="@{${webtoonDto.webtoonPath + '/' + webtoonDto.thumbnail1}}"
+                                            th:alt="${webtoonDto.title}"></a>
+                                </div>
+
+                                <div>
+                                    <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoonDto.id})}">
+                                        <span class="textBold" th:text="${webtoonDto.title}"></span>
+                                    </a>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -281,64 +243,39 @@
 
                             <!-- 클래스 추가 -->
                             <div class="section2_jy_fontnone">
-                                <a href="#"><span class="linkText">로맨스</span> 웹툰 더보기 <i
+                                <a href="/webtoon?genre=romance"><span class="linkText">로맨스</span> 웹툰 더보기 <i
                                         class="fa-sharp fa-solid fa-chevron-right fa-xs foco"></i></a>
                             </div>
                         </div> <!-- section2_titdv -->
 
 
                         <div class="section2_trov section2_jy_trov">
-                            <ul class="section2_mainimg section2_jj">
-                                <li class="active"><a href="#">
-                                    <div class="section2_tr"><img src="" alt=""></div>
-                                </a>
+                            <ul class="section2_mainimg section2_jj genreWrap">
+
+                                <li th:if="${not #lists.isEmpty(genreWebtoonDto)}" class="active genreRepeat"
+                                    th:each="webtoon, stat : ${genreWebtoonDto}">
+                                    <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+                                        <div class="section2_tr">
+                                            <img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                                                 th:alt="${webtoon.title}">
+                                        </div>
+                                    </a>
                                     <div class="section2_topa">
-                                        <span class="section2_font"><strong>1</strong></span>
-                                        <div class="section_jjy_tit"><a href="#">제목1</a></div>
+                                        <span class="section2_font"><strong
+                                                th:text="${stat.index + 1}">1</strong></span>
+                                        <div class="section_jjy_tit"><a
+                                                th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}"
+                                                th:text="${webtoon.title}" class="genreTitle">제목</a></div>
                                     </div>
                                 </li>
-                                <li><a href="#">
-                                    <div class="section2_tr"><img src="" alt=""></div>
-                                </a>
-                                    <div class="section2_topa">
-                                        <span class="section2_font"><strong>2</strong></span>
-                                        <div class="section_jjy_tit"><a href="#">제목2</a></div>
-                                    </div>
+                                <li th:unless="${not #lists.isEmpty(genreWebtoonDto)}">
+                                    <span class="none_list">해당 장르에 웹툰이 없습니다.</span>
                                 </li>
-                                <li><a href="#">
-                                    <div class="section2_tr"><img src="" alt=""></div>
-                                </a>
-                                    <div class="section2_topa">
-                                        <span class="section2_font"><strong>3</strong></span>
-                                        <div class="section_jjy_tit"><a href="#">제목3</a></div>
-                                    </div>
-                                </li>
-                                <li><a href="#">
-                                    <div class="section2_tr"><img src="" alt=""></div>
-                                </a>
-                                    <div class="section2_topa">
-                                        <span class="section2_font"><strong>4</strong></span>
-                                        <div class="section_jjy_tit"><a href="#">제목4</a></div>
-                                    </div>
-                                </li>
-                                <li><a href="#">
-                                    <div class="section2_tr"><img src="" alt=""></div>
-                                </a>
-                                    <div class="section2_topa">
-                                        <span class="section2_font"><strong>5</strong></span>
-                                        <div class="section_jjy_tit"><a href="#">제목5</a></div>
-                                    </div>
-                                </li>
-                                <li class="section2_tr_hi"><a href="#">
-                                    <div class="section2_tr"><img src="" alt=""></div>
-                                </a>
-                                    <div class="section2_topa">
-                                        <span class="section2_font"><strong>6</strong></span>
-                                        <div class="section_jjy_tit"><a href="#">제목6</a></div>
-                                    </div>
-                                </li>
+
                             </ul> <!-- section2_maining -->
                         </div> <!-- section2_trov -->
+
+
                     </div> <!-- section2_jjy -->
                 </div>
             </div> <!-- section2_jjywrap -->
@@ -352,182 +289,115 @@
                         <div>
                             <h3>이달의 신작</h3>
                         </div>
-                        <div><a href="#">신작웹툰 더보기<i class="fa-sharp fa-solid fa-chevron-right fa-xs"></i></a></div>
+                        <div><a href="/webtoon?genre=all">신작웹툰 더보기<i
+                                class="fa-sharp fa-solid fa-chevron-right fa-xs"></i></a></div>
                     </div>
                     <div class="section2_dr_wrapflex">
-                        <ul class="section2_dr_mr">
-                            <li>
-                                <ul class="section2_dr_ulsize">
-                                    <li>
-                                        <div class="section2_dr_img"><a href="#"><img src="" alt=""></a></div>
-                                    </li>
-                                    <li>
-                                        <div class="section2_dr_tile"><a href="#">작가 제목</a></div>
-                                    </li>
-                                    <li>
-                                        <div class="section2_dr_name"><a href="">작가이름</a></div>
-                                        <div class="section2_dr_ti"><a href="">2줄짜리 작품 설명입니다!!!2줄짜리 작품 설명입니다!!!2줄짜리
-                                            작품 설명입니다!!!2줄짜리 작품 설명입니다!!!</a></div>
-                                        <div class="section2_dr_aflex">
-                                            <a href="#">
-                                                <div class="section2_dr_atag">#장르</div>
-                                            </a>
-                                            <a href="#">
-                                                <div class="section2_dr_atag">#액션</div>
-                                            </a>
-                                            <a href="#">
-                                                <div class="section2_dr_atag">#보내줘</div>
-                                            </a>
 
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <div th:unless="${not #lists.isEmpty(webtoonInfoList)}">
+                            <span class="none_list">아직 신작 웹툰이 없습니다!</span>
+                        </div>
+                        <div th:each="webtoonInfo : ${webtoonInfoList}" class="section2_dr_item">
+                            <ul class="section2_dr_mr">
+                                <li>
+                                    <div class="section2_dr_img"><a
+                                            th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoonInfo.id})}"><img
+                                            th:src="@{${webtoonInfo.webtoonPath + '/' + webtoonInfo.thumbnail1}}"
+                                            alt=""></a></div>
+                                </li>
+                                <li>
+                                    <!--                                    작품명-->
+                                    <div class="section2_dr_tile"><i class="fa-solid fa-book"></i> <a
+                                            th:text="${webtoonInfo.title}"
+                                            th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoonInfo.id})}"></a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!--                                    작가명-->
+                                    <div class="section2_dr_name"><i class="fa-solid fa-feather"></i> <a
+                                            th:text="${webtoonInfo.userNickName}"
+                                            th:href="@{/main/search(searchQuery=${webtoonInfo.userNickName}, searchType='writer')}"></a>
+                                    </div>
+                                    <div class="section2_dr_ti">
+                                        <i class="fa-solid fa-circle-info"></i> <span
+                                            th:text="${webtoonInfo.webtoonInfo}"></span>
+                                    </div>
+                                    <div class="section2_dr_aflex">
+                                        <a th:href="@{/main/search(searchQuery=${genre}, searchType='genre')}"
+                                           th:if="${iterStat.index < 3}"
+                                           th:each="genre, iterStat : ${#strings.arraySplit(webtoonInfo.genre, '#')}">
+                                            <div class="section2_dr_atag" th:text="'#' + ${genre}"></div>
+                                        </a>
+                                    </div>
 
+                                </li>
+                            </ul>
+                        </div>
 
-                        <ul class="section2_dr_mr">
-                            <li>
-                                <ul>
-                                    <li>
-                                        <div class="section2_dr_img"><a href="#"><img src="" alt=""></a></div>
-                                    </li>
-                                    <li>
-                                        <div class="section2_dr_tile"><a href="#">작가 제목</a></div>
-                                    </li>
-                                    <li>
-                                        <div class="section2_dr_name"><a href="">작가이름</a></div>
-                                        <div class="section2_dr_ti"><a href="">2줄짜리 작품 설명입니다!!!2줄짜리 작품 설명입니다!!!2줄짜리
-                                            작품 설명입니다!!!2줄짜리 작품 설명입니다!!!</a></div>
-                                        <div class="section2_dr_aflex">
-                                            <a href="#">
-                                                <div class="section2_dr_atag">#장르</div>
-                                            </a>
-                                            <a href="#">
-                                                <div class="section2_dr_atag">#액션</div>
-                                            </a>
-                                            <a href="#">
-                                                <div class="section2_dr_atag">#보내줘</div>
-                                            </a>
-
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul class="section2_dr_mr">
-                            <li>
-                                <ul>
-                                    <li>
-                                        <div class="section2_dr_img"><a href="#"><img src="" alt=""></a></div>
-                                    </li>
-                                    <li>
-                                        <div class="section2_dr_tile"><a href="#">작가 제목</a></div>
-                                    </li>
-                                    <li>
-                                        <div class="section2_dr_name"><a href="">작가이름</a></div>
-                                        <div class="section2_dr_ti"><a href="">2줄짜리 작품 설명입니다!!!2줄짜리 작품 설명입니다!!!2줄짜리
-                                            작품 설명입니다!!!2줄짜리 작품 설명입니다!!!</a></div>
-                                        <div class="section2_dr_aflex">
-                                            <a href="#">
-                                                <div class="section2_dr_atag">#장르</div>
-                                            </a>
-                                            <a href="#">
-                                                <div class="section2_dr_atag">#액션</div>
-                                            </a>
-                                            <a href="#">
-                                                <div class="section2_dr_atag">#보내줘</div>
-                                            </a>
-
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
                     </div>
                 </div>
                 <div class="section2_dr_challenge">
-                    <div class="section2_dr_wrapflex">
+                    <div  class="section2_dr_wrapflex" th:if="${#lists.isEmpty(newWebtoonListDto)}">
+                        <ul class="none_list">
+                            웹툰이 아직 없습니다!
+                        </ul>
+                    </div>
+                    <div class="section2_dr_wrapflex" th:if="${not #lists.isEmpty(newWebtoonListDto)}">
+
                         <ul>
                             <li>
                                 <div class="section2_dr_mb">
-                                    <h3>새로운 베스트 도전</h3>
+                                    <h3>가장 최신 웹툰</h3>
                                 </div>
                                 <ul class="section2_dr_text">
                                     <li>
-                                        <div class="section2_dr_mideimg"><a href="#"><img src="" alt=""
-                                                                                          class="section2_dr_hoimg"></a>
+                                        <div class="section2_dr_mideimg"><a
+                                                th:href="@{/webtoonPage/{webtoonId}(webtoonId=${newWebtoonListDto[0].id})}"><img
+                                                th:src="@{${newWebtoonListDto[0].webtoonPath + '/' + newWebtoonListDto[0].thumbnail2}}"
+                                                alt="최신웹툰"
+                                                class="section2_dr_hoimg"></a>
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="section2_dr_mbd"><a href="#">작가 제목</a></div>
+                                        <div class="section2_dr_mbd"><a
+                                                th:href="@{/webtoonPage/{webtoonId}(webtoonId=${newWebtoonListDto[0].id})}"
+                                                th:text="${newWebtoonListDto[0].title}"> 제목</a>
+                                        </div>
                                     </li>
                                     <li>
-                                        <div class="section2_dr_mbd"><a href="#">작가이름</a></div>
+                                        <div class="section2_dr_mbd"><a
+                                                th:href="@{/main/search(searchQuery=${newWebtoonListDto[0].user_nickName}, searchType='writer')}"
+                                                th:text="${newWebtoonListDto[0].user_nickName}">작가이름</a></div>
                                     </li>
                                     <li>
-                                        <div class="section2_dr_ile"><a href="#">여긴 2줄짜리 작품 설명
-                                            입니다.하지만 지금은 집에 넘 가고싶고 너무 졸리고롤도 하고싶습니다 너는 못할꺼야</a></div>
+                                        <div class="section2_dr_ile"><a
+                                                th:href="@{/webtoonPage/{webtoonId}(webtoonId=${newWebtoonListDto[0].id})}"
+                                                th:text="${newWebtoonListDto[0].webtoonInfo}">작품설명</a></div>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
+
                         <ul>
                             <li class="section2_dr_mobile">
                                 <div class="section2_dr_mb">
-                                    <h3>추천 베스트도전&도전만화</h3>
+                                    <h3>추천 신규 웹툰</h3>
                                 </div>
                                 <ul>
-                                    <li>
-                                        <div class="section2_dr_liflex">
-                                            <div class="section2_dr_imgminisize"><a href="#"><img src="" alt=""></a>
+                                    <li th:each="webtoon, stat : ${newWebtoonListDto}">
+                                        <!-- 1번째 인덱스부터 3번째 인덱스까지만 반복 -->
+                                        <div class="section2_dr_liflex" th:if="${stat.index >= 1 and stat.index <= 3}">
+                                            <div class="section2_dr_imgminisize">
+                                                <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+                                                    <img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail2}}" alt="">
+                                                </a>
                                             </div>
                                             <div class="section2_dr_ml">
                                                 <div class="section2_dr_mbm">
-                                                    <a href="#">제목입니다.</a>
+                                                    <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}" th:text="${webtoon.title}">제목입니다.</a>
                                                 </div>
                                                 <div class="section2_dr_magb">
-                                                    <a href="#">작가입니다.</a>
-                                                </div>
-                                                <div>
-                                                    <span>★1.0(별점)</span>
-                                                    <span>※100(조회)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="section2_dr_liflex">
-                                            <div class="section2_dr_imgminisize"><a href="#"><img src="" alt=""></a>
-                                            </div>
-                                            <div class="section2_dr_ml">
-                                                <div class="section2_dr_mbm">
-                                                    <a href="#">제목입니다.</a>
-                                                </div>
-                                                <div class="section2_dr_magb">
-                                                    <a href="#">작가입니다.</a>
-                                                </div>
-                                                <div>
-                                                    <span>★1.0(별점)</span>
-                                                    <span>※100(조회)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="section2_dr_liflex">
-                                            <div class="section2_dr_imgminisize"><a href="#"><img src="" alt=""></a>
-                                            </div>
-                                            <div class="section2_dr_ml">
-                                                <div class="section2_dr_mbm">
-                                                    <a href="#">제목입니다.</a>
-                                                </div>
-                                                <div class="section2_dr_magb">
-                                                    <a href="#">작가입니다.</a>
-                                                </div>
-                                                <div>
-                                                    <span>★1.0(별점)</span>
-                                                    <span>※100(조회)</span>
+                                                    <a th:href="@{/main/search(searchQuery=${webtoon.user_nickName}, searchType='writer')}" th:text="${webtoon.user_nickName}">작가입니다.</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -537,59 +407,23 @@
                         </ul>
                         <ul>
                             <li class="section2_dr_mobile">
-                                <div class="section2_dr_rig section2_dr_mb"><a href="#">베스트도전 전체보기<i
+                                <div class="section2_dr_rig section2_dr_mb"><a href="/dailyWebtoon">오늘의 신규 웹툰 <i
                                         class="fa-sharp fa-solid fa-chevron-right fa-xs"></i></a></div>
                                 <ul>
-                                    <li>
-                                        <div class="section2_dr_liflex">
-                                            <div class="section2_dr_imgminisize"><a href="#"><img src="" alt=""></a>
+                                    <li th:each="webtoon, stat : ${newWebtoonListDto}">
+                                        <!-- 1번째 인덱스부터 3번째 인덱스까지만 반복 -->
+                                        <div class="section2_dr_liflex" th:if="${stat.index >= 4 and stat.index <= 6}">
+                                            <div class="section2_dr_imgminisize">
+                                                <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+                                                    <img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail2}}" alt="">
+                                                </a>
                                             </div>
                                             <div class="section2_dr_ml">
                                                 <div class="section2_dr_mbm">
-                                                    <a href="#">제목입니다.</a>
+                                                    <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}" th:text="${webtoon.title}">제목입니다.</a>
                                                 </div>
                                                 <div class="section2_dr_magb">
-                                                    <a href="#">작가입니다.</a>
-                                                </div>
-                                                <div>
-                                                    <span>★1.0(별점)</span>
-                                                    <span>※100(조회)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="section2_dr_liflex">
-                                            <div class="section2_dr_imgminisize"><a href="#"><img src="" alt=""></a>
-                                            </div>
-                                            <div class="section2_dr_ml">
-                                                <div class="section2_dr_mbm">
-                                                    <a href="#">제목입니다.</a>
-                                                </div>
-                                                <div class="section2_dr_magb">
-                                                    <a href="#">작가입니다.</a>
-                                                </div>
-                                                <div>
-                                                    <span>★1.0(별점)</span>
-                                                    <span>※100(조회)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="section2_dr_liflex">
-                                            <div class="section2_dr_imgminisize"><a href="#"><img src="" alt=""></a>
-                                            </div>
-                                            <div class="section2_dr_ml">
-                                                <div class="section2_dr_mbm">
-                                                    <a href="#">제목입니다.</a>
-                                                </div>
-                                                <div class="section2_dr_magb">
-                                                    <a href="#">작가입니다.</a>
-                                                </div>
-                                                <div>
-                                                    <span>★1.0(별점)</span>
-                                                    <span>※100(조회)</span>
+                                                    <a th:href="@{/main/search(searchQuery=${webtoon.user_nickName}, searchType='writer')}" th:text="${webtoon.user_nickName}">작가입니다.</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -597,6 +431,7 @@
                                 </ul>
                             </li>
                         </ul>
+
                     </div>
                 </div>
             </div>
@@ -616,72 +451,43 @@
                     </div>
                 </div>
                 <ul class="section2_hs_list">
-                    <li class="section2_hs_ranking">
+
+                    <li class="section2_hs_ranking" th:each="webtoonGender, stat : ${genderWebtoonDto}" th:if="${not #lists.isEmpty(genderWebtoonDto)}">
                         <div class="section2_hs_ranking_flex">
-                            <div><a href="#"><img src="" alt=""></a></div>
-                            <div><Strong>1</Strong></div>
+                            <div><a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoonGender.id})}"><img
+                                    th:src="@{${webtoonGender.webtoonPath + '/' + webtoonGender.thumbnail1}}"
+                                    alt=""></a></div>
+                            <div><strong th:text="${stat.index + 1}"></strong></div>
                             <div class="section2_hs_rankingtext">
-                                <div><a href="#"><strong>제목입니다.제목입니다.제목입니다.</strong></a></div>
-                                <div><a href="#">텍스트초과시 뒤에 ...남길꼬야야야야</a></div>
+                                <div><a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoonGender.id})}"><strong
+                                        th:text="${webtoonGender.title}">제목</strong></a></div>
+                                <div class="genderWriter">
+                                    <a th:href="@{/main/search(searchQuery=${webtoonGender.user_nickName}, searchType='writer')}"
+                                       th:text="${webtoonGender.user_nickName}">작가</a></div>
                             </div>
                         </div>
                     </li>
-                    <li class="section2_hs_ranking">
-                        <div class="section2_hs_ranking_flex">
-                            <div><a href="#"><img src="" alt=""></a></div>
-                            <div><Strong>2</Strong></div>
-                            <div class="section2_hs_rankingtext">
-                                <div><a href="#"><strong>111111111111111111111111111111</strong>.</a></div>
-                                <div><a href="#">작가입니다.</a></div>
-                            </div>
-                        </div>
+                    <li class="none_list" th:unless="${not #lists.isEmpty(genderWebtoonDto)}">
+                        웹툰을 등록해주세요.
                     </li>
-                    <li class="section2_hs_ranking">
-                        <div class="section2_hs_ranking_flex">
-                            <div><a href="#"><img src="" alt=""></a></div>
-                            <div><Strong>3</Strong></div>
-                            <div class="section2_hs_rankingtext">
-                                <div><a href="#"><strong>제목입니다</strong>.</a></div>
-                                <div><a href="#">작가입니다.</a></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="section2_hs_ranking">
-                        <div class="section2_hs_ranking_flex">
-                            <div><a href="#"><img src="" alt=""></a></div>
-                            <div><Strong>4</Strong></div>
-                            <div class="section2_hs_rankingtext">
-                                <div><a href="#"><strong>제목입니다</strong>.</a></div>
-                                <div><a href="#">작가입니다.</a></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="section2_hs_ranking">
-                        <div class="section2_hs_ranking_flex">
-                            <div><a href="#"><img src="" alt=""></a></div>
-                            <div><Strong>5</Strong></div>
-                            <div class="section2_hs_rankingtext">
-                                <div><a href="#"><strong>제목입니다</strong>.</a></div>
-                                <div><a href="#">텍스트초과시 뒤에 ...남길꼬야야야야.</a></div>
-                            </div>
-                        </div>
-                    </li>
+
                 </ul>
                 <!-- 배너 -->
             </div> <!-- /랭킹조회 -->
 
             <div class="section2_hs_banner">
                 <div class="section2_hs_banner1">
-                    <a href="#"><img src="" alt=""></a>
+                    <a href="/ad/1"><img src="/images/cookie2.png" alt="ad"></a>
                 </div>
                 <div class="section2_hs_banner2">
-                    <a href="#"><img src="" alt=""></a>
-                    <a href="#"><img src="" alt=""></a>
+                    <a href="/ad/5"><img src="/images/writerBanner.png" alt="ad"></a>
+                    <a href="/ad/6"><img src="/images/developCommentLogo.png" alt="ad"></a>
                 </div>
             </div> <!-- /배너 -->
 
             <!-- 공지사항 -->
             <div class="section2_hs_tablet">
+
                 <div class="section2_hs_announcement">
                     <div class="section2_hs_comment">
                         <h3>공지사항</h3>
@@ -689,51 +495,404 @@
                     </div>
                     <div>
                         <ul class="section2_hs_comment_text">
-                            <li><a href="#">한줄입니다</a></li>
-                            <li><a href="#">텍스트 크기가 가로보다 길게써지면 ...으로 남길꼬야야야얌</a></li>
-                            <li><a href="#">텍스트 크기가 가로보다 길게써지면 ...으로 남길꼬야야야얌</a></li>
-                            <li><a href="#">텍스트 크기가 가로보다 길게써지면 ...으로 남길꼬야야야얌</a></li>
-                            <li><a href="#">텍스트 크기가 가로보다 길게써지면 ...으로 남길꼬야야야얌</a></li>
-                            <li><a href="#">텍스트 크기가 가로보다 길게써지면 ...으로 남길꼬야야야얌</a></li>
-                            <li><a href="#">텍스트 크기가 가로보다 길게써지면 ...으로 남길꼬야야야얌</a></li>
+                            <li th:if="${boardTitles.isEmpty()}">
+                                <p>아직 게시글이 없습니다.</p>
+                            </li>
+                            <li th:each="title : ${boardTitles}">
+                                <i class="fa-solid fa-lightbulb"></i>
+                                <a th:href="@{'/board/list/' + ${title.id}}" th:text="${title.boardTitle}"></a>
+                            </li>
                         </ul>
                     </div>
                 </div> <!-- /공지사항 -->
+
+
                 <!-- 앱 설치안내 -->
                 <div class="section2_hs_app">
                     <div>
-                        <h3>네이버웹툰 앱 설치 안내</h3>
-                        <p>쿠키오븐의 <span>무료쿠키</span>로 미리보기 회차를 열람하고<br>
-                            매일 지급되는 <span>무료대여권</span>으로 작품을 열람해 보세요!</p>
+                        <h3>인덱스웹툰 QR 코드</h3>
+                        <p>웹 배포 기념 <span>무료쿠키</span>를 받을 수 있습니다!<br>
+                            메인페이지 <span>이벤트 베너</span>쪽을 찾아보세요!</p>
                     </div>
                     <div class="section2_hs_app_img">
-                        <div><img src="" alt=""></div>
+                        <div><img src="/images/qr.png" alt="qr"></div>
                         <div>
-                            <div><a href=""><img src="" alt=""></a></div>
-                            <div><a href=""><img src="" alt=""></a></div>
+                            <div><a href="https://anyang.greenart.co.kr/"><img src="/images/academy.png" alt="academy"></a>
+                            </div>
+                            <div><a href="/ad/7"><img src="/images/thanks.png" alt="thanks"></a></div>
                         </div>
                     </div>
                 </div> <!-- /앱 설치 안내 -->
             </div>
         </div>
-        <p id="errorMessageParagraph"></p>
 
     </div> <!-- /section2_wrap -->
     <script th:inline="javascript">
 
-        document.addEventListener("DOMContentLoaded", function () {
+        let errorMessage = /*[[${errorMessage}]]*/ null;
+
+        let message = /*[[${message}]]*/ null;
+
+        if (message) {
+            alert(message);
+            window.location.href = '/main';
+        }
+
+        if (errorMessage) {
+            alert(errorMessage);
+            window.location.href = '/main';
+        }
+
+        var today = /*[[${today}]]*/ null;
+
+        function section1_desktop_script() {
+            const section1_slide_prev = document.querySelector("#section1_slide_prev");
+            const section1_slide_next = document.querySelector("#section1_slide_next");
+            const section1_slide = document.querySelector(".section1_slide_move");
+            const section1_category = document.querySelectorAll(".section1_btn_wrap button");
+            let slide_count = 0;
+
+            // 캐로셀 prev 함수
+
+            // 여기부터 수정 타임리프에서 요일 가져와서 수정
+            var today = /*[[${today}]]*/ null;
 
 
-            let errorMessage = /*[[${errorMessage}]]*/ null;
-
-            if (errorMessage) {
-                alert(errorMessage);
-                window.location.href = '/main';
+            function dayReset(firstTime) {
+                if (firstTime) {
+                    if (today == 1) {
+                        slide_count = 0;
+                    } else if (today == 2) {
+                        slide_count = -1204;
+                    } else if (today == 3) {
+                        slide_count = -2408;
+                    } else if (today == 4) {
+                        slide_count = -3612;
+                    } else if (today == 5) {
+                        slide_count = -4816;
+                    } else if (today == 6) {
+                        slide_count = -6020;
+                    } else if (today == 7) {
+                        slide_count = -7224;
+                    }
+                    changeDay();
+                    maxPageBtn();
+                    section1_slide.style.left = slide_count + "px";
+                }
             }
 
-        });
+            dayReset(true);
+
+            function changeDay() {
+                if (slide_count == 0) {
+                    section1_today(1)
+                } else if (slide_count == -1204) {
+                    section1_today(2)
+                } else if (slide_count == -2408) {
+                    section1_today(3)
+                } else if (slide_count == -3612) {
+                    section1_today(4)
+                } else if (slide_count == -4816) {
+                    section1_today(5)
+                } else if (slide_count == -6020) {
+                    section1_today(6)
+                } else if (slide_count == -7224) {
+                    section1_today(0)
+                }
+            }
+
+            function maxPageBtn() {
+                if (slide_count == 0) {
+                    section1_slide_prev.style.display = "none";
+                } else if (slide_count == -7224) {
+                    section1_slide_next.style.display = "none";
+                } else {
+                    section1_slide_prev.style.display = "block"
+                    section1_slide_next.style.display = "block"
+                }
+            }
+
+            section1_slide_prev.onclick = function () {
+
+                section1_slide_next.style.display = "block"
+                slide_count += 1204;
+                section1_slide.style.left = slide_count + "px";
+                changeDay();
+                maxPageBtn();
+            }
+            // 캐로셀 next 함수
+            section1_slide_next.onclick = function () {
+                section1_slide_prev.style.display = "block"
+                slide_count -= 1204;
+                section1_slide.style.left = slide_count + "px";
+                changeDay();
+                maxPageBtn();
+            }
+
+            // 카테고리 버튼 색
+            for (let i = 0; i < section1_category.length; i++) {
+                section1_category[i].onclick = function () {
+                    for (let j = 0; j < section1_category.length; j++) {
+                        section1_category[j].style.color = "#4e4e4e";
+                    }
+                    section1_category[i].style.color = "#00dc64";
+                };
+            }
+
+        }
+
+        section1_desktop_script();
+
+        // 페이지의 비동기적 업데이트를 위한 json 입니다
+        // type는 버튼의 순서입니다. ex) orderBy(1) 첫 번째(조회순) 버튼 누름
+        function orderBy(type) {
+            // 버튼 선택
+            const popularButton = document.querySelector(`.section1_btn_wrap button:nth-of-type(${type})`);
+            // 클릭하면 이벤트 발생
+            popularButton.addEventListener('click', function () {
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+                            mainWebtoonList(response);
+                        } else {
+                            console.error('Error:', xhr.status);
+                        }
+                    }
+                };
+                // 여기서 endpoint는 컨트롤러의 경로입니다.
+                // 코드 하단에 함수 있습니다
+                const endpoint = getEndpointByType(type);
+                // get 매핑
+                xhr.open('GET', endpoint, true);
+                xhr.send();
+            });
+
+            function mainWebtoonList(data) {
+                // 바뀔 요소의 컨테이너입니다
+                const daysWrap = document.querySelectorAll('.section1_slide');
+                // 월~일 7개 요일 바꾸는 용도
+                const daysWebtoons = [
+                    data.mondayWebtoons,
+                    data.tuesdayWebtoons,
+                    data.wednesdayWebtoons,
+                    data.thursdayWebtoons,
+                    data.fridayWebtoons,
+                    data.saturdayWebtoons,
+                    data.sundayWebtoons
+                ];
+                // 아래 7개의 영역을 바꾸느라 이중 for 문을 사용했습니다.
+                daysWebtoons.forEach((dayWebtoons, index) => {
+                    const dayWrap = daysWrap[index];
+                    const webtoonDivs = dayWrap.querySelectorAll('.section1_card');
+                    // 한 번 돌 때마다,(월요일, 화요일 처럼 한 번 돌 때마다) 안의 요소를 바꿉니다.
+                    webtoonDivs.forEach((webtoonDiv, i) => {
+                        const webtoon = dayWebtoons[i];
+                        if (webtoon) {
+                            const img = webtoonDiv.querySelector('img');
+                            const link = webtoonDiv.querySelector('a:first-of-type');
+                            const titleLink = webtoonDiv.querySelector('h2 a');
+                            const titleLink2 = webtoonDiv.querySelector('h3 a');
+                            // 여기는 요소 바꾸는 용도
+                            link.href = `/webtoonPage/${webtoon.id}`;
+                            titleLink.href = "/main/search?searchQuery=" + webtoon.title + "&searchType=title";
+                            titleLink.textContent = webtoon.title;
+                            titleLink2.href = "/main/search?searchQuery=" + webtoon.user_nickName + "&searchType=writer";
+                            titleLink2.textContent = webtoon.user_nickName;
+                            img.src = webtoon.webtoonPath + '/' + webtoon.thumbnail1;
+                        }
+                    });
+                });
+            }
+            // 아까 말씀드린 컨트롤러 경로입니다
+            function getEndpointByType(type) {
+                switch (type) {
+                    case 1: // 인기순
+                        return '/main/view';
+                    case 2: // 업데이트순
+                        return '/main/Update';
+                    case 3: // 좋아요순
+                        return '/main/like';
+                    case 4: // 별점순
+                        return '/main/star';
+                    default:
+                        return '';
+                }
+            }
+        }
+        // 여긴 함수 실행입니다
+        orderBy(1); // 인기순 정렬
+        orderBy(2); // 업데이트순 정렬
+        orderBy(3); // 좋아요순 정렬
+        orderBy(4); // 별점순 정렬
+
+
+        function genreBy(type) {
+            const popularButton = document.querySelector(`.section2_btndv button:nth-of-type(${type})`);
+
+            popularButton.addEventListener('click', function () {
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+                            mainWebtoonList(response);
+                        } else {
+                            console.error('Error:', xhr.status);
+                        }
+                    }
+                };
+
+                const endpoint = getEndpointByType(type);
+                xhr.open('GET', endpoint, true);
+                xhr.send();
+            });
+
+            function mainWebtoonList(data) {
+                const daysWrap = document.querySelectorAll('.genreWrap');
+                const daysWebtoons = [
+                    data.genreWebtoonDto,
+                ];
+
+                daysWebtoons.forEach((dayWebtoons, index) => {
+                    const dayWrap = daysWrap[index];
+                    const webtoonDivs = dayWrap.querySelectorAll('.genreRepeat');
+
+                    webtoonDivs.forEach((webtoonDiv, i) => {
+                        const webtoon = dayWebtoons[i];
+                        if (webtoon) {
+                            // 반복문 돌면서 이미지 바꿈
+                            const img = webtoonDiv.querySelector('img');
+                            // 경로 / 이미지
+                            const link = webtoonDiv.querySelector('a:first-of-type');
+                            // 작품명과 링크
+                            const titleLink = webtoonDiv.querySelector('.genreTitle');
+
+                            link.href = `/webtoonPage/${webtoon.id}`;
+                            titleLink.href = `/webtoonPage/${webtoon.id}`;
+                            titleLink.textContent = webtoon.title;
+                            img.src = webtoon.webtoonPath + '/' + webtoon.thumbnail1;
+                        }
+                    });
+                });
+            }
+
+            function getEndpointByType(type) {
+                if (type === 1) {
+                    return '/genre/romance';
+                } else if (type === 2) {
+                    return '/genre/fantasy';
+                } else if (type === 3) {
+                    return '/genre/action';
+                } else if (type === 4) {
+                    return '/genre/daily';
+                } else if (type === 5) {
+                    return '/genre/thriller';
+                } else if (type === 6) {
+                    return '/genre/comedy';
+                } else if (type === 7) {
+                    return '/genre/martial';
+                } else if (type === 8) {
+                    return '/genre/drama';
+                } else if (type === 9) {
+                    return '/genre/sentimental';
+                } else if (type === 10) {
+                    return '/genre/sports';
+                } else {
+                    return '';
+                }
+            }
+
+        }
+
+        genreBy(1); // 로맨스
+        genreBy(2); // 판타지
+        genreBy(3); // 액션
+        genreBy(4); // 일상
+        genreBy(5); // 스릴러
+        genreBy(6); // 개그
+        genreBy(7); // 무협/사극
+        genreBy(8); // 드라마
+        genreBy(9); // 감성
+        genreBy(10); //스포츠
+
+
+    //     성별 웹툰
+        function genderBy(type) {
+            const popularButton = document.querySelector(`.section2_hs_btn button:nth-of-type(${type})`);
+
+            popularButton.addEventListener('click', function () {
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+                            mainWebtoonList(response);
+                        } else {
+                            console.error('Error:', xhr.status);
+                        }
+                    }
+                };
+
+                const endpoint = getEndpointByType(type);
+                xhr.open('GET', endpoint, true);
+                xhr.send();
+            });
+
+            function mainWebtoonList(data) {
+                const daysWrap = document.querySelectorAll('.section2_hs_list');
+                const daysWebtoons = [
+                    data.genderWebtoonDto,
+                ];
+
+                daysWebtoons.forEach((dayWebtoons, index) => {
+                    const dayWrap = daysWrap[index];
+                    const webtoonDivs = dayWrap.querySelectorAll('.section2_hs_ranking');
+
+                    webtoonDivs.forEach((webtoonDiv, i) => {
+                        const webtoon = dayWebtoons[i];
+                        if (webtoon) {
+                            // 반복문 돌면서 이미지 바꿈
+                            const img = webtoonDiv.querySelector('img');
+                            // // 경로 / 이미지
+                            const link1 = webtoonDiv.querySelector('a');
+                            const link2 = webtoonDiv.querySelector('.section2_hs_rankingtext a');
+                            const link3 = webtoonDiv.querySelector('.genderWriter a');
+                            // // 작품명과 링크
+                            // const titleLink = webtoonDiv.querySelector('.genreTitle');
+
+                            link1.href = `/webtoonPage/${webtoon.id}`;
+                            link2.href = `/webtoonPage/${webtoon.id}`;
+                            link2.textContent = webtoon.title;
+                            link3.textContent = webtoon.user_nickName;
+                            link3.href = "/main/search?searchQuery=" + webtoon.user_nickName + "&searchType=writer";
+
+                            img.src = webtoon.webtoonPath + '/' + webtoon.thumbnail1;
+                        }
+                    });
+                });
+            }
+
+            function getEndpointByType(type) {
+                switch (type) {
+                    case 1: // 전체
+                        return '/gender/view_count';
+                    case 2: // 남성
+                        return '/gender/man_count';
+                    case 3: // 여성
+                        return '/gender/girl_count';
+                    default:
+                        return '';
+                }
+            }
+        }
+        genderBy(1);
+        genderBy(2);
+        genderBy(3);
+
+
     </script>
 </section>
-<!-- /section2 -->
 
 </html>

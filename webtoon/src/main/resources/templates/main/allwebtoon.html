@@ -5,17 +5,50 @@
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
     <style>
-#nav_bar a:nth-of-type(2) {
-    background-color: #00dc64;
-    color: #fff;
-}
+        #nav_bar a:nth-of-type(2) {
+            background-color: #00dc64;
+            color: #fff;
+        }
     </style>
 </th:block>
 <section layout:fragment="content">
-    <h1>모든 웹툰 페이지</h1>
+    <h1>모든 웹툰</h1>
 
+    <div id="tag_wrap">
+        <a href="/webtoon?genre=all">전체</a>
+        <a href="/webtoon?genre=action">#액션</a>
+        <a href="/webtoon?genre=fantasy">#판타지</a>
+        <a href="/webtoon?genre=romance">#로맨스</a>
+        <a href="/webtoon?genre=daily">#일상</a>
+        <a href="/webtoon?genre=thriller">#스릴러</a>
+        <a href="/webtoon?genre=comedy">#개그</a>
+        <a href="/webtoon?genre=martial">#무협/사극</a>
+        <a href="/webtoon?genre=drama">#드라마</a>
+        <a href="/webtoon?genre=sentimental">#감성</a>
+        <a href="/webtoon?genre=sports">#스포츠</a>
+    </div>
 
+    <div id="webtoon_wrap">
+        <div class="webtoon" th:each="webtoon : ${allWebtoon}">
+            <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}"><img
+                    th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                    th:alt="${webtoon.title}"></a>
+            <h2><a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}" th:text="${webtoon.title}">타이틀</a></h2>
+            <h3><a th:href="@{/main/search(searchQuery=${webtoon.user_nickName}, searchType='writer')}" th:text="${webtoon.user_nickName}">작가</a></h3>
+        </div>
+        <div th:if="${#lists.isEmpty(allWebtoon)}" id="none_allWebtoon">
+            <h2>해당 장르에 등록된 웹툰이 아직 없습니다.</h2>
+        </div>
+    </div>
 
+    <script th:inline="javascript">
+        let num = /*[[${num}]]*/ null;
 
+        const link = document.querySelectorAll('#tag_wrap a');
+
+        // num 값에 해당하는 버튼을 파란색으로 변경
+        link[num].style.backgroundColor = '#00dc64';
+        link[num].style.color = '#fff';
+    </script>
 </section>
 </html>

@@ -1,0 +1,28 @@
+<script>
+    // 현재 URL 가져오기
+    var currentUrl = window.location.href;
+
+    // URL에서 매개변수를 추출하는 함수
+    function getParameterByName(name, url) {
+        if (!url) {
+            url = window.location.href;
+        }
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    // URL에서 amount 매개변수 값을 가져와서 출력
+    var message = getParameterByName("message", currentUrl);
+    if (message !== null) {
+        console.log("Amount: " + message);
+    } else {
+        console.log("Amount 매개변수를 찾을 수 없습니다.");
+    }
+
+    alert(message);
+    window.close();
+</script>

@@ -2,13 +2,11 @@ package webtoon.config;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
-import webtoon.config.auth.userinfo.OAuth2UserInfo;
-import webtoon.constant.Role;
+import webtoon.config.userinfo.OAuth2UserInfo;
 import webtoon.entity.member.Member;
 
 import java.util.ArrayList;
@@ -18,7 +16,6 @@ import java.util.Map;
 
 @Getter
 @Setter
-@ToString
 
 public class CustomUserDetails implements UserDetails, OAuth2User {
     private Member member;
@@ -29,18 +26,8 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
     private Map<String, Object> attributes;
     private OAuth2UserInfo oAuth2UserInfo;
 
-    //----------주문하기 에서 회원 정보 끄내려고 써줌-----------
     private String name;
-    private String phoneNumber;
     private boolean authenticated;
-
-    public boolean isAuthenticated() {
-        return this.authenticated;
-    }
-
-    public void setAuthenticated(boolean authenticated) {
-        this.authenticated = authenticated;
-    }
 
     public CustomUserDetails(Member member){
         this.member = member;
@@ -52,16 +39,6 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
         this.authenticated = true;
     }
 
-    public CustomUserDetails(String email, String password, String nickname, Role role , String name, String phoneNumber) {
-        this.email = email;
-        this.password = password;
-        this.nickname = nickname;
-        this.authorities = Collections.singleton(new SimpleGrantedAuthority(member.getRole().toString()));
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.authenticated = true;
-
-    }
 
     public CustomUserDetails(Member member, OAuth2UserInfo oAuth2UserInfo) {
         this.member = member;
@@ -74,7 +51,7 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
         this.authenticated = true;
     }
 
-      //UserDetails 구현 해당 유저의 권한목록 리턴
+    //UserDetails 구현 해당 유저의 권한목록 리턴
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -89,9 +66,7 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
         return collect;
     }
     @Override
-//    public String getPassword() {
-//        return password;
-//    }
+
     public String getPassword(){
         return member.getPassword();
     }

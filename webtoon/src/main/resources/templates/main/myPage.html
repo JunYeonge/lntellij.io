@@ -23,7 +23,7 @@
                 <td><span th:text="${memberInfo.getNickName()}">닉네임</span></td>
             </tr>
             <tr>
-                <td>나이 <i class="fa-solid fa-image-portrait"></i></td>
+                <td><i class="fa-solid fa-image-portrait"></i> 나이</td>
                 <td>
                     <span th:if="${memberInfo.getAge() >= 0 and memberInfo.getAge() < 10}">10대 미만</span>
                     <span th:if="${memberInfo.getAge() >= 10 and memberInfo.getAge() < 20}">10대</span>
@@ -128,12 +128,9 @@
                 alert(errorMessage);
                 window.location.href = '/main';
             }
-
-            let successMessage = /*[[${successMessage}]]*/ null;
-
-            console.log(successMessage);
-            if (successMessage !== null && successMessage !== "") {
-                alert(successMessage);
+            let message = /*[[${message}]]*/ null;
+            if (message) {
+                alert(message);
                 window.location.href = '/main/myPage';
             }
 

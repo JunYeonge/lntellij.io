@@ -15,20 +15,20 @@
 
     <div id="day_nav">
         <div>
-            <a href="#">요일전체</a>
-            <a href="#">월</a>
-            <a href="#">화</a>
-            <a href="#">수</a>
-            <a href="#">목</a>
-            <a href="#">금</a>
-            <a href="#">토</a>
-            <a href="#">일</a>
+            <a th:href="@{/dailyWebtoon}">요일전체</a>
+            <a href="/dayWebtoon?day=monday">월</a>
+            <a href="/dayWebtoon?day=tuesday">화</a>
+            <a href="/dayWebtoon?day=wednesday">수</a>
+            <a href="/dayWebtoon?day=thursday">목</a>
+            <a href="/dayWebtoon?day=friday">금</a>
+            <a href="/dayWebtoon?day=saturday">토</a>
+            <a href="/dayWebtoon?day=sunday">일</a>
         </div>
     </div>
     <div id="section_wrap">
         <div id="week_new_webtoon">
             <h1>이번주 신규 웹툰</h1>
-            <a href="#">신작 웹툰 더보기 <i class="fa-solid fa-chevron-right"></i></a>
+            <a href="/webtoon?genre=all">모든 웹툰 보기 <i class="fa-solid fa-chevron-right"></i></a>
         </div>
 
 

@@ -2,54 +2,180 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns="http://www.w3.org/1999/html"
-      layout:decorate="~{layouts/mainLayout}">
-<div layout:fragment="content" class="container">
-    <head>
-        <style>
-            .disabled {
-                pointer-events: none;
-                opacity: 0.5;
+      layout:decorate="~{layouts/boardLayout}">
+
+<th:block layout:fragment="css">
+    <style>
+        /* 공통 스타일 */
+        .container {
+            margin-bottom: 24px;
+            padding: 0 120px; /* 양 옆 패딩 추가 */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        h3 {
+            margin-top: 30px;
+        }
+
+        /* 검색창 스타일 */
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            margin-top: 30px;
+            justify-content: flex-end;
+        }
+
+        /* 검색 입력 스타일 */
+        input[type="text"] {
+            padding: 15px;
+            font-size: 18px;
+            height: 59px;
+            width: 200px;
+        }
+
+        /* 검색 버튼 스타일 */
+        .search-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px 30px; /* 높이 맞춤 */
+            text-decoration: none;
+            border-radius: 5px;
+            margin-left: 10px; /* 좌우 간격 추가 */
+            font-size: 18px; /* 글꼴 크기 조절 */
+        }
+
+        /* 게시글 스타일 */
+        table {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        /* 게시글 목록 스타일 */
+        table tr:not(:last-child) {
+            border-bottom: 1px solid #ccc;
+        }
+
+        /* 버튼 스타일 */
+        .post-button, .list-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            margin-right: 20px; /* 좌우 간격 추가 */
+            float: right;
+        }
+
+        /* 비활성화된 링크 스타일 */
+        .disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* 데스크톱 화면 스타일 (1320px 이상) */
+        @media (min-width: 1320px) {
+            .container {
+                font-size: 24px;
             }
-        </style>
-        <meta charset="UTF-8">
-        <title>게시물 리스트</title>
-    </head>
+        }
+
+        /* 태블릿 화면 스타일 (769px 이상 ~ 1319px 이하) */
+        @media (min-width: 769px) and (max-width: 1319px) {
+            .container {
+                font-size: 20px;
+            }
+        }
+
+        /* 모바일 화면 스타일 (768px 이하) */
+        @media (max-width: 768px) {
+            .container {
+                font-size: 14px;
+            }
+            input[type="text"] {
+                padding: 15px;
+                font-size: 10px;
+                height: 50px;
+                width: 100px;
+            }
+
+            /* 검색 버튼 스타일 */
+            .search-button {
+                background-color: #007bff;
+                color: #fff;
+                padding: 15px 30px; /* 높이 맞춤 */
+                text-decoration: none;
+                border-radius: 5px;
+                margin-left: 10px; /* 좌우 간격 추가 */
+                font-size: 10px; /* 글꼴 크기 조절 */
+            }
+        }
+
+    </style>
+</th:block>
+<div layout:fragment="content" class="container">
+    <h3>공지사항 게시판</h3>
+    <!-- 검색창 -->
+    <div class="search-container">
+        <form th:action="@{/board/list}" method="get">
+            <input type="text" name="keyword" placeholder="검색어 입력" required>
+            <button type="submit" class="search-button">검색</button>
+        </form>
+    </div>
+    <!-- 게시글 목록 -->
     <table>
         <tr>
-            <th>title</th>
-            <th>writer</th>
-            <th>date</th>
-            <th>hits</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>시간</th>
+            <th>조회수</th>
         </tr>
-        <tr th:each="board: ${boardList}">
+        <tr th:each="board, rowStat: ${boardList}">
             <td><a th:href="@{|/board/list/${board.id}|}" th:text="${board.boardTitle}"></a></td>
             <td th:text="${board.boardWriter}"></td>
-            <td th:text="*{#temporals.format(board.boardRegTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            <td th:text="*{#temporals.format(board.boardRegTime, 'yy-MM-dd')}"></td>
             <td th:text="${board.boardHits}"></td>
         </tr>
     </table>
-
-
-    <div class="pagination">
-        <!-- First 링크는 항상 활성화 -->
-        <a th:href="@{/board/list(page=1)}">First</a>
-
-        <!-- Prev 링크를 현재 페이지가 1이면 비활성화, 아니면 활성화 -->
-        <a th:href="@{/board/list(page=${currentPage - 1})}" th:class="${currentPage == 1} ? 'disabled' : ''">prev</a>
-
-        <!-- 페이지 번호 표시 -->
-        <span th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
-        <a th:href="@{/board/list(page=${pageNumber})}" th:text="${pageNumber}" th:class="${pageNumber == currentPage} ? 'active'"></a>
-    </span>
-
-        <!-- Next 링크를 현재 페이지가 마지막 페이지면 비활성화, 아니면 활성화 -->
-        <a th:href="@{/board/list(page=${currentPage + 1})}" th:class="${currentPage == totalPages} ? 'disabled' : ''">next</a>
-
-        <!-- Last 링크는 항상 활성화 -->
-        <a th:href="@{/board/list(page=${totalPages})}">Last</a>
+    <!-- 검색 결과 없을 시 메시지 -->
+    <div th:if="${#lists.isEmpty(boardList) && (searchKeyword != null)}">
+        <p>검색 결과가 없습니다.</p>
     </div>
 
-    <a href="/board/post">글작성(링크)</a>
-    <a href="/board/list">리스트(링크)</a>
+    <!-- 게시글이 없을 시 메시지 -->
+    <div th:if="${#lists.isEmpty(boardList) && (searchKeyword == null)}">
+        <p>게시글이 없습니다.</p>
+    </div>
+    <!-- 페이지네이션 -->
+    <div class="pagination" th:if="${not #lists.isEmpty(boardList)}">
+        <a th:href="@{/board/list(page=1)}">First</a>
+        <a th:href="@{/board/list(page=${currentPage - 1})}" th:class="${currentPage == 1} ? 'disabled' : ''">prev</a>
+        <span th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
+        <a th:href="@{/board/list(page=${pageNumber})}" th:text="${pageNumber}"
+           th:class="${pageNumber == currentPage} ? 'active'"></a>
+    </span>
+        <a th:href="@{/board/list(page=${currentPage + 1})}" th:class="${currentPage == totalPages} ? 'disabled' : ''">next</a>
+        <a th:href="@{/board/list(page=${totalPages})}">Last</a>
+    </div>
+    <!-- 버튼 -->
+    <div class="button-container">
+        <span th:if="${#request.userPrincipal != null and @memberService.isUserInRole('ADMIN')}">
+                <a th:href="@{/board/post}" class="post-button">글작성</a>
+                </span>
+
+        <a href="/board/list" class="list-button">전체 리스트 보기</a>
+    </div>
 </div>
+<script th:inline="javascript">
+
+
+</script>
 </html>

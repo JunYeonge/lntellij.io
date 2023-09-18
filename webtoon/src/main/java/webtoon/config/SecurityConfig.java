@@ -7,9 +7,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import webtoon.constant.Role;
 import webtoon.service.member.MemberService;
 import webtoon.service.member.OAuth2DetailsService;
 
@@ -22,13 +25,11 @@ public class SecurityConfig {
 
     @Autowired
     OAuth2DetailsService oAuth2DetailsService;
+
     @Autowired
     private final PasswordEncoder passwordEncoder;
 
 
-
-
-    @Autowired
     public SecurityConfig(MemberService memberService, PasswordEncoder passwordEncoder) {
         this.memberService = memberService;
         this.passwordEncoder = passwordEncoder;
@@ -37,15 +38,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeRequests()
-                .antMatchers("/CsCenter/asSubmit").permitAll()
-                .antMatchers("/CsCenter/notices").permitAll()
+                .antMatchers("/admin/**").hasAnyAuthority(Role.ADMIN.name())
+                .antMatchers("/payment/**").hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
                 .mvcMatchers("/css/**", "/js/**", "/img/**").permitAll()
                 .mvcMatchers("/","/members/**","/item/**","/images/**","/**").permitAll()
-                .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
         http
-                .csrf().ignoringAntMatchers("/api/**") /* REST API 사용 예외처리 */
+                .csrf().ignoringAntMatchers("/api/**","payment/**") /* REST API 사용 예외처리 */
                 .and()
                 .formLogin()
                 .loginPage("/members/login")
@@ -72,5 +72,14 @@ public class SecurityConfig {
                 .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
         return http.build();
     }
+    @Bean
+    public String getCurrentUserEmail() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            return authentication.getName(); // 현재 로그인한 사용자의 이메일을 반환
+        }
+        return null; // 사용자가 인증되지 않았을 경우 null 반환
+    }
+
 
 }
