@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dailyWebtoonLayout}">
+<th:block layout:fragment="css">
+    <style>
+        #nav_bar a:nth-of-type(3) {
+            background-color: #00dc64;
+            color: #fff;
+        }
+
+    </style>
+</th:block>
+<section layout:fragment="content">
+
+    <div id="day_nav">
+        <div>
+            <a th:href="@{/dailyWebtoon}">요일전체</a>
+            <a href="/dayWebtoon?day=monday">월</a>
+            <a href="/dayWebtoon?day=tuesday">화</a>
+            <a href="/dayWebtoon?day=wednesday">수</a>
+            <a href="/dayWebtoon?day=thursday">목</a>
+            <a href="/dayWebtoon?day=friday">금</a>
+            <a href="/dayWebtoon?day=saturday">토</a>
+            <a href="/dayWebtoon?day=sunday">일</a>
+        </div>
+    </div>
+    <div id="section_wrap">
+        <div id="week_new_webtoon">
+            <h1>이번주 신규 웹툰</h1>
+            <a href="/webtoon?genre=all">모든 웹툰 보기 <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+
+
+        <div id="week_new_rank_wrap" th:if="${lastThreeWebtoons}">
+
+            <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${lastThreeWebtoons[0].id})}">
+                <div class="week_new_rank">
+                    <img th:src="@{${lastThreeWebtoons[0].webtoonPath + '/' + lastThreeWebtoons[0].thumbnail2}}"
+                         alt="최신 웹툰1">
+                    <h3 th:text="${lastThreeWebtoons[0].title}">작품 이름</h3>
+                    <h4 th:text="${lastThreeWebtoons[0].user_nickName}">작가명</h4>
+                    <p th:text="${lastThreeWebtoons[0].webtoonInfo}">작품 상세 설명</p>
+                </div>
+            </a>
+
+            <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${lastThreeWebtoons[1].id})}">
+                <div class="week_new_rank">
+                    <img th:src="@{${lastThreeWebtoons[1].webtoonPath + '/' + lastThreeWebtoons[1].thumbnail2}}"
+                         alt="최신 웹툰1">
+                    <h3 th:text="${lastThreeWebtoons[1].title}">작품 이름</h3>
+                    <h4 th:text="${lastThreeWebtoons[1].user_nickName}">작가명</h4>
+                    <p th:text="${lastThreeWebtoons[1].webtoonInfo}">작품 상세 설명</p>
+                </div>
+            </a>
+
+            <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${lastThreeWebtoons[2].id})}">
+                <div class="week_new_rank">
+                    <img th:src="@{${lastThreeWebtoons[2].webtoonPath + '/' + lastThreeWebtoons[2].thumbnail2}}"
+                         alt="최신 웹툰1">
+                    <h3 th:text="${lastThreeWebtoons[2].title}">작품 이름</h3>
+                    <h4 th:text="${lastThreeWebtoons[2].user_nickName}">작가명</h4>
+                    <p th:text="${lastThreeWebtoons[2].webtoonInfo}">작품 상세 설명</p>
+                </div>
+            </a>
+
+        </div>
+        <div th:unless="${lastThreeWebtoons}">
+            <p>세 작품 이상을 등록하시면, 최신순 3개를 불러올 수 있습니다!</p>
+        </div>
+
+        <div id="allWebtoon">
+            <div id="all_tag_name">
+                <h2>요일별 전체 웹툰</h2>
+                <button>조회순</button>
+                <p>·</p>
+                <button>업데이트순</button>
+                <p>·</p>
+                <button>인기순</button>
+                <p>·</p>
+                <button>별점순</button>
+            </div>
+
+            <div id="allDayWebtoon">
+
+                <div class="days_wrap">
+                    <h3>월요웹툰</h3>
+                    <div class="days" th:each="webtoon : ${mondayWebtoons}">
+                        <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+
+                            <div class="thumWrap">
+                                <img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                                     th:alt="${webtoon.title}">
+                            </div>
+                            <h4 th:text="${webtoon.title}">작품이름</h4>
+
+                        </a>
+                    </div>
+                </div>
+
+                <div class="days_wrap">
+                    <h3>화요웹툰</h3>
+                    <div class="days" th:each="webtoon : ${tuesdayWebtoons}">
+                        <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+
+                            <div class="thumWrap">
+                                <img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                                     th:alt="${webtoon.title}">
+                            </div>
+                            <h4 th:text="${webtoon.title}">작품이름</h4>
+
+                        </a>
+                    </div>
+                </div>
+
+                <div class="days_wrap">
+                    <h3>수요웹툰</h3>
+                    <div class="days" th:each="webtoon : ${wednesdayWebtoons}">
+                        <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+
+                            <div class="thumWrap">
+                                <img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                                     th:alt="${webtoon.title}">
+                            </div>
+                            <h4 th:text="${webtoon.title}">작품이름</h4>
+
+                        </a>
+                    </div>
+                </div>
+
+                <div class="days_wrap">
+                    <h3>목요웹툰</h3>
+                    <div class="days" th:each="webtoon : ${thursdayWebtoons}">
+                        <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+
+                            <div class="thumWrap">
+                                <img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                                     th:alt="${webtoon.title}">
+                            </div>
+                            <h4 th:text="${webtoon.title}">작품이름</h4>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="days_wrap">
+                    <h3>금요웹툰</h3>
+                    <div class="days" th:each="webtoon : ${fridayWebtoons}">
+                        <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+
+                            <div class="thumWrap">
+                                <img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                                     th:alt="${webtoon.title}">
+                            </div>
+                            <h4 th:text="${webtoon.title}">작품이름</h4>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="days_wrap">
+                    <h3>토요웹툰</h3>
+                    <div class="days" th:each="webtoon : ${saturdayWebtoons}">
+                        <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+
+                            <div class="thumWrap">
+                                <img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                                     th:alt="${webtoon.title}">
+                            </div>
+                            <h4 th:text="${webtoon.title}">작품이름</h4>
+
+                        </a>
+                    </div>
+                </div>
+
+                <div class="days_wrap">
+                    <h3>일요웹툰</h3>
+                    <div class="days" th:each="webtoon : ${sundayWebtoons}">
+                        <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.id})}">
+                            <div class="thumWrap">
+                                <img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail1}}"
+                                     th:alt="${webtoon.title}">
+                            </div>
+                            <h4 th:text="${webtoon.title}">작품이름</h4>
+                        </a>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+    <script th:inline="javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            // let successMessage = [[${successMessage}]];
+            // if (successMessage != null) {
+            //     alert(successMessage);
+            // }
+
+            btnColor();
+            todayDayOfWeek();
+            orderByView();
+            orderByUpdate();
+            orderByLike();
+            orderByStar();
+        });
+
+        // 요일에 맞춰 해당 요일 색들어옴
+        function todayDayOfWeek() {
+            let today = /*[[${today}]]*/ '';
+            let dayBg = document.querySelector(`.days_wrap:nth-of-type(${today})`);
+            let dayTitle = document.querySelector(`.days_wrap:nth-of-type(${today}) h3`);
+
+            dayBg.style.backgroundColor = "#00ff7340";
+            dayTitle.style.backgroundColor = "#00dc64";
+            dayTitle.style.color = "#fff";
+
+        }
+
+        // 버튼색 변경
+        function btnColor() {
+            const buttons = document.querySelectorAll("#all_tag_name button");
+
+            buttons.forEach(button => {
+                button.addEventListener('click', function () {
+                    buttons.forEach(btn => {
+                        btn.style.color = '#000'; // 원래 색상으로 설정
+                    });
+                    button.style.color = '#00dc64';
+                });
+            });
+        }
+
+        // 여기부터는 제이슨과 쿼리 짜다 죽어간 자의 흔적입니다.
+
+        // 조회수 정렬
+        function orderByView() {
+            const popularButton = document.querySelector("#all_tag_name button:nth-of-type(1)");
+
+            popularButton.addEventListener('click', function () {
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+                            dayWebtoonListByView(response);
+                        } else {
+                            console.error('Error:', xhr.status);
+                        }
+                    }
+                };
+
+                xhr.open('GET', '/dailyWebtoon/view', true);
+                xhr.send();
+            });
+
+            function dayWebtoonListByView(data) {
+                const daysWrap = document.querySelectorAll('.days_wrap');
+
+                const daysWebtoons = [
+                    data.mondayWebtoons,
+                    data.tuesdayWebtoons,
+                    data.wednesdayWebtoons,
+                    data.thursdayWebtoons,
+                    data.fridayWebtoons,
+                    data.saturdayWebtoons,
+                    data.sundayWebtoons
+                ];
+
+                daysWebtoons.forEach((dayWebtoons, index) => {
+                    const dayWrap = daysWrap[index];
+                    const webtoonDivs = dayWrap.querySelectorAll('.days');
+
+                    webtoonDivs.forEach((webtoonDiv, i) => {
+                        const webtoon = dayWebtoons[i];
+                        if (webtoon) {
+                            const thumWrap = webtoonDiv.querySelector('.thumWrap');
+                            const titleHeading = webtoonDiv.querySelector('h4');
+                            const img = thumWrap.querySelector('img');
+                            const link = webtoonDiv.querySelector('a');
+
+                            link.href = `/webtoonPage/${webtoon.id}`;
+                            titleHeading.textContent = webtoon.title; // 제목 변경
+                            img.src = webtoon.webtoonPath + '/' + webtoon.thumbnail1; // 이미지 변경
+                        }
+                    });
+                });
+            }
+        }
+
+
+        // 업데이트순 정렬
+        function orderByUpdate() {
+            const popularButton = document.querySelector("#all_tag_name button:nth-of-type(2)");
+
+            popularButton.addEventListener('click', function () {
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+                            dayWebtoonListByUpdate(response);
+                        } else {
+                            console.error('Error:', xhr.status);
+                        }
+                    }
+                };
+
+                xhr.open('GET', '/dailyWebtoon/Update', true);
+                xhr.send();
+            });
+
+            function dayWebtoonListByUpdate(data) {
+                const daysWrap = document.querySelectorAll('.days_wrap');
+
+                const daysWebtoons = [
+                    data.mondayWebtoons,
+                    data.tuesdayWebtoons,
+                    data.wednesdayWebtoons,
+                    data.thursdayWebtoons,
+                    data.fridayWebtoons,
+                    data.saturdayWebtoons,
+                    data.sundayWebtoons
+                ];
+
+                daysWebtoons.forEach((dayWebtoons, index) => {
+                    const dayWrap = daysWrap[index];
+                    const webtoonDivs = dayWrap.querySelectorAll('.days');
+
+                    webtoonDivs.forEach((webtoonDiv, i) => {
+                        const webtoon = dayWebtoons[i];
+                        if (webtoon) {
+                            const thumWrap = webtoonDiv.querySelector('.thumWrap');
+                            const titleHeading = webtoonDiv.querySelector('h4');
+                            const img = thumWrap.querySelector('img');
+                            const link = webtoonDiv.querySelector('a');
+
+                            link.href = `/webtoonPage/${webtoon.id}`;
+                            titleHeading.textContent = webtoon.title; // 제목 변경
+                            img.src = webtoon.webtoonPath + '/' + webtoon.thumbnail1; // 이미지 변경
+                        }
+                    });
+                });
+            }
+
+
+        }
+
+
+        // 좋아요 정렬
+        function orderByLike() {
+            const popularButton = document.querySelector("#all_tag_name button:nth-of-type(3)");
+
+            popularButton.addEventListener('click', function () {
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+                            dayWebtoonListByLike(response);
+                        } else {
+                            console.error('Error:', xhr.status);
+                        }
+                    }
+                };
+
+                xhr.open('GET', '/dailyWebtoon/like', true);
+                xhr.send();
+            });
+
+            function dayWebtoonListByLike(data) {
+                const daysWrap = document.querySelectorAll('.days_wrap');
+
+                const daysWebtoons = [
+                    data.mondayWebtoons,
+                    data.tuesdayWebtoons,
+                    data.wednesdayWebtoons,
+                    data.thursdayWebtoons,
+                    data.fridayWebtoons,
+                    data.saturdayWebtoons,
+                    data.sundayWebtoons
+                ];
+
+                daysWebtoons.forEach((dayWebtoons, index) => {
+                    const dayWrap = daysWrap[index];
+                    const webtoonDivs = dayWrap.querySelectorAll('.days');
+
+                    webtoonDivs.forEach((webtoonDiv, i) => {
+                        const webtoon = dayWebtoons[i];
+                        const thumWrap = webtoonDiv.querySelector('.thumWrap');
+                        const titleHeading = webtoonDiv.querySelector('h4');
+                        const img = thumWrap.querySelector('img');
+                        const link = webtoonDiv.querySelector('a');
+
+                        link.href = `/webtoonPage/${webtoon.id}`;
+                        titleHeading.textContent = webtoon.title; // 제목 변경
+                        img.src = webtoon.webtoonPath + '/' + webtoon.thumbnail1; // 이미지 변경
+                    });
+                });
+            }
+        }
+
+        // 별점 정렬
+        function orderByStar() {
+            const popularButton = document.querySelector("#all_tag_name button:nth-of-type(4)");
+
+            popularButton.addEventListener('click', function () {
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+                            dayWebtoonListByStar(response);
+                        } else {
+                            console.error('Error:', xhr.status);
+                        }
+                    }
+                };
+
+                xhr.open('GET', '/dailyWebtoon/star', true);
+                xhr.send();
+            });
+
+            function dayWebtoonListByStar(data) {
+                const daysWrap = document.querySelectorAll('.days_wrap');
+
+                const daysWebtoons = [
+                    data.mondayWebtoons,
+                    data.tuesdayWebtoons,
+                    data.wednesdayWebtoons,
+                    data.thursdayWebtoons,
+                    data.fridayWebtoons,
+                    data.saturdayWebtoons,
+                    data.sundayWebtoons
+                ];
+
+                daysWebtoons.forEach((dayWebtoons, index) => {
+                    const dayWrap = daysWrap[index];
+                    const webtoonDivs = dayWrap.querySelectorAll('.days');
+
+                    webtoonDivs.forEach((webtoonDiv, i) => {
+                        const webtoon = dayWebtoons[i];
+                        const thumWrap = webtoonDiv.querySelector('.thumWrap');
+                        const titleHeading = webtoonDiv.querySelector('h4');
+                        const img = thumWrap.querySelector('img');
+                        const link = webtoonDiv.querySelector('a');
+
+                        link.href = `/webtoonPage/${webtoon.id}`;
+                        titleHeading.textContent = webtoon.title; // 제목 변경
+                        img.src = webtoon.webtoonPath + '/' + webtoon.thumbnail1; // 이미지 변경
+                    });
+                });
+            }
+        }
+    </script>
+
+
+</section>
+</html>

@@ -17,7 +17,7 @@ public class PurchaseHistory {
     @Column(name = "purchase_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "episode_id")
     private WebtoonEpisodes webtoonEpisodes;
 
@@ -30,4 +30,5 @@ public class PurchaseHistory {
 
     @Column
     private int purchasePrice;
+
 }

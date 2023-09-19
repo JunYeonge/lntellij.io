@@ -28,7 +28,6 @@ public class BoardController {
 
     private final BoardService boardService;
     private final CommentService commentService;
-    private final MemberService memberService;
 
     @GetMapping("/list")
     public String findAll(
@@ -54,13 +53,13 @@ public class BoardController {
         model.addAttribute("isLastPage", page == boardDtoPage.getTotalPages());
         model.addAttribute("keyword", keyword); // 검색어를 뷰로 전달
 
-        return "/board/list";
+        return "board/list";
     }
 
 
     @GetMapping("/post")
     public String post() {
-        return "/board/post";
+        return "board/post";
     }
 
     @PostMapping("/post")
@@ -96,7 +95,7 @@ public class BoardController {
         model.addAttribute("commentList", commentDtoList);
         model.addAttribute("board", boardDto);
         model.addAttribute("page", pageable.getPageNumber());
-        return "/board/detail";
+        return "board/detail";
     }
 
     @GetMapping("/update/{id}")

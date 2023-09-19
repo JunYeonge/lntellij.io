@@ -1,0 +1,108 @@
+@charset "utf-8";
+
+input#email.form-control[readonly] {
+    background-color: #c4c4c4; /* 진한 색상으로 변경할 배경색 */
+}
+
+.error {
+    color: #bd2130;
+}
+
+.hs_place::placeholder {
+    font-size: 14px;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.hs_edit_form {
+    width: 768px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.hs_form_con {
+    width: 600px;
+    margin: 10px auto;
+}
+
+.hs_form {
+    margin: 30px 0;
+}
+
+.hs_form div {
+    margin: 10px 10px;
+
+}
+
+.hs_form > div > label {
+    display: inline-block;
+    text-align: center;
+    width: 150px;
+    margin-bottom: 8px;
+}
+
+.hs_form > div > input {
+    width: 300px;
+}
+
+.hs_address {
+    display: flex;;
+}
+
+.hs_address > div {
+    text-align: center;
+}
+
+.hs_address > div:nth-of-type(1) {
+    width: 120px;
+}
+
+.hs_address > div:nth-of-type(2) input {
+    width: 300px;
+}
+
+.fieldError {
+    text-align: center;
+}
+
+#postbtn {
+    margin-top: 8px;
+}
+
+.memberbtn,
+.editbtn {
+    display: inline-block;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 2px 16px;
+    background-color: #00dc64;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+.editbtn:hover{
+    color: #3b3b3b;
+    background-color: #00c257;
+}
+
+.memberbtn a:hover{
+    color: #3b3b3b;
+    background-color: #00c257;
+}
+
+.memberbtn{
+    margin-bottom: 16px;
+}
+.memberbtn a{
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 8px;
+}

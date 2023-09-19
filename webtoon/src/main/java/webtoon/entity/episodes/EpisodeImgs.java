@@ -25,7 +25,7 @@ public class EpisodeImgs {
     @Column
     private String Thumbnail;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "webtoon_episode_id")
     private WebtoonEpisodes webtoonEpisode;
 }

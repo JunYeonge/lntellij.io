@@ -1,0 +1,150 @@
+@charset "utf-8";
+
+section {
+    width: 1320px;
+    margin: 0 auto;
+    padding: 0 64px;
+}
+
+#none_webtoon {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 24px 0;
+}
+
+
+#user_info > div:last-of-type {
+    width: 100%;
+    text-align: center;
+    margin: 12px 0 24px;
+}
+
+#user_info a:last-of-type {
+    display: inline-block;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    background-color: #00dc64;
+    color: #fff;
+    font-weight: bold;
+}
+
+#user_info a:last-of-type:hover {
+    background-color: #00c257;
+    color: #000;
+
+}
+
+#user_info table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#user_info th, #user_info td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+#user_info th {
+    background-color: #f2f2f2;
+}
+
+#user_info th:first-child, #user_info td:first-child {
+    width: 15%;
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+#user_info td {
+    padding: 16px 16px;
+}
+
+#user_info td span {
+    font-weight: normal;
+    border: 1px solid #e4e4e4;
+    padding: 4px 8px;
+}
+
+#purchase_wrap {
+    width: 1192px;
+    padding: 24px 0;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user_webtoon {
+    text-align: center;
+    width: 50%;
+    border: 1px solid #ccc;
+    padding: 16px 8px;
+}
+
+.user_webtoon img {
+    display: inline-block;
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+    border: 1px solid #dadada;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+}
+
+.card div {
+    margin: 8px 16px;
+    text-align: left;
+}
+
+.card p {
+    margin-bottom: 4px;
+}
+
+.webtoon_info_wrap > p:last-of-type {
+    border-top: 1px solid #ccc;
+    padding-top: 8px;
+    width: 100%;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.webtoon_info_wrap h3 {
+    margin-top: 16px;
+}
+
+.webtoon_wrap > div:last-of-type a {
+    display: inline-block;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    background-color: #00dc64;
+    color: #fff;
+    font-weight: bold;
+    margin: 4px 12px;
+}
+
+.webtoon_wrap > div:last-of-type a:hover {
+    background-color: #00c257;
+    color: #000;
+
+}
+
+
+#none_webtoon {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 32px;
+}

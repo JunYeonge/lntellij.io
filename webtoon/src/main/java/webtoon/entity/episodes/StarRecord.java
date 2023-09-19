@@ -20,11 +20,11 @@ public class StarRecord {
 
     private double userStar;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "webtoon_episode_id")
     private WebtoonEpisodes episodes;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 

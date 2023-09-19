@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/purchaseHistoryLayout}">
+<th:block layout:fragment="css">
+    <style>
+        #nav_bar a:nth-of-type(5) {
+            background-color: #00dc64;
+            color: #fff;
+        }
+    </style>
+</th:block>
+<section layout:fragment="content">
+    <h1>구매내역 페이지</h1>
+    <div id="user_info">
+        <table>
+            <tr>
+                <td><i class="fa-solid fa-envelope"></i> 이메일(아이디)</td>
+                <td><span th:text="${memberInfo.email}">이메일</span></td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-feather"></i> 닉네임</td>
+                <td><span th:text="${memberInfo.getNickName()}">닉네임</span></td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-image-portrait"></i> 나이</td>
+                <td>
+                    <span th:if="${memberInfo.getAge() >= 0 and memberInfo.getAge() < 10}">10대 미만</span>
+                    <span th:if="${memberInfo.getAge() >= 10 and memberInfo.getAge() < 20}">10대</span>
+                    <span th:if="${memberInfo.getAge() >= 20 and memberInfo.getAge() < 30}">20대</span>
+                    <span th:if="${memberInfo.getAge() >= 30 and memberInfo.getAge() < 40}">30대</span>
+                    <span th:if="${memberInfo.getAge() >= 40 and memberInfo.getAge() < 50}">40대</span>
+                    <span th:if="${memberInfo.getAge() >= 50 and memberInfo.getAge() < 60}">50대</span>
+                    <span th:if="${memberInfo.getAge() >= 60 and memberInfo.getAge() < 70}">60대</span>
+                    <span th:if="${memberInfo.getAge() >= 70 and memberInfo.getAge() < 80}">70대</span>
+                    <span th:if="${memberInfo.getAge() >= 80 and memberInfo.getAge() < 90}">80대</span>
+                    <span th:if="${memberInfo.getAge() >= 90 and memberInfo.getAge() < 100}">90대</span>
+                    <span th:if="${memberInfo.getAge() >= 100}">100 살 이상</span>
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-venus-mars"></i> 성별</td>
+                <td>
+                    <span th:if="${memberInfo.gender == 'male'}">남성</span>
+                    <span th:if="${memberInfo.gender == 'female'}">여성</span>
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-cookie-bite"
+                       style="color: #ffd700;"></i> 남은 쿠키
+                </td>
+                <td><span th:text="${memberInfo.getPoint()}">쿠키 </span></td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-map-location-dot"></i> 주소</td>
+                <td>
+                    <span th:if="${memberInfo.address == null or memberInfo.address == ''}">등록된 주소가 없습니다.</span>
+                    <span th:unless="${memberInfo.address == null or memberInfo.address == ''}"
+                          th:text="${memberInfo.address}">주소</span>
+                </td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-arrow-right-to-bracket"></i> 가입일</td>
+                <td><span th:text="${memberInfo.getReg_time()}">가입일</span></td>
+            </tr>
+            <tr>
+                <td><i class="fa-solid fa-file-signature"></i> 수정일</td>
+                <td><span th:text="${memberInfo.getUpdate_time()}">수정일</span></td>
+            </tr>
+        </table>
+        <div>
+            <a th:href="@{/members/edit}">정보 수정</a>
+        </div>
+    </div>
+    <div id="purchase_wrap">
+
+        <p th:if="${#lists.isEmpty(userWebtoonList)}" id="none_webtoon">아직 구매한 작품이 없습니다.</p>
+
+        <div th:each="webtoon : ${userWebtoonList}" class="user_webtoon">
+            <div class="webtoon_wrap">
+                <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.webtoonId})}">
+                    <div>
+                        <img th:src="@{${webtoon.webtoonPath + '/' + webtoon.thumbnail}}" th:alt="${webtoon.webtoonId}">
+                    </div>
+                </a>
+                <div class="webtoon_info_wrap">
+                    <h3>구매 작품</h3>
+                    <div class="card">
+                        <div>
+                            <p><i class="fa-solid fa-book"></i> 웹툰명 : <span th:text="${webtoon.webtoonTitle}"></span>
+                            </p>
+                            <p><i class="fa-solid fa-book-bookmark"></i> 구매작품명 : <span
+                                    th:text="${webtoon.episodeTitle}"></span></p>
+                            <p><i class="fa-solid fa-tag"></i> 가격 : <span th:text="${webtoon.price}"></span> <i
+                                    class="fa-solid fa-cookie-bite"
+                                    style="color: #ffd700;"></i></p>
+                        </div>
+                        <div>
+                            <p><i class="fa-solid fa-star"></i> 별점 : <span th:text="${webtoon.star}">Star</span></p>
+                            <p><i class="fa-solid fa-users-viewfinder"></i> 조회수 : <span
+                                    th:text="${webtoon.episodeView}">View</span></p>
+                            <p><i class="fa-solid fa-thumbs-up"></i> Like : <span
+                                    th:text="${webtoon.episodeLike}">Like</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <a th:href="@{/webtoonPage/{webtoonId}(webtoonId=${webtoon.webtoonId})}">웹툰 바로가기</a>
+                    <a th:href="@{/webtoonPage/{webtoonId}/episode/{episodeId}(webtoonId=${webtoon.webtoonId}, episodeId=${webtoon.episodeId})}">구매
+                        작품 관람</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+            let errorMessage = /*[[${errorMessage}]]*/ null;
+
+            if (errorMessage) {
+                alert(errorMessage);
+                window.location.href = '/main';
+            }
+
+            let successMessage = /*[[${successMessage}]]*/ null;
+
+            console.log(successMessage);
+            if (successMessage !== null && successMessage !== "") {
+                alert(successMessage);
+                window.location.href = '/main/myPage';
+            }
+
+        });
+    </script>
+</section>
+
+</html>

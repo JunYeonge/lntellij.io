@@ -1,14 +1,15 @@
 @charset "utf-8";
 
 img {
-     object-fit: cover;
+    object-fit: cover;
 }
+
 #day_nav {
     width: 100%;
     border-bottom: 1px solid #cccccc7c;
 }
 
-#day_nav>div {
+#day_nav > div {
     width: 1320px;
     height: 56px;
     padding: 0 64px;
@@ -16,20 +17,22 @@ img {
     /* border: 1px solid black; */
 }
 
-#day_nav>div a {
+#day_nav > div a {
     line-height: 56px;
     display: inline-block;
     padding: 0 16px;
     font-weight: bold;
 }
 
-#day_nav>div a:first-of-type {
+#day_nav > div a:first-of-type {
     background-color: #00dc64;
     color: #fff;
 }
+
 #all_tag_name button:nth-of-type(1) {
     color: #00dc64;
 }
+
 #section_wrap {
     width: 1320px;
     /* border: 1px solid black; */
@@ -136,6 +139,7 @@ img {
     text-align: center;
     padding: 8px 0;
 }
+
 .days_wrap:not(.days_wrap:last-of-type) {
     border-right: none;
 }
@@ -153,15 +157,17 @@ img {
     flex-direction: column;
     align-items: center;
 }
-.days  a h4 {
+
+.days a h4 {
     display: inline-block;
     text-align: center;
     max-width: 150px;
     width: fit-content;
     overflow: hidden;
-     text-overflow: ellipsis;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 .thumWrap {
     width: 150px;
     height: 225px;
@@ -169,6 +175,7 @@ img {
     border-radius: 6px;
     margin-bottom: 6px;
 }
+
 .days img {
     display: inline-block;
     width: 150px;
@@ -178,9 +185,11 @@ img {
     vertical-align: top;
     transition: .5s;
 }
+
 .days img:hover {
     transform: scale(1.1);
 }
+
 .days h4 {
     border-bottom: 2px solid transparent;
     padding-bottom: 2px;

@@ -1,0 +1,220 @@
+@charset "utf-8";
+
+section {
+    width: 1320px;
+    padding: 0 64px;
+    margin: 32px auto;
+    min-height: 640px;
+}
+
+#search_input {
+    width: 700px;
+    height: 50px;
+    margin: 0 auto;
+    display: flex;
+}
+
+#search_input input {
+    width: 700px;
+    height: 50px;
+    padding: 0 16px;
+    font-size: 20px;
+    border: 1px solid #cccccc7c;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+
+}
+
+form input:focus,
+form button:focus {
+    outline: none;
+}
+
+#search_input button {
+    width: 100px;
+    height: 50px;
+    border: 1px solid #cccccc7c;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: none;
+}
+
+#search_section form button:hover {
+    background-color: #00dc64;
+    color: #fff;
+}
+
+.checkMessage p {
+    margin: 32px auto;
+    font-weight: bold;
+}
+#checke_input {
+    width: 700px;
+    border-radius: 6px;
+    margin: 16px auto 24px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#checke_input label {
+    font-size: 20px;
+}
+
+/* 체크박스 꾸미기 */
+
+.checkBox_wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.searchTypeCheck {
+    display: none;
+}
+
+.checkBox_wrap label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 30px;
+    font-size: 16px;
+    line-height: 24px;
+    transition: none;
+}
+
+.checkBox_wrap label:hover {
+    font-weight: bold;
+}
+
+.checkBox_wrap input:checked+label::before {
+    content: "\2713";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 26px;
+    color: #00dc64;
+    font-weight: bolder;
+}
+
+.checkBox_wrap label::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 20px;
+    width: 20px;
+    border: 2px solid #ccc;
+    background-color: transparent;
+    border-radius: 6px;
+}
+
+.checkBox_wrap label:hover::before {
+    border-color: #00dc64;
+}
+
+section>div {
+    width: 700px;
+    margin: 0 auto;
+}
+
+
+.search_webtoon {
+    margin-top: 16px;
+    display: flex;
+    padding-right: 9px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 24px;
+}
+.search_webtoon h2,
+.search_webtoon h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.search_webtoon h2:hover,
+.search_webtoon h3:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.search_webtoon>a:first-of-type>div {
+    width: 160px;
+    height: 240px;
+    overflow: hidden;
+    border-radius: 6px;
+    border: 1px solid #cccccc7c;
+}
+.search_webtoon img {
+    display: inline-block;
+    width: 160px;
+    height: 240px;
+    transition: .5s;
+    object-fit: cover;
+}
+.search_webtoon img:hover {
+    transform: scale(1.1);
+}
+.search_webtoon>div {
+    width: 540px;
+    padding-left: 32px;
+}
+
+.search_webtoon>div>div:first-of-type h3,
+.search_webtoon>div>div:first-of-type h3 span {
+    font-size: 18px;
+    line-height: 38px;
+}
+
+.search_webtoon>div>p:first-of-type {
+    font-size: 12px;
+    width: 100%;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    word-break: break-word;
+    line-height: 26px;
+    font-weight: bold;
+    max-height: 80px;
+    margin-bottom: 8px;
+}
+.search_webtoon>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.webtoon_day {
+    display: flex;
+    justify-content: left;
+}
+.webtoon_day span {
+    padding: 2px 6px;
+    border-radius: 6px;
+    background-color: #dbdbdb7c;
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 4px;
+    border: 1px solid rgb(196, 196, 196);
+}
+.webtoon_tag {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+.webtoon_tag span {
+    padding: 2px 8px;
+    border-radius: 6px;
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 4px;
+    margin-right: 4px;
+
+}

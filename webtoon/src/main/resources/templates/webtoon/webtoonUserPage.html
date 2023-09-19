@@ -95,7 +95,7 @@
                     </div>
                 </a>
                 <div id="episode_edit">
-                    <form action="">
+                    <form th:action="@{/delete/episode/{episodeId}(episodeId=${episode.id})}" method="post">
                         <a th:href="@{/edit/episode/{episodeId}(episodeId=${episode.id})}">수정</a>
                         <button>삭제</button>
                     </form>

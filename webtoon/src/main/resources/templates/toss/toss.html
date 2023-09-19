@@ -11,6 +11,9 @@
     <script src="https://js.tosspayments.com/v1/payment-widget"></script>
 
     <style>
+        .payment_all{
+            text-align: center;
+        }
         .paymentpage {
             width: 768px;
             margin: auto;
@@ -40,7 +43,7 @@
     </style>
 </head>
 <body>
-<section>
+<section class="payment_all">
     <h2 id="itemName">쿠키 결제</h2>
     <div class="payment_money">
         <i class="fa-solid fa-cookie-bite"
@@ -66,16 +69,16 @@
         <span>1000쿠키</span>
         <button class="payment-button" onclick="getPaymentWidget(1000)" data-price="1000">1000원</button>
     </div>
-
-</section>
-
-<section class="paymentpage">
-    <div id="target_area">
-    </div>
-    <div id="button_area">
-        <button onclick="reqPayment()" id="payment_button" class="hidden_button">충전하기</button>
+    <div class="paymentpage">
+        <div id="target_area">
+        </div>
+        <div id="button_area">
+            <button onclick="reqPayment()" id="payment_button" class="hidden_button">충전하기</button>
+        </div>
     </div>
 </section>
+
+
 
 <!-- ... 이전 코드 ... -->
 
@@ -112,15 +115,15 @@
     }
     // "충전하기" 버튼 클릭 이벤트 처리
     function reqPayment() {
-        const uuid = self.crypto.randomUUID();
+        const uuid = Math.random().toString(36).substring(2, 15);
         const itemsName = document.querySelector('#itemName').textContent;
 
         paymentWidget.requestPayment({
             orderId: uuid,
             orderName: itemsName,
             amount: selectedPrice, // 선택한 금액으로 설정
-            successUrl: 'http://localhost:8080/payment/success',
-            failUrl: 'http://localhost:8080/payment/error',
+            successUrl: 'http://43.200.32.35:8080/payment/success',
+            failUrl: 'http://43.200.32.35:8080/payment/error',
         });
     }
 

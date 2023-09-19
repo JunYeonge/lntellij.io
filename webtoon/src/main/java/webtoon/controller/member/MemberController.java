@@ -173,7 +173,7 @@ public class MemberController {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         Member member = userDetails.getMember();
         model.addAttribute("member", member);
-        return "/member/deactivationForm";
+        return "member/deactivationForm";
     }
 
     // 회원 탈퇴 처리 핸들러

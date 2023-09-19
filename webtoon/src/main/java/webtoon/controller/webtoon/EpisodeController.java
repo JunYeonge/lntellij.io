@@ -61,7 +61,7 @@ public class EpisodeController {
         episodeFormDto.setWebtoonId(webtoonId);
         model.addAttribute("episodeFormDto", episodeFormDto);
         model.addAttribute("episodeImgDto", episodeImgDto);
-        return "/webtoon/webtoonEpisodeForm";
+        return "webtoon/webtoonEpisodeForm";
     }
 
     @PostMapping(value = "/createEpisode")
@@ -200,7 +200,7 @@ public class EpisodeController {
             if ((authentication == null || authentication instanceof AnonymousAuthenticationToken) && thisEpisode.getEpisodePoint() == 0) {
                 // 비회원 무료 에피소드는 바로 페이지로 이동
                 model.addAttribute("episodeViewDto", createEpisodeViewDto(thisEpisodeImg));
-                return "/webtoon/episodePage";
+                return "webtoon/episodePage";
             }
 
 //            로그인 유저 정보 가져오기
@@ -223,13 +223,13 @@ public class EpisodeController {
             if (userId.getId().equals(thisWebtoon.getMember().getId())) {
                 model.addAttribute("successMessage", userId.getNickname() + " 작가님 안녕하세요.");
                 model.addAttribute("episodeViewDto", createEpisodeViewDto(thisEpisodeImg));
-                return "/webtoon/episodePage";
+                return "webtoon/episodePage";
             }
 
             if (thisEpisode.getEpisodePoint() == 0) {
                 // 회원 무료 에피소드는 바로 페이지로 이동
                 model.addAttribute("episodeViewDto", createEpisodeViewDto(thisEpisodeImg));
-                return "/webtoon/episodePage";
+                return "webtoon/episodePage";
             }
 
             PurchaseHistory userPurchaseHistory = purchaseHistoryRepository.findOneByMemberAndWebtoonEpisodes(userId, thisEpisode);
@@ -238,7 +238,7 @@ public class EpisodeController {
                 // 이미 구매한 경우 처리
                 model.addAttribute("successMessage", "이미 구매한 작품입니다.");
                 model.addAttribute("episodeViewDto", createEpisodeViewDto(thisEpisodeImg));
-                return "/webtoon/episodePage";
+                return "webtoon/episodePage";
             }
 
             int userPoint = userId.getPoint();
@@ -254,7 +254,7 @@ public class EpisodeController {
 
                 model.addAttribute("successMessage", "구매 완료.");
                 model.addAttribute("episodeViewDto", createEpisodeViewDto(thisEpisodeImg));
-                return "/webtoon/episodePage";
+                return "webtoon/episodePage";
             } else {
                 throw new NoSuchElementException("보유한 쿠키가 모자랍니다.");
             }
@@ -263,7 +263,7 @@ public class EpisodeController {
             handleExceptionAndRedirect(e, redirectAttributes);
             if (e.getMessage().equals("유료웹툰은 로그인 회원만 이용 가능합니다.")) {
                 return "redirect:/members/login";
-            } else if(e.getMessage().equals("보유한 쿠키가 모자랍니다.")) {
+            } else if (e.getMessage().equals("보유한 쿠키가 모자랍니다.")) {
 
                 return "redirect:/payment/toss";
             }
@@ -344,11 +344,10 @@ public class EpisodeController {
 
         } catch (NoSuchElementException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            System.out.println(e.getMessage());
-            return "/main/main";
+            return "main/main";
         }
 
-        return "/webtoon/episodeEditForm";
+        return "webtoon/episodeEditForm";
     }
 
 
@@ -371,6 +370,17 @@ public class EpisodeController {
 
         return "redirect:/main";
 
+    }
+
+    @PostMapping("/delete/episode/{episodeId}")
+    public String deleteEpisode(@PathVariable Long episodeId, RedirectAttributes redirectAttributes) {
+
+        WebtoonEpisodes episodes = episodesRepository.findById(episodeId).orElseThrow(null);
+
+        episodesRepository.delete(episodes);
+
+        redirectAttributes.addFlashAttribute("successMessage", "에피소드가 삭제되었습니다.");
+        return "redirect:/main/myPage/" + episodes.getWebtoon().getId();
     }
 
 }

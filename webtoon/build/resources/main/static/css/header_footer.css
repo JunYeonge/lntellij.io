@@ -526,4 +526,20 @@ img {
         margin-bottom: 4px;
     }
 
+    #footerLastAd {
+        margin-bottom: 24px;
+        flex-direction: column;
+    }
+
+}
+
+
+#footerLastAd {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+#footerLastAd img {
+    width: 390px;
+    height: 130px;
 }

@@ -49,7 +49,7 @@ public class PaymentTestController {
             model.addAttribute("errorMessage", errorMessage);
         }
 
-        return "/toss/toss";
+        return "toss/toss";
     }
 
     @GetMapping("/payment/success")
@@ -90,11 +90,11 @@ public class PaymentTestController {
 
     @GetMapping("/payment/success/end")
     public String getPaymentEndPage(Model model, RedirectAttributes redirectAttributes) {
-        return "/toss/success";
+        return "toss/success";
     }
 
     @GetMapping("/payment/error")
     public String getPaymentErrorPage(Model model, RedirectAttributes redirectAttributes) {
-        return "/toss/error";
+        return "toss/error";
     }
 }

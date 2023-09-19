@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/adLayout}">
+<th:block layout:fragment="css">
+
+    <style>
+        #nav_bar a:nth-of-type(1) {
+            background-color: #00dc64;
+            color: #fff;
+        }
+
+
+    </style>
+</th:block>
+<section layout:fragment="content">
+
+    <h1 th:text="${title}">Title</h1>
+    <a th:href="${link}">
+        <img th:src="@{${addImg}}" alt="adImg">
+    </a>
+</section>
+</html>

@@ -25,11 +25,11 @@ public class EpisodeComment {
     @Column
     private String comment;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "webtoon_episode_id")
     private WebtoonEpisodes webtoonEpisode;
 
-    @ManyToOne
-    @JoinColumn(name = "member_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private Member member;
 }

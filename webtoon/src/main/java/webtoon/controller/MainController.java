@@ -241,7 +241,7 @@ public class MainController {
 
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             model.addAttribute("errorMessage", "마이 페이지는 로그인 회원만 이용가능합니다.");
-            return "/member/memberLoginForm";
+            return "member/memberLoginForm";
         }
 //      유저 정보 가져오기
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
@@ -265,7 +265,7 @@ public class MainController {
 
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             model.addAttribute("errorMessage", "구매내역은 로그인 회원만 확인가능합니다.");
-            return "/member/memberLoginForm";
+            return "member/memberLoginForm";
         }
 //          유저 정보 전송
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();

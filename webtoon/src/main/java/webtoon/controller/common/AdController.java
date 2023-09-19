@@ -63,7 +63,7 @@ public class AdController {
         model.addAttribute("addImg", addImg);
         model.addAttribute("title", title);
         model.addAttribute("link", link);
-        return "/ad/ad";
+        return "ad/ad";
     }
 
     @GetMapping(value = "/getCookie")

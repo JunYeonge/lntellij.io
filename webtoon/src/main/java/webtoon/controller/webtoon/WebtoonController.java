@@ -45,9 +45,9 @@ public class WebtoonController {
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             model.addAttribute("errorMessage", "로그인 회원만 작품 등록이 가능합니다.");
 
-            return "/member/memberLoginForm";
+            return "member/memberLoginForm";
         }
-        return "/webtoon/webtoonForm";
+        return "webtoon/webtoonForm";
     }
 
     @PostMapping(value = "/createWebtoon")
@@ -59,7 +59,7 @@ public class WebtoonController {
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             model.addAttribute("errorMessage", "로그인 회원만 작품 등록이 가능합니다.");
 
-            return "/member/memberLoginForm";
+            return "member/memberLoginForm";
         }
 
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
@@ -67,15 +67,15 @@ public class WebtoonController {
         Member userId = memberRepository.findByEmail(info);
 
         if (bindingResult.hasErrors()) {
-            return "/webtoon/webtoonForm";
+            return "webtoon/webtoonForm";
         }
         if (webtoonFormDto.getThumbnail1().isEmpty()) {
             model.addAttribute("errorMessage", "썸네일 가로 사진을 등록해주세요.");
-            return "/webtoon/webtoonForm";
+            return "webtoon/webtoonForm";
         }
         if (webtoonFormDto.getThumbnail2().isEmpty()) {
             model.addAttribute("errorMessage", "썸네일 세로 사진을 등록해주세요.");
-            return "/webtoon/webtoonForm";
+            return "webtoon/webtoonForm";
         }
         try {
             webtoonFormDto.setId(userId.getId());
@@ -132,7 +132,7 @@ public class WebtoonController {
         model.addAttribute("fridayWebtoons", fridayWebtoonDto);
         model.addAttribute("saturdayWebtoons", saturdayWebtoonDto);
         model.addAttribute("sundayWebtoons", sundayWebtoonDto);
-        return "/main/dailyWebtoon";
+        return "main/dailyWebtoon";
     }
 
     //    웹툰 유저 페이지
@@ -175,7 +175,7 @@ public class WebtoonController {
             return "webtoon/webtoonUserPage";
         } catch (NoSuchElementException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "/main/main";
+            return "main/main";
         }
     }
 
@@ -208,7 +208,7 @@ public class WebtoonController {
             return "webtoon/webtoonPage";
         } catch (NoSuchElementException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "/main/main";
+            return "main/main";
         }
     }
 
@@ -254,10 +254,10 @@ public class WebtoonController {
 
         } catch (NoSuchElementException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "/main/main";
+            return "main/main";
         }
 
-        return "/webtoon/webtoonEditForm";
+        return "webtoon/webtoonEditForm";
     }
 
 
@@ -291,7 +291,7 @@ public class WebtoonController {
             if (e.getMessage().isEmpty()) {
                 model.addAttribute("errorMessage", "기타 오류 발생");
             }
-            return "/main/main";
+            return "main/main";
         }
     }
 
